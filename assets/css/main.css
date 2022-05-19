@@ -192,7 +192,7 @@
 }
 
 .product-card-image {
-    padding: 10px 0;
+    padding: 20px 0 10px;
     width: 60%;
     height: 65%;
 }
@@ -217,6 +217,7 @@
     text-align: center;
     width: 60%;
     color: var(--text-color);
+    opacity: 0.8;
 }
 
 .see-more-button {
