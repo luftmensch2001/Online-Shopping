@@ -1,3 +1,8 @@
+.profile-block {
+    padding-bottom: 80px;
+    margin-bottom: 60px;
+}
+
 .profile__container {
     width: 700px;
     max-width: 70%;
@@ -5,4 +10,81 @@
     background-color: var(--blue-color);
     margin: 10px auto 0px;
     border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 100px;
+    margin-top: 20px;
+}
+
+.profile__username {
+    color: white;
+}
+
+.profile__line-infor {
+    display: flex;
+    align-items: center;
+}
+
+.profile__line-label {
+    color: #FFF;
+    width: 100px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: right;
+    margin-right: 14px;
+}
+
+.profile__line-content {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    min-width: 250px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #FFF;
+    border-radius: 12px;
+}
+
+.profile__edit-icon {
+    color: #FFF;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin-left: 9px;
+    width: 100px;
+}
+
+.profile__edit-icon:hover {
+    cursor: pointer;
+    color: var(--orange-color)
+}
+
+.profile__button {
+    width: 250px;
+    height: 45px;
+    margin: 8px 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 12px;
+    border: none;
+}
+
+.profile__button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.profile__button__change-pass {
+    background-color: #17A600;
+}
+
+.profile__button__logout {
+    background-color: var(--red-color);
 }
