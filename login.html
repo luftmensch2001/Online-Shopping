@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký tài khoản</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/register.css">
@@ -17,27 +17,15 @@
 <body>
     <div class="register-container">
         <img class="register-background" src="./assets/images/other/bg.jpg" alt="">
-        <div class="register-card">
+        <div class="login-card">
             <img class="register-logo" src="./assets/images/other/logo.png" alt="">
-            <h1 class="register-title">ĐĂNG KÝ</h1>
+            <h1 class="register-title" style="margin-bottom: 60px;">ĐĂNG NHẬP</h1>
             <form class="register-field-container">
-                <input type="text" name="" id="" class="register-text-input" placeholder="Họ và tên" required>
-                <input type="email" name="" id="" class="register-text-input" placeholder="Địa chỉ Email" required>
-                <div class="tel-wrapper">
-                    <input type="text" name="" id="" class="register-text-input" placeholder="Số điện thoại" required style="width: 150px;">
-                    <label class="gender-label" style="margin-left: 20px;">Giới tính:</label> 
-                    <input type="radio" name="gender" id="" class="gender-radio"><span class="gender-label">Nam</span>
-                    <input type="radio" name="gender" id="" class="gender-radio"><span class="gender-label">Nữ</span>
-                </div>
                 <input type="text" name="" id="" class="register-text-input" placeholder="Tên đăng nhập" required>
                 <input type="password" name="" id="" class="register-text-input" placeholder="Mật khẩu" required>
-                <input type="password" name="" id="" class="register-text-input" placeholder="Nhập lại mật khẩu" required>
-                <div class="policy-wrapper">
-                    <input type="checkbox" name="read-policy" id="" style="width: 15px; height: 15px; transform: translateY(2px);">
-                    <p class="policy-label">Tôi đã đọc và đồng ý với các điều khoản</p>
-                </div>
-                <input class="register-button" type="submit" value="ĐĂNG KÝ">
-                <p class="policy-label" style="margin-top: 20px;">Bạn đã có tài khoản ? <a href="login.html" class="login-now">Đăng nhập ngay</a></p>
+                <input class="login-button" type="submit" value="ĐĂNG NHẬP">
+                <a href="" class="forgot-password-link">Quên mật khẩu ?</a>
+                <p class="policy-label" style="margin-top: 20px;">Bạn chưa có tài khoản ? <a href="register.html" class="login-now">Đăng ký ngay</a></p>
             </form>
         </div>
     </div>
