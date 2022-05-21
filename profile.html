@@ -69,7 +69,7 @@
                     <p class="profile__line-content">Nam</p>
                     <i class="profile__edit-icon fa-solid fa-pen"></i>
                 </div>
-                <button class="profile__button profile__button__change-pass">Đổi mật khẩu</button>
+                <button class="profile__button profile__button__change-pass" onclick="showChangePasswordModal()">Đổi mật khẩu</button>
                 <button class="profile__button profile__button__logout">Đăng xuất</button>
             </div>
         </div>
@@ -123,5 +123,32 @@
             <p>Copyright © 2022 UIT. All rights reserved.</p>
         </div>
     </div>
+
+    <div class="change-password-modal">
+        <div class="change-password__container">
+            <img src="./assets/images/other/avatar.png" alt="" class="change-password__avatar">
+            <h2 style="margin-bottom: 20px;">USERNAME</h2>
+            <form action="" class="change-password-form">
+                <input class="change-password__input" type="password" name="" id="" placeholder="Mật khẩu cũ" required>
+                <input class="change-password__input" type="password" name="" id="" placeholder="Mật khẩu mới" required>
+                <input class="change-password__input" type="password" name="" id="" placeholder="Nhập lại mật khẩu mới" required>
+                <div class="change-password__buttons">
+                    <input class="change-password__button" type="submit" value="Đổi mật khẩu" style="background-color: var(--blue-color); padding: 0 15px;">
+                    <button type="button" class="change-password__button" onclick="hideChangePasswordModal()">Huỷ</button>
+                </div>
+            </form>    
+        </div>
+    </div>
+    <script>
+        const changePasswordModal = document.querySelector(".change-password-modal");
+
+        function showChangePasswordModal() {
+            changePasswordModal.classList.add("open-modal");
+        }
+
+        function hideChangePasswordModal() {
+            changePasswordModal.classList.remove("open-modal");
+        }
+    </script>
 </body>
 </html>

@@ -52,6 +52,13 @@
     justify-content: center;
 }
 
+.login-field-container {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .register-text-input {
     width: 350px;
     height: 40px;
