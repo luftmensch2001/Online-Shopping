@@ -24,15 +24,35 @@
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <img class="search-bar__icon" src="./assets/icons/search.png">
+            <!-- <img class="search-bar__icon" src="./assets/icons/search.png"> -->
+            <lord-icon 
+                src="https://cdn.lordicon.com/pvbutfdk.json"
+                trigger="loop-on-hover"
+                class="search-bar__icon">
+            </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <i class="header__advanced-icon fa-solid fa-cart-shopping"></i>
-            <i class="header__advanced-icon fa-solid fa-heart"></i>
+            <lord-icon
+                src="https://cdn.lordicon.com/aoggitwj.json"
+                trigger="loop-on-hover"
+                colors="primary:#ffffff"
+                class="header__advanced-icon">
+            </lord-icon>
+            <lord-icon
+                src="https://cdn.lordicon.com/kkcllwsu.json"
+                trigger="loop-on-hover"
+                colors="primary:#ffffff"
+                class="header__advanced-icon">
+            </lord-icon>
             <div class="header__user">
-                <i class="header__advanced-icon fa-solid fa-user"></i>
+                <lord-icon
+                    src="https://cdn.lordicon.com/dklbhvrt.json"
+                    trigger="loop-on-hover"
+                    colors="primary:#ffffff"
+                    class="header__advanced-icon">
+                </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
                     <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
@@ -139,6 +159,7 @@
             </form>    
         </div>
     </div>
+    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script>
         const changePasswordModal = document.querySelector(".change-password-modal");
 

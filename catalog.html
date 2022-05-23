@@ -24,15 +24,35 @@
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <img class="search-bar__icon" src="./assets/icons/search.png">
+            <!-- <img class="search-bar__icon" src="./assets/icons/search.png"> -->
+            <lord-icon 
+                src="https://cdn.lordicon.com/pvbutfdk.json"
+                trigger="loop-on-hover"
+                class="search-bar__icon">
+            </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <i class="header__advanced-icon fa-solid fa-cart-shopping"></i>
-            <i class="header__advanced-icon fa-solid fa-heart"></i>
+            <lord-icon
+                src="https://cdn.lordicon.com/aoggitwj.json"
+                trigger="loop-on-hover"
+                colors="primary:#ffffff"
+                class="header__advanced-icon">
+            </lord-icon>
+            <lord-icon
+                src="https://cdn.lordicon.com/kkcllwsu.json"
+                trigger="loop-on-hover"
+                colors="primary:#ffffff"
+                class="header__advanced-icon">
+            </lord-icon>
             <div class="header__user">
-                <i class="header__advanced-icon fa-solid fa-user"></i>
+                <lord-icon
+                    src="https://cdn.lordicon.com/dklbhvrt.json"
+                    trigger="loop-on-hover"
+                    colors="primary:#ffffff"
+                    class="header__advanced-icon">
+                </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
                     <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
@@ -67,10 +87,122 @@
                             <input class="products__price-filter-apply" type="submit" value="ÁP DỤNG">
                         </form>
                     </div>
+
+                    <div class="products__filter-zone">
+                        <h2 class="products__filter-title">Theo Số lượng đã bán</h2>
+                        <form action="" class="products__fiter-form">
+                            <input type="radio" name="count-base" id="price-base">Trên 100 sản phẩm<br>
+                            <input type="radio" name="count-base" id="price-base">Trên 300 sản phẩm<br>
+                            <input type="radio" name="count-base" id="price-base">Trên 500 sản phẩm<br>
+                            <input type="radio" name="count-base" id="price-base">Trên 1000 sản phẩm<br>
+                            <input type="radio" name="count-base" id="price-base">Trên 3000 sản phẩm   
+                        </form>
+                    </div>
+
+                    <div class="products__filter-zone">
+                        <h2 class="products__filter-title">Theo Đánh giá</h2>
+                        <div class="products__filter-vote-item">
+                            <img src="./assets/images/stars/1.png" alt="" class="products__filter-vote-img">
+                            <span>trở lên</span>
+                        </div>
+                        <div class="products__filter-vote-item">
+                            <img src="./assets/images/stars/2.png" alt="" class="products__filter-vote-img">
+                            <span>trở lên</span>
+                        </div>
+                        <div class="products__filter-vote-item">
+                            <img src="./assets/images/stars/3.png" alt="" class="products__filter-vote-img">
+                            <span>trở lên</span>
+                        </div>
+                        <div class="products__filter-vote-item">
+                            <img src="./assets/images/stars/4.png" alt="" class="products__filter-vote-img">
+                            <span>trở lên</span>
+                        </div>
+                        <div class="products__filter-vote-item">
+                            <img src="./assets/images/stars/5.png" alt="" class="products__filter-vote-img">
+                            <span>trở lên</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="products__list">
-
+                    <div class="products__sort">
+                        <h2>Sắp xếp theo</h2>
+                        <button class="products__sort-button products__sort-selected js-latest-button" onclick="ClickLatestButton()">Mới nhất</button>
+                        <button class="products__sort-button js-best-seller-button" onclick="ClickBestSellButton()">Bán chạy nhất</button>
+                        <select class="products__sort-button">
+                            <option value="" disabled selected>Theo giá</option>
+                            <option>Từ thấp đến cao</option>
+                            <option>Từ cao đến thấp</option>
+                            <option>Không</option>
+                        </select>
+                    </div>
+                    <div class="product-card-list">
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                            <p class="product-card-price">31.000.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                            <p class="product-card-price">31.000.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>          
+                        <div class="product-card-item-3">
+                            <img src="./assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                            <p class="product-card-price">290.000 VNĐ</p>
+                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                        </div>                
+                        <div class="paging">
+                            <button class="paging__trans">Trang đầu</button>
+                            <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
+                            <button class="paging__page-number">1</button>
+                            <button class="paging__page-number paging__current">2</button>
+                            <button class="paging__page-number">3</button>
+                            <button class="paging__page-number">4</button>
+                            <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
+                            <button class="paging__trans">Trang cuối</button> <br>
+                            <p>Đang ở trang 2 trong tổng số 7 trang</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>       
@@ -196,6 +328,29 @@
         </div>
     </div>
 </div>
-
+    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script>
+        const latestButton = document.querySelector(".js-latest-button");
+        console.log("latestButton: ", latestButton);
+        const bestButton = document.querySelector(".js-best-seller-button");
+        function ClickLatestButton() {
+            if (latestButton.classList.contains("products__sort-selected"))
+            {
+                latestButton.classList.remove("products__sort-selected");
+            } else
+            {
+                latestButton.classList.add("products__sort-selected");
+            }
+        }
+        function ClickBestSellButton() {
+            if (bestButton.classList.contains("products__sort-selected"))
+            {
+                bestButton.classList.remove("products__sort-selected");
+            } else
+            {
+                bestButton.classList.add("products__sort-selected");
+            }
+        }
+    </script>
 </body>
 </html>
