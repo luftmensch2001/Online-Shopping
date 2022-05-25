@@ -133,3 +133,42 @@
 .payment-bar__button-2:hover {
     background-color: rgb(243, 0, 0) !important;
 }
+
+.wishlist__advanced {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.wishlist__price {
+    width: 25%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--red-color);
+    width: 20%;
+    text-align: center;
+}
+
+.wishlist__button, 
+.wishlist__button-2 {
+    background-color: var(--blue-color);
+    color: #FFF;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    height: 45px;
+    cursor: pointer;
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.wishlist__button-2 {
+    background-color: var(--red-color) !important;
+}
+
+.wishlist__button:hover, 
+.wishlist__button-2:hover {
+    opacity: 0.9;
+}
