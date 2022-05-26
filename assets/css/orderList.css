@@ -1,0 +1,123 @@
+.order-list-container {
+    margin: 40px 30px;
+}
+
+.order-list__filter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-list__label {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.order-list__select {
+    font-size: 1.3rem;
+    padding: 8px;
+    margin-left: 25px;
+    border-radius: 10px;
+}
+
+.order-list__filter-button {
+    padding: 10px 15px;
+    margin-left: 30px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    background-color: var(--orange-color);
+    color: #FFF;
+    border: none;
+    border-radius: 8px;
+}
+
+.order-list__filter-button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.order-list__heading {
+    display: flex;
+    width: 100%;
+}
+
+.order-list__heading p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.order__item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.order__item:hover {
+    background-color: var(--background-gray-color);
+    cursor: pointer;
+}
+
+.order__product-info {
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+
+.order__product-img {
+    width: 100px;
+    max-height: 200px;
+}
+
+.order__product-name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 8px;
+}
+
+.order__count {
+    width: 15%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.order__date {
+    width: 15%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: center;
+    font-style: italic;
+}
+
+.order__price {
+    width: 15%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--red-color);
+    text-align: center;
+}
+
+.order__status {
+    width: 20%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.order__remain {
+    width: 15%;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 0;
+}
