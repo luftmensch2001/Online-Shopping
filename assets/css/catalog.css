@@ -169,3 +169,21 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.products__add-button {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #FFF;
+    background-color: var(--blue-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-left: auto;
+    margin-right: 25px;
+    transform: translateY(-10px);
+}
+
+.products__add-button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
