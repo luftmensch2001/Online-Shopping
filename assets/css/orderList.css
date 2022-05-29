@@ -383,3 +383,27 @@
 .open-modal {
     display: flex;
 }
+
+.order-detail__comfirm-buttons {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.order-detail__botright-button-comfirm {
+    font-size: 1.4rem;
+    color: #FFF;
+    background-color: #06CE0E;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-right: 10px;
+}
+
+.order-detail__botright-button-comfirm:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
