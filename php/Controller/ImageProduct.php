@@ -1,8 +1,8 @@
 <?php
 
-class Color{
+class ImageProduct{
     private $id;
-    private $nameColor;
+    private $imageURL;
     private $idProduct;
 
     function SetId($id){
@@ -13,12 +13,12 @@ class Color{
         return $this->id;
     }
 
-    function SetNameColor($nameColor) {
-        $this->nameColor = $nameColor;
+    function SetImageURL($imageURL) {
+        $this->imageURL = $imageURL;
         return $this;
     }
-    function GetNameColor(){
-        return $this->nameColor;
+    function GetImageURL(){
+        return $this->imageURL;
     }
 
     function SetIdProduct( $idProduct ){

@@ -2,7 +2,9 @@
 require_once('./Controller/Account.php');
 require_once('./Model/AccountDTO.php');
 error_reporting(E_ALL ^ E_NOTICE);
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
     $password =  md5($_POST['password']);

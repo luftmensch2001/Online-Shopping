@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $idAccount = $_SESSION['idAccount'];
 if ($idAccount == null || $idAccount == -1)
-    include 'login.php';
+    header("Location:login.php");
 else {
     $account = new Account();
     $account = AccountDTO::getInstance()->GetAccount($idAccount);
@@ -113,7 +113,7 @@ else {
                 </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
-                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
+                    <a href="yourStore.php"class="header__user-dropdown-item">Cửa Hàng Của Bạn</a>
                     <li class="header__user-dropdown-item">Đơn Mua</li>
                     <li class="header__user-dropdown-item">Đơn Bán</li>
                     <a href="logout.php" class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
