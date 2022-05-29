@@ -1,12 +1,84 @@
+<?php
+require_once('./Controller/Account.php');
+require_once('./Model/AccountDTO.php');
+error_reporting(E_ALL ^ E_NOTICE);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$idAccount = $_SESSION['idAccount'];
+if ($idAccount == null || $idAccount == -1)
+    include 'login.php';
+else {
+    $account = new Account();
+    $account = AccountDTO::getInstance()->GetAccount($idAccount);
+    $username = $account->GetUsername();
+    $fullName = $account->GetFullName();
+    $password = $account->GetPassword();
+    $email = $account->GetEmail();
+    $phoneNumber = $account->GetPhoneNumber();
+    $sex = $account->GetSex();
+    if (isset($_POST['infoType'])) {
+        $type = $_POST['infoType'];
+        echo "<h1?>$type</h1><br>";
+        $id = $account->GetId();
+        switch ($type) {
+            case 'fullName':
+                $newValue = $_POST['newValue'];
+                $fullName = $newValue;
+                $account->SetFullName($fullName);
+                AccountDTO::getInstance()->UpdateAccount($account);
+                break;
+            case 'email':
+                $newValue = $_POST['newValue'];
+                $email = $newValue;
+                $account->SetEmail($email);
+                AccountDTO::getInstance()->UpdateAccount($account);
+                break;
+            case 'phoneNumber':
+                $newValue = $_POST['newValue'];
+                $phoneNumber = $newValue;
+                $account->SetPhoneNumber($phoneNumber);
+                AccountDTO::getInstance()->UpdateAccount($account);
+                break;
+        }
+    } else
+    if (isset($_POST['gender'])) {
+        $gender = $_POST['gender'];
+        echo "<h1>gender : $gender</h1>";
+        $sex = $gender;
+        $account->SetSex($sex);
+        AccountDTO::getInstance()->UpdateAccount($account);
+    }
+    if (isset($_POST['oldPassword'])) {
+        $oldPassword = md5($_POST['oldPassword']);
+        $newPassword = $_POST['newPassword'];
+        $renewPassword = $_POST['re-newPassword'];
+        if ($oldPassword != $password) {
+            // echo '<script>alert("Sai mật khẫu!!!!!")</script>';
+            echo "<h1>$oldPassword</h1>";
+            echo "<h1>$password</h1><br>";
+        } else 
+        if ($newPassword != $renewPassword) {
+            echo '<script>alert("Mật khẫu nhập lại không khớp!!!!!")</script>';
+        } else {
+            $password = md5($newPassword);
+            $account->SetPassword($password);
+            AccountDTO::getInstance()->UpdateAccount($account);
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/global.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,44 +86,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Quản lý tài khoản</title>
 </head>
+
 <body>
     <div id="header">
         <!-- Logo -->
         <a href="https://facebook.com" class="header__logo-link">
-            <img class="header__logo-img"  src="./assets/images/other/logo.png" alt="logo">
+            <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <!-- <img class="search-bar__icon" src="./assets/icons/search.png"> -->
-            <lord-icon 
-                src="https://cdn.lordicon.com/pvbutfdk.json"
-                trigger="loop-on-hover"
-                class="search-bar__icon">
+            <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
+            <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
             </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <lord-icon
-                src="https://cdn.lordicon.com/aoggitwj.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
-            <lord-icon
-                src="https://cdn.lordicon.com/kkcllwsu.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
             <div class="header__user">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dklbhvrt.json"
-                    trigger="loop-on-hover"
-                    colors="primary:#ffffff"
-                    class="header__advanced-icon">
+                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
                 </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
@@ -67,26 +125,26 @@
         <div class="profile-block grid block">
             <h1 class="block__title">THÔNG TIN TÀI KHOẢN</h1>
             <div class="profile__container">
-                <img src="./assets/images/other/avatar.png" alt="" class="profile__avatar">
-                <h2 class="profile__username">USERNAME0175</h2>
+                <img src="../assets/images/other/avatar.png" alt="" class="profile__avatar">
+                <h2 class="profile__username"><?php echo $username; ?></h2>
                 <div class="profile__line-infor">
                     <p class="profile__line-label">Họ và tên</p>
-                    <p class="profile__line-content">Trần Văn Tuấn</p>
+                    <p class="profile__line-content"><?php echo $fullName; ?></p>
                     <i class="profile__edit-icon fa-solid fa-pen" onclick="showChangeInfoModal('name')"></i>
                 </div>
                 <div class="profile__line-infor">
                     <p class="profile__line-label">Địa chỉ email</p>
-                    <p class="profile__line-content">tuantran1234@gmail.com</p>
+                    <p class="profile__line-content"><?php echo $email; ?></p>
                     <i class="profile__edit-icon fa-solid fa-pen" onclick="showChangeInfoModal('email')"></i>></i>
                 </div>
                 <div class="profile__line-infor">
                     <p class="profile__line-label">Số điện thoại</p>
-                    <p class="profile__line-content">0123 456 789</p>
+                    <p class="profile__line-content"><?php echo $phoneNumber; ?></p>
                     <i class="profile__edit-icon fa-solid fa-pen" onclick="showChangeInfoModal('phone')"></i>></i>
                 </div>
                 <div class="profile__line-infor">
                     <p class="profile__line-label">Giới tính</p>
-                    <p class="profile__line-content">Nam</p>
+                    <p class="profile__line-content"><?php echo $sex; ?></p>
                     <i class="profile__edit-icon fa-solid fa-pen" onclick="showChangeGenderModal()"></i>></i>
                 </div>
                 <button class="profile__button profile__button__change-pass" onclick="showChangePasswordModal()">Đổi mật khẩu</button>
@@ -138,47 +196,48 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer__copyright">
             <p>Copyright © 2022 UIT. All rights reserved.</p>
         </div>
     </div>
 
     <div class="change-password-modal">
-        <div class="change-password__container">
-            <img src="./assets/images/other/avatar.png" alt="" class="change-password__avatar">
-            <h2 style="margin-bottom: 20px;">USERNAME</h2>
-            <form action="" class="change-password-form">
-                <input class="change-password__input" type="password" name="" id="" placeholder="Mật khẩu cũ" required>
-                <input class="change-password__input" type="password" name="" id="" placeholder="Mật khẩu mới" required>
-                <input class="change-password__input" type="password" name="" id="" placeholder="Nhập lại mật khẩu mới" required>
+        <div id="formChangePassword" class="change-password__container">
+            <img src="../assets/images/other/avatar.png" alt="" class="change-password__avatar">
+            <h2 style="margin-bottom: 20px;"><?php echo $user->username; ?></h2>
+            <form action="#" method="POST" class="change-password-form">
+                <input class="change-password__input" type="password" name="oldPassword" id="" placeholder="Mật khẩu cũ" required>
+                <input class="change-password__input" type="password" name="newPassword" id="newPassword" placeholder="Mật khẩu mới" required>
+                <input class="change-password__input" type="password" name="re-newPassword" id="re-newPassword" placeholder="Nhập lại mật khẩu mới" required>
                 <div class="change-password__buttons">
                     <input class="change-password__button" type="submit" value="Đổi mật khẩu" style="background-color: var(--blue-color); padding: 0 15px;">
                     <button type="button" class="change-password__button" onclick="hideChangePasswordModal()">Huỷ</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 
     <div class="change-info-modal">
         <div class="change-info__container">
-            <img src="./assets/images/other/avatar.png" alt="" class="change-password__avatar">
-            <h2 style="margin-bottom: 20px;">USERNAME</h2>
-            <form action="" class="change-password-form">
-                <input class="change-password__input" id="js-change-info-input" type="text" name="" id="" placeholder="Họ và tên mới" required>
+            <img src="../assets/images/other/avatar.png" alt="" class="change-password__avatar">
+            <h2 style="margin-bottom: 20px;"><?php echo $user->username; ?></h2>
+            <form method="post" action="#" class="change-password-form">
+                <input class="change-password__input" id="js-change-info-input" type="text" name="newValue" id="" placeholder="Họ và tên mới" required>
                 <div class="change-password__buttons">
+                    <input id="infoType" type="hidden" name="infoType" value="test"></input>
                     <input class="change-password__button" type="submit" value="Lưu lại" style="background-color: var(--blue-color); padding: 0 15px;">
                     <button type="button" class="change-password__button" onclick="hideChangeInfoModal()">Huỷ</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
     <div class="change-gender-modal">
         <div class="change-info__container">
-            <img src="./assets/images/other/avatar.png" alt="" class="change-password__avatar">
-            <h2 style="margin-bottom: 20px;">USERNAME</h2>
-            <form action="" class="change-password-form">
-                <select class="change-password__input">
+            <img src="../assets/images/other/avatar.png" alt="" class="change-password__avatar">
+            <h2 style="margin-bottom: 20px;"><?php echo $user->username; ?></h2>
+            <form action="#" method="post" class="change-password-form">
+                <select class="change-password__input" name="gender">
                     <option>Nam</option>
                     <option>Nữ</option>
                     <option>Khác</option>
@@ -187,7 +246,7 @@
                     <input class="change-password__button" type="submit" value="Lưu lại" style="background-color: var(--blue-color); padding: 0 15px;">
                     <button type="button" class="change-password__button" onclick="hideChangeGenderModal()">Huỷ</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
@@ -206,19 +265,24 @@
 
         function showChangeInfoModal(infoType) {
             const changeInfoInput = document.getElementById('js-change-info-input');
+            const changeInfoTypeInput = document.getElementById('infoType');
             if (infoType == 'name') {
                 changeInfoInput.type = "text";
                 console.log(infoType);
                 changeInfoInput.placeholder = "Họ và tên mới";
-            } else 
+                changeInfoTypeInput.value = "fullName";
+
+            } else
             if (infoType == 'email') {
                 changeInfoInput.type = "email";
                 changeInfoInput.placeholder = "Địa chỉ email mới";
-            } else 
+                changeInfoTypeInput.value = "email";
+            } else
             if (infoType == 'phone') {
-                changeInfoInput.type = "text";
+                changeInfoInput.type = "number";
                 changeInfoInput.placeholder = "Số điện thoại mới";
-            } 
+                changeInfoTypeInput.value = "phoneNumber";
+            }
             changeInfoModal.classList.add("open-modal");
         }
 
@@ -235,4 +299,5 @@
         }
     </script>
 </body>
+
 </html>
