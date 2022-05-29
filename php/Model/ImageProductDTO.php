@@ -1,7 +1,7 @@
 <?php
-require_once('./Controller/Image.php');
+require_once('./Controller/ImageProduct.php');
 require_once('DataProvider.php');
-class ImageProduct{
+class ImageProductDTO{
     public static $_instance = null;
     private function __construct()
     {
@@ -9,14 +9,14 @@ class ImageProduct{
     public static function getInstance()
     {
         if (self::$_instance == null) {
-            self::$_instance = new ImageProduct();
+            self::$_instance = new ImageProductDTO();
         }
 
         return self::$_instance;
     }
 
-    function GetProductInBill($id){
-        $query = "Select * from ProductInBill where id='$id'" ;
+    function GetImageProduct($id){
+        $query = "Select * from ImageProduct where id='$id'" ;
         $result = DataProvider::getInstance()->Execute($query);
 
         $row = mysqli_num_rows($result);
@@ -30,22 +30,23 @@ class ImageProduct{
         } else
             return null;
     }
-    function CreateProductInBill($imageProduct){
+    function CreateImageProduct($imageProduct){
+
         $idProduct = $imageProduct->GetIdProduct();
         $imageURL = $imageProduct->GetImageURL();
 
-        $query = "INSERT INTO ProductInBill (idProduct, imageURL)
+        $query = "INSERT INTO ImageProduct (idProduct, imageURL)
         values('$idProduct', '$imageURL')";
          $result = DataProvider::getInstance()->Execute($query);
     
          return $result;
     }
-    function UpdateProductInBill($imageProduct){
+    function UpdateImageProduct($imageProduct){
         $id = $imageProduct->GetId();
         $idProduct = $imageProduct->GetIdProduct();
         $imageURL = $imageProduct->GetImageURL();
 
-        $query = "Update ProductInBill set 'idProduct'='$idProduct','imageURL'='$imageURL' 
+        $query = "Update ImageProduct set 'idProduct'='$idProduct','imageURL'='$imageURL' 
          where id = '$id'";
          $result = DataProvider::getInstance()->Execute($query);
     

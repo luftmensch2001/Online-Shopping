@@ -17,7 +17,7 @@
 <body>
     <div id="header">
         <!-- Logo -->
-        <a href="https://facebook.com" class="header__logo-link">
+        <a href="index.php" class="header__logo-link">
             <img class="header__logo-img"  src="../assets/images/other/logo.png" alt="logo">
         </a>
 

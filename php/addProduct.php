@@ -1,23 +1,52 @@
 <?php
-require_once('./Controller/Account.php');
+require_once('./Controller/Product.php');
 require_once('./Controller/Color.php');
+require_once('./Controller/ImageProduct.php');
 require_once('./Model/ProductDTO.php');
 require_once('./Model/ColorDTO.php');
+require_once('./Model/ImageProductDTO.php');
 error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $idAccount = $_SESSION['idAccount'];
-if ($idAccount == null || $idAccount == -1)
-{
+if ($idAccount == null || $idAccount == -1) {
     header("Location:Login.php");
-}
-else {
+} else {
     if (isset($_POST['nameProduct'])) {
-        $nameProduct = $_POST['nameProduct'];
+
+        /*  $nameProduct = $_POST['nameProduct'];
         $price = $_POST['price'];
-        $detail = $_POST['detail'];
-        echo "<script>alert('aasdfas')</script>";
+        $decribe = $_POST['decribe'];
+
+        echo "$nameProduct++$price++$decribe";
+
+        $product = new Product();
+        $product->SetNameProduct($nameProduct)->SetPrice($price)->SetDecribe($decribe)->SetIdAccount($idAccount);
+
+        if (ProductDTO::getInstance()->CreateProduct($product))
+            echo "<script>alert('thanh cong')</script>";
+        else
+            echo "<script>alert('that bai')</script>";*/
+        $countImage = $_POST['indexImage'];
+        //echo $countImage."br";
+        $countImage = 1;
+        
+        /*for ($i = 0; $i < $countImage; $i++) {
+            $index = "image" . $i;
+            $imageURL = $_POST["$index"];
+            if (isset($_POST["$index"])) {
+                $imageProduct = new ImageProduct();
+                $imageProduct->SetImageURL($imageURL);
+                echo $imageProduct->GetImageURL();
+                $imageProduct->SetIdProduct(1);
+                if (ImageProductDTO::getInstance()->CreateImageProduct($imageProduct)) {
+                    echo "<script>alert('thanh cong')</script>";
+                } else {
+                    echo "<script>alert('that bai')</script>";
+                }
+            }
+        }*/
     }
 }
 ?>
@@ -41,9 +70,27 @@ else {
 </head>
 
 <body>
+<table>
+<?php 
+
+
+    foreach ($_POST as $key => $value) {
+        echo "<tr>";
+        echo "<td>";
+        echo $key;
+        echo "</td>";
+        echo "<td>";
+        echo $value;
+        echo "</td>";
+        echo "</tr>";
+    }
+
+
+?>
+</table>
     <div id="header">
         <!-- Logo -->
-        <a href="https://facebook.com" class="header__logo-link">
+        <a href="index.php" class="header__logo-link">
             <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
@@ -65,11 +112,11 @@ else {
                 <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
                 </lord-icon>
                 <ul class="header__user-dropdown">
-                    <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
-                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
+                    <a href="profile.php" class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a> <br>
+                    <a href="yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a> <br>
                     <li class="header__user-dropdown-item">Đơn Mua</li>
                     <li class="header__user-dropdown-item">Đơn Bán</li>
-                    <li class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</li>
+                    <a href="logout.php" class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
                 </ul>
             </div>
         </div>
@@ -98,8 +145,8 @@ else {
                     <option>Cho bé</option>
                     <option>Khác</option>
                 </select>
-                <input id ="price" name="price" value="<?php echo $price; ?>" type="number" class="add__input" placeholder="Giá" style="width: 40%; margin-left: auto; margin-right: 0" >
-                <textarea id="detail" class="add__textarea" name="" id="" cols="30" rows="20" placeholder="Mô tả chi tiết sản phẩm"></textarea>
+                <input id="price" name="price" value="<?php echo $price; ?>" type="number" class="add__input" placeholder="Giá" style="width: 40%; margin-left: auto; margin-right: 0">
+                <textarea id="decribe" class="add__textarea" name="decribe" id="" cols="30" rows="20" placeholder="Mô tả chi tiết sản phẩm"><?php echo $decribe; ?></textarea>
                 <!--<p class="add__label">Hình ảnh</p> -->
                 <p class="add__label">Hình ảnh</p>
                 <br>

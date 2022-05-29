@@ -12,6 +12,7 @@ addColorButton.addEventListener('click', () => {
         const p = document.createElement('p');
         const buttonDelete = document.createElement('button');
         const i = document.createElement('i');
+
         p.innerHTML = addColorInput.value;
         p.className = "add__type-name";
         li.appendChild(p);
@@ -20,6 +21,7 @@ addColorButton.addEventListener('click', () => {
         buttonDelete.className = "add__type-delete";
         buttonDelete.addEventListener('click', () => {
             listColor.removeChild(li);
+            indexColor.value--;
         })
         i.className = "fa-solid fa-xmark";
         buttonDelete.appendChild(i);
@@ -29,9 +31,8 @@ addColorButton.addEventListener('click', () => {
 
         li.className = "add__type-item";
         indexColor.value++;
-        li.name = "color" + indexColor.value;
+        li.setAttribute('name',"color" + indexColor.value);
         listColor.appendChild(li);
-        console.log(li.name);
         addColorInput.value = "";
     }
 })
@@ -46,32 +47,39 @@ image_input.addEventListener("change", function () {
             continue;
         }
         const reader = new FileReader();
+        const hidenURL = document.createElement('input');
         reader.addEventListener("load", () => {
             const uploaded_image = reader.result;
             const image = document.createElement('img');
             const buttonDelete = document.createElement('button');
             const i = document.createElement('i');
             const div = document.createElement('div');
+           
             image.src = uploaded_image;
             image.className = "add__img-image";
+            hidenURL.type = 'hidden';
+            hidenURL.setAttribute('name',"image"+indexImage.value);
 
             buttonDelete.className = "add__img-delete";
             buttonDelete.addEventListener('click', () => {
                 listImage.removeChild(div);
+                indexImage.value--;
             })
             i.className = "fa-solid fa-xmark";
             buttonDelete.appendChild(i);
 
             div.appendChild(image);
             div.appendChild(buttonDelete);
+            div.appendChild(hidenURL);
+
 
             div.className = "add__img-item";
             indexImage.value++;
-            div.name = "image" + indexImage.value;
             document.querySelector('#listImage').appendChild(div);
-            console.log(div.name);
         });
+        hidenURL.value = this.files[i]['name'];
         reader.readAsDataURL(this.files[i]);
+
     }
 });
 

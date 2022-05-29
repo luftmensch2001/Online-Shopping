@@ -12,7 +12,7 @@ if (isset($_POST['username'])) {
     $id = AccountDTO::getInstance()->GetId($username, $password);
     if ($id!=-1) {
         $_SESSION['idAccount'] = $id;
-        include './index.php';
+        header("Location:index.php");
     } else
     {
         echo '<script>alert("Tên tài khoản hoặc mật khẩu không chính xác")</script>';

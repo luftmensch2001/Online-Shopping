@@ -32,7 +32,7 @@ if ($idAccount != null&& $idAccount !=-1) {
 <body>
     <div id="header">
         <!-- Logo -->
-        <a href="https://facebook.com" class="header__logo-link">
+        <a href="index.php" class="header__logo-link">
             <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
@@ -49,8 +49,8 @@ if ($idAccount != null&& $idAccount !=-1) {
             <div class="header__user">
                 <i class="header__advanced-icon fa-solid fa-user"></i>
                 <ul class="header__user-dropdown">
-                    <a href="profile.php" class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a>
-                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
+                    <a href="profile.php" class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a> <br>
+                    <a href="yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a> <br>
                     <li class="header__user-dropdown-item">Đơn Mua</li>
                     <li class="header__user-dropdown-item">Đơn Bán</li>
                     <a href="logout.php" class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>

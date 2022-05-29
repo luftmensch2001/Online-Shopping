@@ -42,12 +42,17 @@ class ProductDTO
         $nameProduct = $product->GetNameProduct();
         $idAccount = $product->GetIdAccount();
         $price = $product->GetPrice();
-        $countSold = $product->GetCountSold();
-        $countAvailable = $product->GetCountAvailable();
+        //$countSold = $product->GetCountSold();
+       // $countAvailable = $product->GetCountAvailable();
         $decribe = $product->GetDecribe();
+        //$countStar = $product->GetCountStar();
 
-        $query = "Insert Into Product(nameProduct, idAccount, price, countSold,countAvailable,decribe
-        values('$nameProduct','$idAccount','$price','$countSold','$countAvailable','$decribe')";
+        //$query = "Insert Into Product(nameProduct, idAccount, price, countSold,countAvailable,decribe,countStar)
+        //values('$nameProduct','$idAccount','$price','$countSold','$countAvailable','$decribe','$countStar')";
+        $query = "Insert Into Product(nameProduct, idAccount, price,decribe)  
+        values('$nameProduct','$idAccount','$price','$decribe')";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
     }
     public function UpdateProduct($product)
     {
@@ -69,7 +74,17 @@ class ProductDTO
         Where 'id' = '$id'";
 
         $result = DataProvider::getInstance()->Execute($query);
-    
         return $result;
+    }
+    public function GetMaxId()
+    {
+        $query = "SELECT MAX(id) as MAXID FROM Product";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+        if ($row > 0) {
+            $row = $result->fetch_assoc();
+            return $row["MAXID"];
+        }
+        return -1;
     }
 }

@@ -15,8 +15,8 @@ class ColorDTO{
         return self::$_instance;
     }
 
-    function GetProductInBill($id){
-        $query = "Select * from ProductInBill where id='$id'" ;
+    function GetColor($id){
+        $query = "Select * from Color where id='$id'" ;
         $result = DataProvider::getInstance()->Execute($query);
 
         $row = mysqli_num_rows($result);
@@ -30,22 +30,22 @@ class ColorDTO{
         } else
             return null;
     }
-    function CreateProductInBill($color){
+    function CreateColor($color){
         $idProduct = $color->GetIdProduct();
         $nameColor = $color->GetNameColor();
 
-        $query = "INSERT INTO ProductInBill (idProduct, nameColor)
+        $query = "INSERT INTO Color (idProduct, nameColor)
         values('$idProduct', '$nameColor')";
          $result = DataProvider::getInstance()->Execute($query);
     
          return $result;
     }
-    function UpdateProductInBill($color){
+    function UpdateColor($color){
         $id = $color->GetId();
         $idProduct = $color->GetIdProduct();
         $nameColor = $color->GetNameColor();
 
-        $query = "Update ProductInBill set 'idProduct'='$idProduct','nameColor'='$nameColor' 
+        $query = "Update Color set 'idProduct'='$idProduct','nameColor'='$nameColor' 
          where id = '$id'";
          $result = DataProvider::getInstance()->Execute($query);
     
