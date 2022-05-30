@@ -32,7 +32,8 @@ class ProductDTO
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
                 ->SetCountAvailable($row["countAvailable"])
-                ->SetDecribe($row["decribe"]);
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
             return $Product;
         } else
             return null;
@@ -45,12 +46,13 @@ class ProductDTO
         //$countSold = $product->GetCountSold();
        // $countAvailable = $product->GetCountAvailable();
         $decribe = $product->GetDecribe();
+        $type = $product->GetType();
         //$countStar = $product->GetCountStar();
 
         //$query = "Insert Into Product(nameProduct, idAccount, price, countSold,countAvailable,decribe,countStar)
         //values('$nameProduct','$idAccount','$price','$countSold','$countAvailable','$decribe','$countStar')";
-        $query = "Insert Into Product(nameProduct, idAccount, price,decribe)  
-        values('$nameProduct','$idAccount','$price','$decribe')";
+        $query = "Insert Into Product(nameProduct, idAccount, price,decribe,type)  
+        values('$nameProduct','$idAccount','$price','$decribe','$type')";
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
     }
@@ -63,6 +65,7 @@ class ProductDTO
         $countSold = $product->GetCountSold();
         $countAvailable = $product->GetCountAvailable();
         $decribe = $product->GetDecribe();
+        $type = $product->GetType();
 
         $query = "Update Product Set 
         'nameProduct' = '$nameProduct',
@@ -70,7 +73,8 @@ class ProductDTO
         'price' = '$price',
         'countSold' = '$countSold',
         'countAvailable' = '$countAvailable',
-        'decribe' = '$decribe' 
+        'decribe' = '$decribe',
+        'type' = '$type'
         Where 'id' = '$id'";
 
         $result = DataProvider::getInstance()->Execute($query);

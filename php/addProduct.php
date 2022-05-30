@@ -13,40 +13,57 @@ $idAccount = $_SESSION['idAccount'];
 if ($idAccount == null || $idAccount == -1) {
     header("Location:Login.php");
 } else {
+    //echo $idAccount;
     if (isset($_POST['nameProduct'])) {
-
-        /*  $nameProduct = $_POST['nameProduct'];
+        //Add product 
+        $nameProduct = $_POST['nameProduct'];
         $price = $_POST['price'];
         $decribe = $_POST['decribe'];
-
-        echo "$nameProduct++$price++$decribe";
+        $type = $_POST['type'];
 
         $product = new Product();
-        $product->SetNameProduct($nameProduct)->SetPrice($price)->SetDecribe($decribe)->SetIdAccount($idAccount);
+        $product->SetNameProduct($nameProduct)->SetPrice($price)
+        ->SetDecribe($decribe)
+        ->SetType($type)
+        ->SetIdAccount($idAccount);
 
         if (ProductDTO::getInstance()->CreateProduct($product))
             echo "<script>alert('thanh cong')</script>";
         else
-            echo "<script>alert('that bai')</script>";*/
-        $countImage = $_POST['indexImage'];
-        //echo $countImage."br";
-        $countImage = 1;
+            echo "<script>alert('that bai')</script>";
+        $idProduct = ProductDTO::getInstance()->GetMaxId();
         
-        /*for ($i = 0; $i < $countImage; $i++) {
-            $index = "image" . $i;
-            $imageURL = $_POST["$index"];
-            if (isset($_POST["$index"])) {
-                $imageProduct = new ImageProduct();
-                $imageProduct->SetImageURL($imageURL);
-                echo $imageProduct->GetImageURL();
-                $imageProduct->SetIdProduct(1);
-                if (ImageProductDTO::getInstance()->CreateImageProduct($imageProduct)) {
-                    echo "<script>alert('thanh cong')</script>";
-                } else {
-                    echo "<script>alert('that bai')</script>";
-                }
+        //Add ImageProduct
+        $imageProduct = new ImageProduct();
+        $imageProduct->SetIdProduct($idProduct);
+        $uploaddir = '../assets/images/products/';
+        // echo "</p>";
+        //echo '<pre>';
+        // echo 'Here is some more debugging info:';
+        //print_r($_FILES);
+        //print "</pre>";
+        foreach ($_FILES['userfile']['name'] as $key => $value) {
+            $rand1 = rand('1111111111', '9999999999');
+            $rand2 = rand('1111111111', '9999999999');
+            $uploadfile = $uploaddir . $rand1 . $rand2 . $value;
+            if (move_uploaded_file($_FILES['userfile']['tmp_name'][$key], $uploadfile)) {
+                // echo "File is valid, and was successfully uploaded.\n";
+                $imageProduct->SetImageURL($uploadfile);
+                ImageProductDTO::getInstance()->CreateImageProduct($imageProduct);
+            } else {
+                // echo "Upload failed";
             }
-        }*/
+        }
+
+        // Add color information
+        for ($i = 1; $i <= $_POST['indexColor']; $i++) {
+            $color = new Color();
+            $color->SetNameColor($_POST['color' . $i]);
+            $color->SetIdProduct($idProduct);
+            ColorDTO::getInstance()->CreateColor($color);
+        }
+
+        header("Location:yourStore.php");
     }
 }
 ?>
@@ -70,24 +87,6 @@ if ($idAccount == null || $idAccount == -1) {
 </head>
 
 <body>
-<table>
-<?php 
-
-
-    foreach ($_POST as $key => $value) {
-        echo "<tr>";
-        echo "<td>";
-        echo $key;
-        echo "</td>";
-        echo "<td>";
-        echo $value;
-        echo "</td>";
-        echo "</tr>";
-    }
-
-
-?>
-</table>
     <div id="header">
         <!-- Logo -->
         <a href="index.php" class="header__logo-link">
@@ -122,11 +121,11 @@ if ($idAccount == null || $idAccount == -1) {
         </div>
     </div>
     <div class="body">
-        <form action="#" method="post" name="form" class="grid block" onsubmit=" return IsSubmit()">
+        <form action="#" enctype="multipart/form-data" method="post" name="form" class="grid block" onsubmit=" return IsSubmit()">
             <h1 class="block__title">THÊM SẢN PHẨM</h1>
             <div class="add__container">
                 <input id="nameProduct" type="text" name="nameProduct" class="add__input" placeholder="Tên sản phẩm" value="<?php echo $nameProduct; ?>">
-                <select name="" id="" class="add__select">
+                <select name="type" id="" class="add__select">
                     <option disabled selected>Chọn danh mục sản phẩm</option>
                     <option selected>Thời trang nam</option>
                     <option>Thời trang nữ</option>
@@ -150,7 +149,7 @@ if ($idAccount == null || $idAccount == -1) {
                 <!--<p class="add__label">Hình ảnh</p> -->
                 <p class="add__label">Hình ảnh</p>
                 <br>
-                <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" multiple></input>
+                <input name="userfile[]" type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" multiple></input>
 
                 <div id="listImage" class="add__img-container">
                     <input id="indexImage" type="hidden" name="indexImage" value="0">

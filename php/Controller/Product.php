@@ -10,6 +10,7 @@ class Product{
     private $decribe;
     private $idTypeProduct=0;
     private $countStar=0;
+    private $type;
 
     function SetId( $id ){
         $this->id = $id;
@@ -47,6 +48,12 @@ class Product{
         $this->countStar = $star;
         return $this;
     }
+    function SetType($type){
+        $this->type = $type;
+        return $this;
+    }
+
+    
     function GetId(){
         return $this->id;
     }
@@ -74,5 +81,8 @@ class Product{
     }
     function GetCountStar(){
         return $this->countStar;
+    }
+    function GetType(){
+        return $this->type;
     }
 }

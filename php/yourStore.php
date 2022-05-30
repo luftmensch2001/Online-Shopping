@@ -1,3 +1,15 @@
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$idAccount = $_SESSION['idAccount'];
+if ($idAccount == null || $idAccount == -1) {
+    header("Location:Login.php");
+} else {
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

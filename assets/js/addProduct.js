@@ -12,6 +12,8 @@ addColorButton.addEventListener('click', () => {
         const p = document.createElement('p');
         const buttonDelete = document.createElement('button');
         const i = document.createElement('i');
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
 
         p.innerHTML = addColorInput.value;
         p.className = "add__type-name";
@@ -31,7 +33,9 @@ addColorButton.addEventListener('click', () => {
 
         li.className = "add__type-item";
         indexColor.value++;
-        li.setAttribute('name',"color" + indexColor.value);
+        hiddenInput.setAttribute('name', "color" + indexColor.value);
+        hiddenInput.value = addColorInput.value;
+        li.appendChild(hiddenInput);
         listColor.appendChild(li);
         addColorInput.value = "";
     }
@@ -42,23 +46,29 @@ const indexImage = document.querySelector('#indexImage')
 
 const image_input = document.querySelector("#image-input");
 image_input.addEventListener("change", function () {
+    console.log(listImage);
+    for (i = 1; i <= indexImage.value; i++) {
+        let str = "#image" + i;
+        console.log(str);
+        const child = listImage.querySelector(str);
+        listImage.removeChild(child);
+    }
+
+    indexImage.value = 0;
     for (i = 0; i < this.files.length; i++) {
         if (!this.files[i].type.match("image")) {
             continue;
         }
         const reader = new FileReader();
-        const hidenURL = document.createElement('input');
         reader.addEventListener("load", () => {
             const uploaded_image = reader.result;
             const image = document.createElement('img');
             const buttonDelete = document.createElement('button');
             const i = document.createElement('i');
             const div = document.createElement('div');
-           
+
             image.src = uploaded_image;
             image.className = "add__img-image";
-            hidenURL.type = 'hidden';
-            hidenURL.setAttribute('name',"image"+indexImage.value);
 
             buttonDelete.className = "add__img-delete";
             buttonDelete.addEventListener('click', () => {
@@ -68,16 +78,16 @@ image_input.addEventListener("change", function () {
             i.className = "fa-solid fa-xmark";
             buttonDelete.appendChild(i);
 
-            div.appendChild(image);
-            div.appendChild(buttonDelete);
-            div.appendChild(hidenURL);
 
+            div.appendChild(image);
+            //div.appendChild(buttonDelete);
 
             div.className = "add__img-item";
             indexImage.value++;
+            div.setAttribute('id', 'image' + indexImage.value);
+            console.log(div.getAttribute('id'));
             document.querySelector('#listImage').appendChild(div);
         });
-        hidenURL.value = this.files[i]['name'];
         reader.readAsDataURL(this.files[i]);
 
     }
@@ -89,25 +99,23 @@ function IsSubmit() {
     if (typeButton != "submit")
         return false;
     let nameProduct = document.forms["form"]["nameProduct"].value;
-    let price= document.forms["form"]["price"].value;
-    let detail = document.forms["form"]["detail"].value;
-    
-    if (nameProduct==="") {
+    let price = document.forms["form"]["price"].value;
+    let detail = document.forms["form"]["decribe"].value;
+    if (nameProduct === "") {
         kt = false;
         alert("Please enter");
         document.forms["form"]["nameProduct"].style.border = "1px solid red";
     }
-    if (price==="") {
+    if (price === "") {
         kt = false;
         document.forms["form"]["price"].style.border = "1px solid red";
     }
-    if (detail==="") {
+    if (detail === "") {
         kt = false;
-        document.forms["form"]["detail"].style.border = "1px solid red";
+        document.forms["form"]["decribe"].style.border = "1px solid red";
     }
-    if (!kt)
-    {
-        scroll(0,0);
+    if (!kt) {
+        scroll(0, 100);
     }
     return kt;
 }

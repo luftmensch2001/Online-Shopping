@@ -52,4 +52,20 @@ class ImageProductDTO{
     
          return $result;
     }
+    function GetListImagesProduct($imageProduct)
+    {
+        $imageProducts = array();
+        $query = "Select * from ImageProduct where idProduct='0'" ;
+        $result = DataProvider::getInstance()->Execute($query);
+
+        $row = mysqli_num_rows($result);
+        while ($row = $result->fetch_assoc())
+        {
+            $imageProduct = new ImageProduct();
+            $imageProduct->SetId($row["id"])
+            ->SetImageURL($row["imageURL"]);
+            array_push($imageProducts, $imageProduct);
+        } 
+        return $imageProducts;
+    }
 }
