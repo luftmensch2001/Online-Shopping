@@ -30,6 +30,21 @@ class ImageProductDTO{
         } else
             return null;
     }
+    function GetFirstImageProduct($idProduct){
+        $query = "Select * from ImageProduct where idProduct='$idProduct' limit 1" ;
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+        if ($row > 0) {
+            $row = $result->fetch_assoc();
+            $imageProduct = new ImageProduct();
+            $imageProduct->SetId($row["id"])
+            ->SetIdProduct($row["idProduct"])
+            ->SetImageURL($row["imageURL"]);
+          //  echo $imageProduct->GetImageURL()."<br>";
+            return $imageProduct;
+        } else
+            return null;
+    }
     function CreateImageProduct($imageProduct){
 
         $idProduct = $imageProduct->GetIdProduct();

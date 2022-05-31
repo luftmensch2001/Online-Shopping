@@ -44,7 +44,7 @@ class ProductDTO
         $idAccount = $product->GetIdAccount();
         $price = $product->GetPrice();
         //$countSold = $product->GetCountSold();
-       // $countAvailable = $product->GetCountAvailable();
+        // $countAvailable = $product->GetCountAvailable();
         $decribe = $product->GetDecribe();
         $type = $product->GetType();
         //$countStar = $product->GetCountStar();
@@ -90,5 +90,28 @@ class ProductDTO
             return $row["MAXID"];
         }
         return -1;
+    }
+    public function GetListProduct($idAccount)
+    {
+        $query = "SELECT * FROM Product Where idaccount = '$idAccount'";
+        $result = DataProvider::getInstance()->Execute($query);
+
+        $row = mysqli_num_rows($result);
+
+
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct,$product);
+        }
+        return $listProduct;
     }
 }

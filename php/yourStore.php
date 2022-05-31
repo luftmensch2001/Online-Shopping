@@ -12,6 +12,7 @@ if ($idAccount == null || $idAccount == -1) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,44 +27,30 @@ if ($idAccount == null || $idAccount == -1) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Cửa hàng của bạn</title>
 </head>
+
 <body>
     <div id="header">
         <!-- Logo -->
         <a href="index.php" class="header__logo-link">
-            <img class="header__logo-img"  src="../assets/images/other/logo.png" alt="logo">
+            <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
             <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
-            <lord-icon 
-                src="https://cdn.lordicon.com/pvbutfdk.json"
-                trigger="loop-on-hover"
-                class="search-bar__icon">
+            <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
             </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <lord-icon
-                src="https://cdn.lordicon.com/aoggitwj.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
-            <lord-icon
-                src="https://cdn.lordicon.com/kkcllwsu.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
             <div class="header__user">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dklbhvrt.json"
-                    trigger="loop-on-hover"
-                    colors="primary:#ffffff"
-                    class="header__advanced-icon">
+                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
                 </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
@@ -77,7 +64,7 @@ if ($idAccount == null || $idAccount == -1) {
     </div>
 
     <div class="body">
-        
+
 
         <div class="products grid block">
             <h1 class="products__title">CỬA HÀNG CỦA BẠN</h1>
@@ -95,7 +82,7 @@ if ($idAccount == null || $idAccount == -1) {
                             <input type="radio" name="price-base" id="price-base">Trên 5Tr<br>
                             <input type="radio" name="price-base" id="price-base">Tuỳ chỉnh<br>
                             <input type="text" name="" id="" placeholder="Từ" style="width:110px; height:35px; transform: none; cursor: text;" class="products__price-filter"><span style="padding: 0 5px;">-</span>
-                            <input type="text" name="" id="" placeholder="Đến"style="width:110px; height:35px; transform: none; cursor: text;" class="products__price-filter">
+                            <input type="text" name="" id="" placeholder="Đến" style="width:110px; height:35px; transform: none; cursor: text;" class="products__price-filter">
                             <input class="products__price-filter-apply" type="submit" value="ÁP DỤNG">
                         </form>
                     </div>
@@ -107,7 +94,7 @@ if ($idAccount == null || $idAccount == -1) {
                             <input type="radio" name="count-base" id="price-base">Trên 300 sản phẩm<br>
                             <input type="radio" name="count-base" id="price-base">Trên 500 sản phẩm<br>
                             <input type="radio" name="count-base" id="price-base">Trên 1000 sản phẩm<br>
-                            <input type="radio" name="count-base" id="price-base">Trên 3000 sản phẩm   
+                            <input type="radio" name="count-base" id="price-base">Trên 3000 sản phẩm
                         </form>
                     </div>
 
@@ -148,80 +135,34 @@ if ($idAccount == null || $idAccount == -1) {
                             <option>Không</option>
                         </select>
                         <a href="addProduct.php">
-                        <button class="products__add-button"">Thêm sản phẩm</button>
+                            <button class="products__add-button"">Thêm sản phẩm</button>
                         </a>
                     </div>
-                    <div class="product-card-list">
-                        <div class="product-card-item-3">
+                     <div class=" product-card-list">
+                                <!--  <div class="product-card-item-3">
                             <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
                             <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
                             <p class="product-card-price">290.000 VNĐ</p>
                             <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                            <p class="product-card-price">31.000.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                            <p class="product-card-price">31.000.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>          
-                        <div class="product-card-item-3">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                            <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                            <p class="product-card-price">290.000 VNĐ</p>
-                            <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                        </div>                
-                        <div class="paging">
-                            <button class="paging__trans">Trang đầu</button>
-                            <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
-                            <button class="paging__page-number">1</button>
-                            <button class="paging__page-number paging__current">2</button>
-                            <button class="paging__page-number">3</button>
-                            <button class="paging__page-number">4</button>
-                            <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
-                            <button class="paging__trans">Trang cuối</button> <br>
-                            <p>Đang ở trang 2 trong tổng số 7 trang</p>
-                        </div>
+                        </div>-->
+                                <?php include("./View/ProductInYourStore.php"); ?>
+                    </div>
+
+                    <div class="paging">
+                        <button class="paging__trans">Trang đầu</button>
+                        <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="paging__page-number">1</button>
+                        <button class="paging__page-number paging__current">2</button>
+                        <button class="paging__page-number">3</button>
+                        <button class="paging__page-number">4</button>
+                        <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="paging__trans">Trang cuối</button> <br>
+                        <p>Đang ở trang 2 trong tổng số 7 trang</p>
                     </div>
                 </div>
             </div>
-        </div>       
-        
+        </div>
+
     </div>
 
     <div id="footer">
@@ -268,35 +209,34 @@ if ($idAccount == null || $idAccount == -1) {
                 </div>
             </div>
         </div>
-        
+
         <div class="footer__copyright">
             <p>Copyright © 2022 UIT. All rights reserved.</p>
         </div>
     </div>
-</div>
+    </div>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script>
         const latestButton = document.querySelector(".js-latest-button");
         console.log("latestButton: ", latestButton);
         const bestButton = document.querySelector(".js-best-seller-button");
+
         function ClickLatestButton() {
-            if (latestButton.classList.contains("products__sort-selected"))
-            {
+            if (latestButton.classList.contains("products__sort-selected")) {
                 latestButton.classList.remove("products__sort-selected");
-            } else
-            {
+            } else {
                 latestButton.classList.add("products__sort-selected");
             }
         }
+
         function ClickBestSellButton() {
-            if (bestButton.classList.contains("products__sort-selected"))
-            {
+            if (bestButton.classList.contains("products__sort-selected")) {
                 bestButton.classList.remove("products__sort-selected");
-            } else
-            {
+            } else {
                 bestButton.classList.add("products__sort-selected");
             }
         }
     </script>
 </body>
+
 </html>

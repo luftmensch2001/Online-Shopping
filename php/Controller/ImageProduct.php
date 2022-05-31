@@ -2,7 +2,7 @@
 
 class ImageProduct{
     private $id;
-    private $imageURL;
+    private $imageURL="";
     private $idProduct;
 
     function SetId($id){

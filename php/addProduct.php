@@ -1,10 +1,10 @@
 <?php
 require_once('./Controller/Product.php');
-require_once('./Controller/Color.php');
-require_once('./Controller/ImageProduct.php');
 require_once('./Model/ProductDTO.php');
+require_once('./Controller/Color.php');
 require_once('./Model/ColorDTO.php');
 require_once('./Model/ImageProductDTO.php');
+require_once('./Controller/ImageProduct.php');
 error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
