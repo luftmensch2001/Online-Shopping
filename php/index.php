@@ -7,6 +7,12 @@ $idAccount = $_SESSION['idAccount'];
 if ($idAccount != null&& $idAccount !=-1) {
     //echo "<h1>Đăng nhập thành công id = $idAccount</h1><br>";
     //$_SESSION['idAccount'] = $idAccount;    
+} else
+{
+    if (isset($_SESSION['idProduct']))
+    {
+        header("Location:productDetail.php");
+    }
 }
 ?>
 
