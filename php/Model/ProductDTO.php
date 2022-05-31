@@ -114,4 +114,50 @@ class ProductDTO
         }
         return $listProduct;
     }
+    public function GetListProductBestSeller($idAccount)
+    {
+        $query = "SELECT * FROM Product ORDER BY countSold DESC";
+        $result = DataProvider::getInstance()->Execute($query);
+
+        $row = mysqli_num_rows($result);
+
+
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct,$product);
+        }
+        return $listProduct;
+    }
+    public function GetListProductTopStar($idAccount)
+    {
+        $query = "SELECT * FROM Product ORDER BY countStar DESC";
+        $result = DataProvider::getInstance()->Execute($query);
+
+        $row = mysqli_num_rows($result);
+
+
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct,$product);
+        }
+        return $listProduct;
+    }
 }

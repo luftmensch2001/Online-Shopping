@@ -4,7 +4,7 @@ require_once('./Model/ProductDTO.php');
 require_once('./Model/ImageProductDTO.php');
 require_once('./Controller/ImageProduct.php');
 
-$test = ProductDTO::getInstance()->GetListProductBestSeller(22);
+$test = ProductDTO::getInstance()->GetListProduct(22);
 $count = count($test);
 for ($i = 0; $i < $count; $i++) {
     $name = $test[$i]->GetNameProduct();

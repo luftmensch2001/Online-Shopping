@@ -133,160 +133,28 @@ if ($idAccount != null&& $idAccount !=-1) {
         <div class="best-seller-product grid block">
             <h1 class="block__title">SẢN PHẨM ĐANG HOT</h1>
             <div class="product-card-list">
-                <div class="product-card-item">
+               <!-- <div class="product-card-item">
                     <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
                     <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
                     <p class="product-card-price">290.000 VNĐ</p>
                     <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-
-                <button class="see-more-button">Xem thêm</button>
+                </div> -->
+                <?php include("./View/ProductInYourBestSeller.php");?>
             </div>
+            <button class="see-more-button">Xem thêm</button>
         </div>
         <div class="recommend-product grid block">
             <h1 class="block__title">GỢI Ý CHO BẠN</h1>
             <div class="product-card-list">
-                <div class="product-card-item">
+                <!-- <div class="product-card-item">
                     <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
                     <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
                     <p class="product-card-price">290.000 VNĐ</p>
                     <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                    <p class="product-card-price">31.000.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-                <div class="product-card-item">
-                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div>
-
-                <button class="see-more-button">Xem thêm</button>
+                </div> -->
+                <?php include("./View/ProductInYourStoreTopStar.php");?>
             </div>
+            <button class="see-more-button">Xem thêm</button>
         </div>
     </div>
 
