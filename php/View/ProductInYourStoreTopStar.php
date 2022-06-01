@@ -16,14 +16,15 @@ for ($i = 0; $i < $count; $i++) {
     {
         $imageURL = $imageProduct->GetImageURL();
 ?>
-        <div class="product-card-item-3">
-            <img src="<?php echo $imageURL; ?>" alt="" class="product-card-image">
-            <p class="product-card-name"><?php echo $name; ?> </p>
-            <p class="product-card-price"><?php echo $price; ?></p> <br>
-            
-            <p class="product-card-sold">Đã bán được <?php echo $countSold; ?> sản phẩm</p>
-            
-        </div>
+         <form class="product-card-item" method="post" action="./productDetail.php">
+            <button class=product-card-button>
+                <img src="<?php echo $imageURL; ?>" alt="" class="product-card-image">
+                <input type="hidden" name="idProduct" value="<?php echo $id; ?>">
+                <p class="product-card-name"><?php echo $name; ?> </p>
+                <p class="product-card-price"><?php echo $price; ?></p> <br>
+                <p class="product-card-sold">Đã bán được <?php echo $countSold; ?> sản phẩm</p>
+            </button>
+        </form>
 <?php
     }
 }

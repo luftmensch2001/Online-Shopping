@@ -9,11 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 error_reporting(E_ALL ^ E_NOTICE);
-if (!isset($_POST['idProduct']))
-{
-    echo "failed";
-} else
-{
+if (!isset($_POST['idProduct'])) {
+    header("Location:index.php");
+} else {
     echo $_POST['idProduct'];
     $id = $_POST['idProduct'];
     $product = ProductDTO::getInstance()->GetProduct($id);
@@ -24,8 +22,22 @@ if (!isset($_POST['idProduct']))
     $decribe = $product->GetDecribe();
 }
 ?>
+<?php
+$listImageProduct = ImageProductDTO::getInstance()->GetListImageProductByIdProduct($id);
+$countImage = count($listImageProduct);
+for ($i = 1; $i <= $countImage; $i++) {
+    $idname = "image" . $i;
+    $imageURL = $listImageProduct[$i - 1]->GetImageURL();
+?>
+    <input type="hidden" id="<?php echo $idname; ?>" value="<?php echo $imageURL; ?>">
+<?php
+}
+$index = 1;
+$firstImage = $listImageProduct[0]->GetImageURL();
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,44 +53,30 @@ if (!isset($_POST['idProduct']))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Chi tiết sản phẩm</title>
 </head>
+
 <body>
     <div id="header">
         <!-- Logo -->
         <a href="https://facebook.com" class="header__logo-link">
-            <img class="header__logo-img"  src="../assets/images/other/logo.png" alt="logo">
+            <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
             <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
-            <lord-icon 
-                src="https://cdn.lordicon.com/pvbutfdk.json"
-                trigger="loop-on-hover"
-                class="search-bar__icon">
+            <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
             </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <lord-icon
-                src="https://cdn.lordicon.com/aoggitwj.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
-            <lord-icon
-                src="https://cdn.lordicon.com/kkcllwsu.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
+            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
             <div class="header__user">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dklbhvrt.json"
-                    trigger="loop-on-hover"
-                    colors="primary:#ffffff"
-                    class="header__advanced-icon">
+                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
                 </lord-icon>
                 <ul class="header__user-dropdown">
                     <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
@@ -91,7 +89,7 @@ if (!isset($_POST['idProduct']))
         </div>
     </div>
     <div class="body">
-       <div class="grid block product-detail__container">
+        <div class="grid block product-detail__container">
             <div class="product-detail__wrapper">
                 <div class="product-detail__general">
                     <table>
@@ -99,22 +97,22 @@ if (!isset($_POST['idProduct']))
                             <col span="1" style="width: 45%;">
                             <col span="1" style="width: 28%;">
                             <col span="1" style="width: 27%;">
-                         </colgroup>
+                        </colgroup>
 
-                         <tbody>
+                        <tbody>
                             <tr>
                                 <td rowspan="6">
-                                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-detail__img">
+                                    <img id="imageProduct" src="<?php echo $firstImage; ?>" alt="" class="product-detail__img">
                                 </td>
                                 <td colspan="2" style="padding-left: 30px;">
-                                    <h1 class="product__detail-name"><?php echo $nameProduct; ?></h1>
+                                    <h1 class="product__detail-name"><?php echo $countImage; ?></h1>
                                 </td>
                             </tr>
                             <tr style="height: 30px;">
                                 <td colspan="2">
                                     <p class="product-detail__general-info" style="padding-left: 30px;">
                                         <?php echo $countStar ?>
-                                         <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
+                                        <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
                                     </p>
                                     <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
                                         168 lượt đánh giá
@@ -125,17 +123,32 @@ if (!isset($_POST['idProduct']))
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><p class="product-detail__price">370.000 VNĐ</p></td>
+                                <td colspan="2">
+                                    <p class="product-detail__price">370.000 VNĐ</p>
+                                </td>
                             </tr>
                             <tr style="height: 40px;">
-                                <td><p class="product-detail__button-label" style="padding-left: 30px;">Chọn phân loại hàng:</p></td>
-                                <td><p class="product-detail__button-label">Số lượng: </p></td>
+                                <td>
+                                    <p class="product-detail__button-label" style="padding-left: 30px;">Chọn phân loại hàng:</p>
+                                </td>
+                                <td>
+                                    <p class="product-detail__button-label">Số lượng: </p>
+                                </td>
                             </tr>
                             <tr style="height: 40px;">
                                 <td>
                                     <select class="product-detail__select-box">
-                                        <option>Màu đen</option>
-                                        <option>Màu trắng</option>
+                                        <?php
+                                        $listColor = ColorDTO::getInstance()->GetListColor($id);
+                                        $countColor = count($listColor);
+                                        for ($i = 0; $i < $countColor; $i++) {
+                                            $value = $listColor[$i]->GetNameColor();
+                                        ?>
+                                            <option><?php echo $value; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+
                                     </select>
                                 </td>
                                 <td>
@@ -153,14 +166,16 @@ if (!isset($_POST['idProduct']))
                             <tr>
                                 <td>
                                     <div class="product-detail__trans-img-container">
-                                        <button class="product-detail__trans-img">Ảnh trước</button>
-                                        <p>2/4</p>
-                                        <button class="product-detail__trans-img">Ảnh sau</button>
+                                        <button id="buttonPreImage" class="product-detail__trans-img">Ảnh trước</button>
+                                        <p id="indexImage">1</p>
+                                        <p>/</p>
+                                        <p id="countImage"><?php echo $countImage; ?></p>
+                                        <button id="buttonNextImage" class="product-detail__trans-img">Ảnh sau</button>
                                     </div>
                                 </td>
                             </tr>
-                         </tbody>
-                        
+                        </tbody>
+
                     </table>
                 </div>
                 <div class="product-detail__desciption">
@@ -293,61 +308,61 @@ if (!isset($_POST['idProduct']))
                     </div>
                 </div>
             </div>
-       </div>
-       <div class="recommend-product grid block">
-        <h1 class="block__title">CÓ THỂ BẠN MUỐN MUA</h1>
-        <div class="product-card-list">
-            <div class="product-card-item">
-                <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                <p class="product-card-price">31.000.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
-                <p class="product-card-price">31.000.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>
-            <div class="product-card-item">
-                <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
-                <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
-                <p class="product-card-price">290.000 VNĐ</p>
-                <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-            </div>            
-            <button class="see-more-button">Xem thêm</button>
         </div>
-    </div>
+        <div class="recommend-product grid block">
+            <h1 class="block__title">CÓ THỂ BẠN MUỐN MUA</h1>
+            <div class="product-card-list">
+                <div class="product-card-item">
+                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <button class="see-more-button">Xem thêm</button>
+            </div>
+        </div>
     </div>
     <div id="footer">
         <div class="footer__menu-container">
@@ -393,11 +408,13 @@ if (!isset($_POST['idProduct']))
                 </div>
             </div>
         </div>
-        
+
         <div class="footer__copyright">
             <p>Copyright © 2022 UIT. All rights reserved.</p>
         </div>
     </div>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="../assets/js/productDetail.js"></script>
 </body>
+
 </html>

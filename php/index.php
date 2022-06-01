@@ -4,13 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 error_reporting(E_ALL ^ E_NOTICE);
 $idAccount = $_SESSION['idAccount'];
-if ($idAccount != null&& $idAccount !=-1) {
+if ($idAccount != null && $idAccount != -1) {
     //echo "<h1>Đăng nhập thành công id = $idAccount</h1><br>";
     //$_SESSION['idAccount'] = $idAccount;    
-} else
-{
-    if (isset($_SESSION['idProduct']))
-    {
+} else {
+    if (isset($_SESSION['idProduct'])) {
         header("Location:productDetail.php");
     }
 }
@@ -26,40 +24,45 @@ if ($idAccount != null&& $idAccount !=-1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Trang chủ</title>
-    <link href="https://trial.chatcompose.com/static/trial/all/global/export/css/main.5b1bd1fd.css" rel="stylesheet">    <script async type="text/javascript" src="https://trial.chatcompose.com/static/trial/all/global/export/js/main.a7059cb5.js?user=trial_turtle&lang=VI" user="trial_turtle" lang="VI"></script>  
 </head>
 
 <body>
     <div id="header">
         <!-- Logo -->
-        <a href="index.php" class="header__logo-link">
+        <a href="https://facebook.com" class="header__logo-link">
             <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
         </a>
 
         <!-- Search -->
         <div class="search-bar">
             <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <img class="search-bar__icon" src="../assets/icons/search.png">
+            <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
+            <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
+            </lord-icon>
         </div>
 
         <!-- Advanced -->
         <div class="header__advanced">
-            <i class="header__advanced-icon fa-solid fa-cart-shopping"></i>
-            <i class="header__advanced-icon fa-solid fa-heart"></i>
+            <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
+            </lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
+            </lord-icon>
             <div class="header__user">
-                <i class="header__advanced-icon fa-solid fa-user"></i>
+                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
+                </lord-icon>
                 <ul class="header__user-dropdown">
-                    <a href="profile.php" class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a> <br>
-                    <a href="yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a> <br>
+                    <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
+                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
                     <li class="header__user-dropdown-item">Đơn Mua</li>
                     <li class="header__user-dropdown-item">Đơn Bán</li>
-                    <a href="logout.php" class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
+                    <li class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</li>
                 </ul>
             </div>
         </div>
@@ -139,28 +142,121 @@ if ($idAccount != null&& $idAccount !=-1) {
         <div class="best-seller-product grid block">
             <h1 class="block__title">SẢN PHẨM ĐANG HOT</h1>
             <div class="product-card-list">
-               <!-- <div class="product-card-item">
-                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                    <p class="product-card-price">290.000 VNĐ</p>
-                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div> -->
-                <?php include("./View/ProductInYourBestSeller.php");?>
+                <form class="product-card-item">
+                    <button class="product-card-button">
+                        <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                        <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                        <p class="product-card-price">290.000 VNĐ</p>
+                        <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                    </button>
+                </form>
+
+                <?php include("./View/ProductInYourBestSeller.php") ?>
+                <button class="see-more-button">Xem thêm</button>
             </div>
-            <button class="see-more-button">Xem thêm</button>
         </div>
         <div class="recommend-product grid block">
             <h1 class="block__title">GỢI Ý CHO BẠN</h1>
             <div class="product-card-list">
-                <!-- <div class="product-card-item">
+                <div class="product-card-item">
                     <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
                     <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
                     <p class="product-card-price">290.000 VNĐ</p>
                     <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                </div> -->
-                <?php include("./View/ProductInYourStoreTopStar.php");?>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/aokhoackakinam.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Áo khoác kaki nam chất vải dày dặn form ôm</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/ip13prm.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">iPhone 13 Pro Max - Chính hãng VN/A</p>
+                    <p class="product-card-price">31.000.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+                <div class="product-card-item">
+                    <img src="../assets/images/products/noicom.jpg" alt="" class="product-card-image">
+                    <p class="product-card-name">Nồi cơm điện Sun House - Chính hãng bảo hành 12 tháng</p>
+                    <p class="product-card-price">290.000 VNĐ</p>
+                    <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
+                </div>
+
+                <button class="see-more-button">Xem thêm</button>
             </div>
-            <button class="see-more-button">Xem thêm</button>
         </div>
     </div>
 
@@ -213,6 +309,7 @@ if ($idAccount != null&& $idAccount !=-1) {
             <p>Copyright © 2022 UIT. All rights reserved.</p>
         </div>
     </div>
+    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     </div>
 
 </body>
