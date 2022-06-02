@@ -10,6 +10,7 @@ class ProductInBill{
         $this->id = $id;
         return $this;
     }
+    
     function SetIdProduct( $idProduct ){
         $this->idProduct = $idProduct;
         return $this;

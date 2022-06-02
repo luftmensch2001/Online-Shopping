@@ -5,6 +5,8 @@ require_once('./Controller/Color.php');
 require_once('./Model/ColorDTO.php');
 require_once('./Model/ImageProductDTO.php');
 require_once('./Controller/ImageProduct.php');
+require_once('./Model/ProductInCartDTO.php');
+require_once('./Controller/ProductInCart.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -12,7 +14,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 if (!isset($_POST['idProduct'])) {
     header("Location:index.php");
 } else {
-    echo $_POST['idProduct'];
+    echo $_POST['idProduct'] . "<br>";
     $id = $_POST['idProduct'];
     $product = ProductDTO::getInstance()->GetProduct($id);
     $nameProduct = $product->GetNameProduct();
@@ -20,6 +22,24 @@ if (!isset($_POST['idProduct'])) {
     $countSold = $product->GetCountSold();
     $countStar = $product->GetCountStar();
     $decribe = $product->GetDecribe();
+    if (isset($_POST["hiddenURL"])) {
+        $hiddenURL = $_POST["hiddenURL"];
+        if ($hiddenURL == "cart.php") {
+            $productInCart = new ProductInCart();
+            $count = $_POST['count'];
+            $color = $_POST['color'];
+            echo $count . "<br>";
+            echo $color . "<br>";
+            $idAccount = $_SESSION['idAccount'];
+            if ($idAccount == null || $idAccount == -1)
+                header("Location:login.php");
+            $productInCart->SetIdProduct($id)->SetCount($count)->SetColor($color)->SetIdAccount($idAccount);
+            if (ProductInCartDTO::getInstance()->CreateProductInCart($productInCart)) {
+                header("Location:cart.php");
+            } else
+                echo "fail";
+        }
+    }
 }
 ?>
 <?php
@@ -92,91 +112,97 @@ $firstImage = $listImageProduct[0]->GetImageURL();
         <div class="grid block product-detail__container">
             <div class="product-detail__wrapper">
                 <div class="product-detail__general">
-                    <table>
-                        <colgroup>
-                            <col span="1" style="width: 45%;">
-                            <col span="1" style="width: 28%;">
-                            <col span="1" style="width: 27%;">
-                        </colgroup>
+                    <form id="form" action="" onsubmit="return CheckButton()" method="post">
+                        <input type="hidden" name="typeButton" id="typeButton" value="buttonAddToCart">
+                        <input type="hidden" name="hiddenURL" id="hiddenURL" value="a.php">
+                        <input type="hidden" name="idProduct" id="idProduct" value="<?php echo $id; ?>">
+                        <table>
+                            <colgroup>
+                                <col span="1" style="width: 45%;">
+                                <col span="1" style="width: 28%;">
+                                <col span="1" style="width: 27%;">
+                            </colgroup>
 
-                        <tbody>
-                            <tr>
-                                <td rowspan="6">
-                                    <img id="imageProduct" src="<?php echo $firstImage; ?>" alt="" class="product-detail__img">
-                                </td>
-                                <td colspan="2" style="padding-left: 30px;">
-                                    <h1 class="product__detail-name"><?php echo $countImage; ?></h1>
-                                </td>
-                            </tr>
-                            <tr style="height: 30px;">
-                                <td colspan="2">
-                                    <p class="product-detail__general-info" style="padding-left: 30px;">
-                                        <?php echo $countStar ?>
-                                        <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
-                                    </p>
-                                    <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
-                                        168 lượt đánh giá
-                                    </p>
-                                    <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
-                                        <?php echo $countSold ?> lượt mua
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <p class="product-detail__price">370.000 VNĐ</p>
-                                </td>
-                            </tr>
-                            <tr style="height: 40px;">
-                                <td>
-                                    <p class="product-detail__button-label" style="padding-left: 30px;">Chọn phân loại hàng:</p>
-                                </td>
-                                <td>
-                                    <p class="product-detail__button-label">Số lượng: </p>
-                                </td>
-                            </tr>
-                            <tr style="height: 40px;">
-                                <td>
-                                    <select class="product-detail__select-box">
-                                        <?php
-                                        $listColor = ColorDTO::getInstance()->GetListColor($id);
-                                        $countColor = count($listColor);
-                                        for ($i = 0; $i < $countColor; $i++) {
-                                            $value = $listColor[$i]->GetNameColor();
-                                        ?>
-                                            <option><?php echo $value; ?></option>
-                                        <?php
-                                        }
-                                        ?>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="6">
+                                        <img id="imageProduct" src="<?php echo $firstImage; ?>" alt="" class="product-detail__img">
+                                    </td>
+                                    <td colspan="2" style="padding-left: 30px;">
+                                        <h1 class="product__detail-name"><?php echo $countImage; ?></h1>
+                                    </td>
+                                </tr>
+                                <tr style="height: 30px;">
+                                    <td colspan="2">
+                                        <p class="product-detail__general-info" style="padding-left: 30px;">
+                                            <?php echo $countStar ?>
+                                            <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
+                                        </p>
+                                        <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
+                                            168 lượt đánh giá
+                                        </p>
+                                        <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
+                                            <?php echo $countSold ?> lượt mua
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <VNĐ class="product-detail__price"><?php echo $price; ?> VNĐ</p>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>
+                                        <p class="product-detail__button-label" style="padding-left: 30px;">Chọn phân loại hàng:</p>
+                                    </td>
+                                    <td>
+                                        <p class="product-detail__button-label">Số lượng: </p>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>
+                                        <select id="color" name="color" class="product-detail__select-box">
+                                            <?php
+                                            $listColor = ColorDTO::getInstance()->GetListColor($id);
+                                            $countColor = count($listColor);
+                                            for ($i = 0; $i < $countColor; $i++) {
+                                                $value = $listColor[$i]->GetNameColor();
+                                            ?>
+                                                <option><?php echo $value; ?></option>
+                                            <?php
+                                            }
+                                            ?>
 
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="product-detail__count-box" type="number" name="" id="" value="1">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left: 30px; vertical-align: top;">
-                                    <button class="product-detail__button" style="width: 90%;"><i class="product-detail__icon fa-solid fa-cart-shopping"></i>Thêm vào giỏ hàng</button>
-                                </td>
-                                <td style="vertical-align: top;">
-                                    <button class="product-detail__button" style="background-color: var(--orange-color);"><i class="product-detail__icon fa-solid fa-heart"></i>Yêu thích</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-detail__trans-img-container">
-                                        <button id="buttonPreImage" class="product-detail__trans-img">Ảnh trước</button>
-                                        <p id="indexImage">1</p>
-                                        <p>/</p>
-                                        <p id="countImage"><?php echo $countImage; ?></p>
-                                        <button id="buttonNextImage" class="product-detail__trans-img">Ảnh sau</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input name="count" class="product-detail__count-box" type="number" name="" id="" value="1">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 30px; vertical-align: top;">
+                                        <button class="product-detail__button" style="width: 90%;"><i class="product-detail__icon fa-solid fa-cart-shopping"></i>Thêm vào giỏ hàng</button>
+                                    </td>
+                                    <td style="vertical-align: top;">
+                                        <button class="product-detail__button" style="background-color: var(--orange-color);"><i class="product-detail__icon fa-solid fa-heart"></i>Yêu thích</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-detail__trans-img-container">
+                                            <button id="buttonPreImage" class="product-detail__trans-img">Ảnh trước</button>
+                                            <p id="indexImage">1</p>
+                                            <p>/</p>
+                                            <p id="countImage"><?php echo $countImage; ?></p>
+                                            <button id="buttonNextImage" class="product-detail__trans-img">Ảnh sau</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
 
-                    </table>
+
+                        </table>
+                    </form>
                 </div>
                 <div class="product-detail__desciption">
                     <h1 class="product-detail__title">MÔ TẢ SẢN PHẨM</h1>

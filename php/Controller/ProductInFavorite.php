@@ -1,6 +1,6 @@
 <?php
 
-class ProductInCart{
+class ProductInFavorite{
     private $id;
     private $idProduct;
     private $count;
@@ -10,10 +10,6 @@ class ProductInCart{
     }
     function SetIdProduct( $idProduct ){
         $this->idProduct = $idProduct;
-        return $this;
-    }
-    function SetCount( $count ){
-        $this->count = $count;
         return $this;
     }
     function GetId(){
