@@ -39,14 +39,15 @@ $countProduct = count($listProductInCart);
                     $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($idProduct);
                     $imageURL = $imageProduct->GetImageURL();
             ?>
+            <input type="hidden" name="id<?php echo $i+1; ?>" value="<?php echo $idProduct; ?>">
             <div class="cart__item" id="product<?php echo $i+1;?>">
                 <div class="cart__product">
-                    <input class="cart__product-check" type="checkbox" name="" id="tick" >
+                    <input class="cart__product-check" type="checkbox" name="tick<?php echo $i+1; ?>" id="tick" >
                     <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
                     <p class="cart__product-name"><?php echo $nameProduct; ?></p>
                 </div>
                 <p class=" cart__price" id="price"><?php echo $price; ?> VNĐ</p>
-                <input type="number" class="cart__count" id="countProduct" value="<?php echo $count; ?>" min="1">
+                <input type="number" class="cart__count" name="count<?php echo $i+1; ?>" id="countProduct" value="<?php echo $count; ?>" min="1">
                 <p class="cart__money" id="totalPriceProduct"><?php echo $price*$count; ?> VNĐ</p>
             </div>
             <?php 

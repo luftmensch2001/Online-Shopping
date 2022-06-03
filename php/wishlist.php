@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,55 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Sản phẩm yêu thích</title>
 </head>
+
 <body style="background-color: var(--background-gray-color)">
-    <div id="header">
-        <!-- Logo -->
-        <a href="https://facebook.com" class="header__logo-link">
-            <img class="header__logo-img"  src="../assets/images/other/logo.png" alt="logo">
-        </a>
-
-        <!-- Search -->
-        <div class="search-bar">
-            <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
-            <lord-icon 
-                src="https://cdn.lordicon.com/pvbutfdk.json"
-                trigger="loop-on-hover"
-                class="search-bar__icon">
-            </lord-icon>
-        </div>
-
-        <!-- Advanced -->
-        <div class="header__advanced">
-            <lord-icon
-                src="https://cdn.lordicon.com/aoggitwj.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
-            </lord-icon>
-            <lord-icon
-                src="https://cdn.lordicon.com/kkcllwsu.json"
-                trigger="loop-on-hover"
-                colors="primary:#ffffff"
-                class="header__advanced-icon">
-            </lord-icon>
-            <div class="header__user">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dklbhvrt.json"
-                    trigger="loop-on-hover"
-                    colors="primary:#ffffff"
-                    class="header__advanced-icon">
-                </lord-icon>
-                <ul class="header__user-dropdown">
-                    <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
-                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
-                    <li class="header__user-dropdown-item">Đơn Mua</li>
-                    <li class="header__user-dropdown-item">Đơn Bán</li>
-                    <li class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <?php include("./View/Header.php"); ?>
     <div class="body">
         <div class="grid block">
             <h1 class="block__title">SẢN PHẨM YÊU THÍCH</h1>
@@ -76,100 +31,16 @@
                     <div class="cart__item">
                         <div class="cart__product">
                             <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/giaysneaker.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
                             <img src="../assets/images/products/noicom.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
+                            <p class="cart__product-name">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
                         </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
+                        <p class=" wishlist__price">350.000 VNĐ</p>
                         <div class="wishlist__advanced">
                             <button class="wishlist__button">Thêm vào Giỏ hàng</button>
                             <button class="wishlist__button-2">Xoá</button>
                         </div>
                     </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/giaysneaker.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/giaysneaker.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/giaysneaker.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name"">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class="wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>       
-                </div>       
+                </div>
             </div>
         </div>
     </div>
@@ -180,76 +51,19 @@
         </div>
         <div style="display: flex; align-items: center;">
             <button class="payment-bar__button">
-                <lord-icon
-                    src="https://cdn.lordicon.com/aoggitwj.json"
-                    trigger="loop"
-                    colors="primary:#ffffff"
-                    delay="2000"
-                    style="width:25px;height:25px; margin-right: 2px;">
+                <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                 </lord-icon>
                 Thêm vào Giỏ hàng
             </button>
             <button class="payment-bar__button payment-bar__button-2" style="background-color: var(--red-color);">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dovoajyj.json"
-                    trigger="loop"
-                    colors="primary:#ffffff"
-                    delay="2000"
-                    style="width:25px;height:25px; margin-right: 2px;">
+                <lord-icon src="https://cdn.lordicon.com/dovoajyj.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                 </lord-icon>
                 Xoá
             </button>
         </div>
     </div>
-    <div id="footer">
-        <div class="footer__menu-container">
-            <div class="footer__column">
-                <span class="footer__title">Tiện ích</span>
-                <ul class="footer__list">
-                    <li class="footer__item"><a href="#" class="footer__link">Đăng nhập</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Đến giỏ hàng</a></li>
-                </ul>
-            </div>
-            <div class="footer__column">
-                <span class="footer__title">Về chúng tôi</span>
-                <ul class="footer__list">
-                    <li class="footer__item"><a href="#" class="footer__link">Chính sách mua hàng</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Chính sách bảo mật</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Tuyển dụng</a></li>
-                </ul>
-            </div>
-            <div class="footer__column">
-                <span class="footer__title">Trợ giúp</span>
-                <ul class="footer__list">
-                    <li class="footer__item"><a href="#" class="footer__link">Câu hỏi thường gặp</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Phản hồi</a></li>
-                    <li class="footer__item"><a href="#" class="footer__link">Hotline</a></li>
-                </ul>
-            </div>
-            <div class="footer__column">
-                <span class="footer__title">Mạng xã hội</span>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link">
-                        <i class="footer__social-icon fab fa-facebook-square"></i>
-                    </a>
-                    <a href="#" class="footer__social-link">
-                        <i class="footer__social-icon fab fa-instagram-square"></i>
-                    </a>
-                    <a href="#" class="footer__social-link">
-                        <i class="footer__social-icon fab fa-twitter-square"></i>
-                    </a>
-                    <a href="#" class="footer__social-link">
-                        <i class="footer__social-icon fab fa-youtube-square"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer__copyright">
-            <p>Copyright © 2022 UIT. All rights reserved.</p>
-        </div>
-    </div>
+    <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
 </body>
+
 </html>

@@ -9,7 +9,6 @@ $idAccount = $_SESSION['idAccount'];
 if ($idAccount == null || $idAccount == -1)
     header("Location:login.php");
 else {
-    
 }
 ?>
 
@@ -32,48 +31,17 @@ else {
 </head>
 
 <body style="background-color: var(--background-gray-color)">
-    <div id="header">
-        <!-- Logo -->
-        <a href="https://facebook.com" class="header__logo-link">
-            <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
-        </a>
-
-        <!-- Search -->
-        <div class="search-bar">
-            <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
-            <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
-            <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
-            </lord-icon>
-        </div>
-
-        <!-- Advanced -->
-        <div class="header__advanced">
-            <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
-            </lord-icon>
-            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
-            </lord-icon>
-            <div class="header__user">
-                <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
-                </lord-icon>
-                <ul class="header__user-dropdown">
-                    <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</li>
-                    <li class="header__user-dropdown-item">Cửa Hàng Của Bạn</li>
-                    <li class="header__user-dropdown-item">Đơn Mua</li>
-                    <li class="header__user-dropdown-item">Đơn Bán</li>
-                    <li class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <?php include("./View/Header.php"); ?>
     <div class="body">
-        <form>
-            <?php include("./View/ProductAndCart.php");?>
+        <form method="post" action="payment.php">
+            <?php include("./View/ProductAndCart.php"); ?>
             <div class="payment-bar grid">
                 <div style="display: flex; align-items: center;">
                     <input class="payment-bar__checkbox" type="checkbox" name="" id="tickAll">
                     <p class="payment-bar__text">Chọn tất cả</p>
                 </div>
-                <p class="payment-bar__text-total">Tổng thanh toán:</p> <p id="total" style="color:red" class="payment-bar__text-total">0 VNĐ</p>
+                <p class="payment-bar__text-total">Tổng thanh toán:</p>
+                <p id="total" style="color:red" class="payment-bar__text-total">0 VNĐ</p>
                 <div style="display: flex; align-items: center;">
                     <button class="payment-bar__button">
                         <lord-icon src="https://cdn.lordicon.com/hjeefwhm.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
@@ -88,55 +56,7 @@ else {
                 </div>
             </div>
         </form>
-        <div id="footer">
-            <div class="footer__menu-container">
-                <div class="footer__column">
-                    <span class="footer__title">Tiện ích</span>
-                    <ul class="footer__list">
-                        <li class="footer__item"><a href="#" class="footer__link">Đăng nhập</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Tra cứu đơn hàng</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Đến giỏ hàng</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <span class="footer__title">Về chúng tôi</span>
-                    <ul class="footer__list">
-                        <li class="footer__item"><a href="#" class="footer__link">Chính sách mua hàng</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Chính sách bảo mật</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Tuyển dụng</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <span class="footer__title">Trợ giúp</span>
-                    <ul class="footer__list">
-                        <li class="footer__item"><a href="#" class="footer__link">Câu hỏi thường gặp</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Phản hồi</a></li>
-                        <li class="footer__item"><a href="#" class="footer__link">Hotline</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <span class="footer__title">Mạng xã hội</span>
-                    <div class="footer__social">
-                        <a href="#" class="footer__social-link">
-                            <i class="footer__social-icon fab fa-facebook-square"></i>
-                        </a>
-                        <a href="#" class="footer__social-link">
-                            <i class="footer__social-icon fab fa-instagram-square"></i>
-                        </a>
-                        <a href="#" class="footer__social-link">
-                            <i class="footer__social-icon fab fa-twitter-square"></i>
-                        </a>
-                        <a href="#" class="footer__social-link">
-                            <i class="footer__social-icon fab fa-youtube-square"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer__copyright">
-                <p>Copyright © 2022 UIT. All rights reserved.</p>
-            </div>
-        </div>
+        <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
         <script src="../assets/js/productAndCart.js"></script>
 </body>
