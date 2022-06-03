@@ -5,6 +5,8 @@ const countImage = document.querySelector("#countImage");
 const imageProduct = document.querySelector("#imageProduct");
 const hiddenURL = document.querySelector("#hiddenURL");
 const typeButton = document.querySelector("#typeButton");
+const btAddToCart = document.querySelector("#btAddToCart");
+const btAddToWish = document.querySelector("#btAddToWish");
 
 buttonPreImage.addEventListener("click", () => {
     let index = document.querySelector("#indexImage");
@@ -27,6 +29,12 @@ buttonNextImage.addEventListener("click", () => {
         imageProduct.setAttribute('src', indexImage.value);
         typeButton.value = "buttonNextImage";
     }
+})
+btAddToCart.addEventListener("click", () => {
+    typeButton.value = "buttonAddToCart";
+})
+btAddToWish.addEventListener("click", () => {
+    typeButton.value = "buttonAddToWishList";
 })
 
 function CheckButton() {

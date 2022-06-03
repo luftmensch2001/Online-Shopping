@@ -70,10 +70,10 @@ else {
             <?php include("./View/ProductAndCart.php");?>
             <div class="payment-bar grid">
                 <div style="display: flex; align-items: center;">
-                    <input class="payment-bar__checkbox" type="checkbox" name="" id="">
+                    <input class="payment-bar__checkbox" type="checkbox" name="" id="tickAll">
                     <p class="payment-bar__text">Chọn tất cả</p>
                 </div>
-                <p class="payment-bar__text-total">Tổng thanh toán: <span class="payment-bar__money">1.480.000 VNĐ</span></p>
+                <p class="payment-bar__text-total">Tổng thanh toán:</p> <p id="total" style="color:red" class="payment-bar__text-total">0 VNĐ</p>
                 <div style="display: flex; align-items: center;">
                     <button class="payment-bar__button">
                         <lord-icon src="https://cdn.lordicon.com/hjeefwhm.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
@@ -138,6 +138,7 @@ else {
             </div>
         </div>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+        <script src="../assets/js/productAndCart.js"></script>
 </body>
 
 </html>

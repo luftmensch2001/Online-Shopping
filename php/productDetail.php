@@ -176,15 +176,15 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                                         </select>
                                     </td>
                                     <td>
-                                        <input name="count" class="product-detail__count-box" type="number" name="" id="" value="1">
+                                        <input name="count" class="product-detail__count-box" type="number" name="" id="" value="1" min="1">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-left: 30px; vertical-align: top;">
-                                        <button class="product-detail__button" style="width: 90%;"><i class="product-detail__icon fa-solid fa-cart-shopping"></i>Thêm vào giỏ hàng</button>
+                                        <button id="btAddToCart" class="product-detail__button" style="width: 90%;"><i class="product-detail__icon fa-solid fa-cart-shopping"></i>Thêm vào giỏ hàng</button>
                                     </td>
                                     <td style="vertical-align: top;">
-                                        <button class="product-detail__button" style="background-color: var(--orange-color);"><i class="product-detail__icon fa-solid fa-heart"></i>Yêu thích</button>
+                                        <button id="btAddToWish" class="product-detail__button" style="background-color: var(--orange-color);"><i class="product-detail__icon fa-solid fa-heart"></i>Yêu thích</button>
                                     </td>
                                 </tr>
                                 <tr>

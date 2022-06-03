@@ -41,13 +41,13 @@ $countProduct = count($listProductInCart);
             ?>
             <div class="cart__item" id="product<?php echo $i+1;?>">
                 <div class="cart__product">
-                    <input class="cart__product-check" type="checkbox" name="" id="">
+                    <input class="cart__product-check" type="checkbox" name="" id="tick" >
                     <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
                     <p class="cart__product-name"><?php echo $nameProduct; ?></p>
                 </div>
-                <p class=" cart__price"><?php echo $price; ?></p>
-                <input type="number" class="cart__count" id="countProduct" value="<?php echo $count; ?>">
-                <p class="cart__money" id="totalPriceProduct">700.000 VNĐ</p>
+                <p class=" cart__price" id="price"><?php echo $price; ?> VNĐ</p>
+                <input type="number" class="cart__count" id="countProduct" value="<?php echo $count; ?>" min="1">
+                <p class="cart__money" id="totalPriceProduct"><?php echo $price*$count; ?> VNĐ</p>
             </div>
             <?php 
                 }
