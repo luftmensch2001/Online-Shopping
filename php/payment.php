@@ -104,13 +104,13 @@
                     <form action="" class="payment__info-wrapper">
                         <input class="payment__input-text" type="text" name="" id="" placeholder="Họ và tên" required>
                         <input class="payment__input-text" type="text" name="" id="" placeholder="Số điện thoại" required>
-                        <select class="payment__select">
+                        <select class="payment__select" id="city">
                             <option>Chọn tỉnh / thành phố</option>
                         </select>
-                        <select class="payment__select">
+                        <select class="payment__select" id="district">
                             <option>Chọn quận / huyện</option>
                         </select>
-                        <select class="payment__select">
+                        <select class="payment__select" id="ward">
                             <option>Chọn phường / xã</option>
                         </select>
                         <input class="payment__input-text" type="text" name="" id="" placeholder="Số nhà, tên đường" required>
@@ -129,6 +129,9 @@
 
     <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="../assets/js/Address.js"></script> </script>
 </body>
 
 </html>

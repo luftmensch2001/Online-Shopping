@@ -23,16 +23,16 @@ if ($idAccount == null || $idAccount == -1) {
 
         $product = new Product();
         $product->SetNameProduct($nameProduct)->SetPrice($price)
-        ->SetDecribe($decribe)
-        ->SetType($type)
-        ->SetIdAccount($idAccount);
+            ->SetDecribe($decribe)
+            ->SetType($type)
+            ->SetIdAccount($idAccount);
 
         if (ProductDTO::getInstance()->CreateProduct($product))
             echo "<script>alert('thanh cong')</script>";
         else
             echo "<script>alert('that bai')</script>";
         $idProduct = ProductDTO::getInstance()->GetMaxId();
-        
+
         //Add ImageProduct
         $imageProduct = new ImageProduct();
         $imageProduct->SetIdProduct($idProduct);
@@ -87,7 +87,7 @@ if ($idAccount == null || $idAccount == -1) {
 </head>
 
 <body>
-<?php include("./View/Header.php");?>
+    <?php include("./View/Header.php"); ?>
     <div class="body">
         <form action="#" enctype="multipart/form-data" method="post" name="form" class="grid block" onsubmit=" return IsSubmit()">
             <h1 class="block__title">THÊM SẢN PHẨM</h1>
@@ -151,7 +151,7 @@ if ($idAccount == null || $idAccount == -1) {
                 </div>
             </div>
         </form>
-        <?php include("./View/Footer.php")?>
+        <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
         <script src="../assets/js/addProduct.js"></script>
 </body>
