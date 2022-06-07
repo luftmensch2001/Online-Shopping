@@ -55,8 +55,8 @@ else {
         $renewPassword = $_POST['re-newPassword'];
         if ($oldPassword != $password) {
             // echo '<script>alert("Sai mật khẫu!!!!!")</script>';
-            echo "<h1>$oldPassword</h1>";
-            echo "<h1>$password</h1><br>";
+            //echo "<h1>$oldPassword</h1>";
+            //echo "<h1>$password</h1><br>";
         } else 
         if ($newPassword != $renewPassword) {
             echo '<script>alert("Mật khẫu nhập lại không khớp!!!!!")</script>';

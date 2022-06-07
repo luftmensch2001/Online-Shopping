@@ -1,6 +1,6 @@
 <div id="header">
     <!-- Logo -->
-    <a href="../index.php" class="header__logo-link">
+    <a href="./index.php" class="header__logo-link">
         <img class="header__logo-img" src="../assets/images/other/logo.png" alt="logo">
     </a>
 
@@ -22,13 +22,13 @@
             <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
             <ul class="header__user-dropdown">
-                <a href="../profile.php"class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a>
+                <a href="./profile.php"class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a>
                 <br>
-                <a href="../yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a>
+                <a href="./yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a>
                 <br>
                 <li class="header__user-dropdown-item">Đơn Mua</li>
                 <li class="header__user-dropdown-item">Đơn Bán</li>
-                <a href="../logout.php"class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
+                <a href="./logout.php"class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
             </ul>
         </div>
     </div>
