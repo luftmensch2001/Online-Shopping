@@ -6,6 +6,7 @@ class Bill{
     private $idDetailBill;
     private $time;
     private $code;
+    private $idAccountSeller;
 
     function SetId( $id ){
         $this->id = $id;
@@ -42,5 +43,12 @@ class Bill{
     }
     function GetCode(){
         return $this->code;
+    }
+    function SetIdAccountSeller($idAccountSeller){
+        $this->idAccountSeller = $idAccountSeller;
+        return $this;
+    }
+    function GetIdAccountSeller(){
+        return $this->idAccountSeller;
     }
 }

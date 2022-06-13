@@ -1,15 +1,10 @@
 <?php
 
 class ProductInCart{
-    private $id;
     private $idProduct;
     private $idAccount;
     private $count;
-    private $Color;
-    function SetId( $id ){
-        $this->id = $id;
-        return $this;
-    }
+    private $color;
     function SetIdProduct( $idProduct ){
         $this->idProduct = $idProduct;
         return $this;
@@ -25,9 +20,6 @@ class ProductInCart{
     function SetColor( $color ){
         $this->color = $color;
         return $this;
-    }
-    function GetId(){
-        return $this->id;
     }
     function GetIdProduct()
     {

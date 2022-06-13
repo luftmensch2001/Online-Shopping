@@ -8,9 +8,6 @@ if ($idAccount != null && $idAccount != -1) {
     //echo "<h1>Đăng nhập thành công id = $idAccount</h1><br>";
     //$_SESSION['idAccount'] = $idAccount;    
 } else {
-    if (isset($_SESSION['idProduct'])) {
-        header("Location:productDetail.php");
-    }
 }
 ?>
 
@@ -111,15 +108,6 @@ if ($idAccount != null && $idAccount != -1) {
         <div class="best-seller-product grid block">
             <h1 class="block__title">SẢN PHẨM ĐANG HOT</h1>
             <div class="product-card-list">
-                <form class="product-card-item">
-                    <button class="product-card-button">
-                        <img src="../assets/images/products/giaysneaker.jpg" alt="" class="product-card-image">
-                        <p class="product-card-name">Giày sneaker thể thao chạy bộ chính hãng</p>
-                        <p class="product-card-price">290.000 VNĐ</p>
-                        <p class="product-card-sold">Đã bán 1,3k sản phẩm</p>
-                    </button>
-                </form>
-
                 <?php include("./View/ProductInYourBestSeller.php") ?>
                 <button class="see-more-button">Xem thêm</button>
             </div>

@@ -16,16 +16,18 @@ class ProductInCartDTO
         return self::$_instance;
     }
 
-    function GetProductInCart($id)
+    function GetProductInCartByIdAccountAndIdProduct($productInCart)
     {
-        $query = "Select * from ProductInCart where id='$id'";
+        $idProduct = $productInCart->GetIdProduct();
+        $idAccount = $productInCart->GetIdAccount();
+        $query = "SELECT * FROM productInCart where idProduct='$idProduct' and idAccount='$idAccount'";
         $result = DataProvider::getInstance()->Execute($query);
 
         $row = mysqli_num_rows($result);
         if ($row > 0) {
             $row = $result->fetch_assoc();
             $productInCart = new ProductInCart();
-            $productInCart->SetId($row["id"])
+            $productInCart
                 ->SetIdProduct($row["idProduct"])
                 ->SetCount($row["count"])
                 ->SetColor($row["color"])
@@ -43,7 +45,7 @@ class ProductInCartDTO
         $listProductInCart = array();
         while ($row = $result->fetch_assoc()){
             $productInCart = new ProductInCart();
-            $productInCart->SetId($row["id"])
+            $productInCart
                 ->SetIdProduct($row["idProduct"])
                 ->SetCount($row["count"])
                 ->SetColor($row["color"])
@@ -68,17 +70,35 @@ class ProductInCartDTO
     }
     function UpdateProductInCart($productInCart)
     {
-        $id = $productInCart->GetId();
         $idProduct = $productInCart->GetIdProduct();
         $count = $productInCart->GetCount();
         $color = $productInCart->GetColor();
         $idAccount = $productInCart->GetIdAccount();
 
-        $query = "Update ProductInCart set 'idProduct'='$idProduct','count'='$count' ,'color'='$color','idAccount'='$idAccount'
-         where 'id'=$id'";
+        $query = "Update ProductInCart set count='$count' ,color='$color'  where idAccount='$idAccount' and idProduct='$idProduct'";
 
         $result = DataProvider::getInstance()->Execute($query);
-
+        echo $query;
+        return $result;
+    }
+    function isExistProductInCart($productInCart)
+    {
+        $idProduct = $productInCart->GetIdProduct();
+        $idAccount = $productInCart->GetIdAccount();
+        $color = $productInCart->GetColor();
+        $query = "SELECT * FROM productInCart where idProduct='$idProduct' and idAccount='$idAccount' and color='$color'";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+        if ($row > 0)
+          return true;
+        else
+          return false;
+    }
+    function DeleteProductInCart($idAccount, $idProduct,$color)
+    {
+        $query = "DELETE FROM `productincart` WHERE idAccount='$idAccount' and idProduct='$idProduct' and color='$color'";
+        echo "<br>".$query."<br>";
+        $result = DataProvider::getInstance()->Execute($query);
         return $result;
     }
 }

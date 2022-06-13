@@ -11,11 +11,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 error_reporting(E_ALL ^ E_NOTICE);
-if (!isset($_POST['idProduct'])) {
+if (!isset($_GET['idProduct'])) {
     header("Location:index.php");
 } else {
-    echo $_POST['idProduct'] . "<br>";
-    $id = $_POST['idProduct'];
+    $id = $_GET['idProduct'];
     $product = ProductDTO::getInstance()->GetProduct($id);
     $nameProduct = $product->GetNameProduct();
     $price = $product->GetPrice();
@@ -34,6 +33,14 @@ if (!isset($_POST['idProduct'])) {
             if ($idAccount == null || $idAccount == -1)
                 header("Location:login.php");
             $productInCart->SetIdProduct($id)->SetCount($count)->SetColor($color)->SetIdAccount($idAccount);
+            if (ProductInCartDTO::getInstance()->IsExistProductInCart($productInCart))
+            {
+                $productInCartOld = ProductInCartDTO::getInstance()->GetProductInCartByIdAccountAndIdProduct($productInCart);
+                $productInCartOld->SetCount($productInCart->GetCount()+$productInCartOld->GetCount());
+                print_r($productInCartOld);
+                if (ProductInCartDTO::getInstance()->UpdateProductInCart($productInCartOld))
+                    header("Location:cart.php");
+            } else
             if (ProductInCartDTO::getInstance()->CreateProductInCart($productInCart)) {
                 header("Location:cart.php");
             } else
@@ -97,7 +104,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                                         <img id="imageProduct" src="<?php echo $firstImage; ?>" alt="" class="product-detail__img">
                                     </td>
                                     <td colspan="2" style="padding-left: 30px;">
-                                        <h1 class="product__detail-name"><?php echo $countImage; ?></h1>
+                                        <h1 class="product__detail-name"><?php echo $nameProduct; ?></h1>
                                     </td>
                                 </tr>
                                 <tr style="height: 30px;">

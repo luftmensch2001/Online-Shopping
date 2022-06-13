@@ -1,46 +1,67 @@
 <?php
 
-class DetailBill{
+class DetailBill
+{
     private $id;
     private $idBill;
     private $totalPrice;
     private $state;
     private $discount;
+    private $idAddress;
 
-    function SetId($id){
+    function SetIdAddress($idAddress)
+    {
+        $this->idAddress = $idAddress;
+        return $this;
+    }
+    function GetIdAddress()
+    {
+        return $this->idAddress;
+    }
+    function SetId($id)
+    {
         $this->id = $id;
         return $this;
     }
-    function SetIdBill($idBill){
+    function SetIdBill($idBill)
+    {
         $this->idBill = $idBill;
         return $this;
     }
-    function SetTotalPrice($totalPrice){
+    function SetTotalPrice($totalPrice)
+    {
         $this->totalPrice = $totalPrice;
         return $this;
     }
-    function SetState($state){
+    function SetState($state)
+    {
         $this->state = $state;
         return $this;
     }
-    function SetDiscount($discount){
+    function SetDiscount($discount)
+    {
         $this->discount = $discount;
         return $this;
     }
-    
-    function GetId(){
+
+    function GetId()
+    {
         return $this->id;
     }
-    function GetIdBill(){
+    function GetIdBill()
+    {
         return $this->idBill;
     }
-    function GetTotalPrice(){
+    function GetTotalPrice()
+    {
         return $this->totalPrice;
     }
-    function GetState(){
+    function GetState()
+    {
         return $this->state;
     }
-    function GetDiscount(){
+    function GetDiscount()
+    {
         return $this->discount;
     }
 }

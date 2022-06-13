@@ -44,7 +44,9 @@ class AccountDTO
         ->SetPhoneNumber($row["phoneNumber"])
         ->SetUsername($row["userName"])
         ->SetImageUrl($row["imageUrl"])
-        ->SetSex($row["sex"]);
+        ->SetSex($row["sex"])
+        ->SetLastIdAddress($row["lastIdAddress"])
+        ->SetCoin($row["coin"]);
       return $account;
     } else
       return null;
@@ -84,12 +86,16 @@ class AccountDTO
     $phoneNumber = $account->GetPhoneNumber();
     $sex = $account->GetSex();
     $imageUrl = $account->GetImageUrl();
+    $coin = $account->GetCoin();
+    $lastIdAddress = $account->GetLastIdAddress();
     $query = "Update account Set userName = '$username',
         password = '".$password."',
         fullName = '$fullName',
         email = '$email',
         phoneNumber = $phoneNumber,
         imageURL = '$imageUrl',
+        coin = '$coin',
+        lastIdAddress ='$lastIdAddress',
         sex = '$sex' Where id= '$id'";
     $result = DataProvider::getInstance()->Execute($query);
     return $result;

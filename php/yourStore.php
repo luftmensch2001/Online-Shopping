@@ -7,6 +7,7 @@ $idAccount = $_SESSION['idAccount'];
 if ($idAccount == null || $idAccount == -1) {
     header("Location:Login.php");
 } else {
+    echo $idAccount;
 }
 
 ?>

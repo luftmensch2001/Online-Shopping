@@ -1,13 +1,23 @@
 <?php
 
 class ProductInBill{
-    private $id;
+    private $idBill;
     private $idProduct;
     private $count;
     private $idEvalute;
+    private $color;
     
-    function SetId( $id ){
-        $this->id = $id;
+    function SetColor($color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+    function GetColor()
+    {
+        return $this->color;
+    }
+    function SetIdBill( $idBill ){
+        $this->idBill = $idBill;
         return $this;
     }
     
@@ -23,8 +33,8 @@ class ProductInBill{
         $this->idEvalute = $idEvalute;
         return $this;
     }
-    function GetId(){
-        return $this->id;
+    function GetIdBill(){
+        return $this->idBill;
     }
     function GetIdProduct()
     {

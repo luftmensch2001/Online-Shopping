@@ -8,17 +8,23 @@ require_once('./Model/ImageProductDTO.php');
 require_once('./Controller/ImageProduct.php');
 require_once('./Model/ProductInCartDTO.php');
 require_once('./Controller/ProductInCart.php');
-if (isset($_POST['countProduct'])) {
+if (isset($_GET['countProduct'])) {
 
-    $countProduct = $_POST['countProduct'];
+    $countProduct = $_GET['countProduct'];
     $totalAll = 0;
+    $arrayShop = array();
     for ($i = 0; $i < $countProduct; $i++) {
         $index = $i + 1;
-        if (isset($_POST['tick' . $index])) {
-            $product = ProductDTO::getInstance()->GetProduct($_POST['id' . $index]);
+        if (isset($_GET['tick' . $index])) {
+            $product = ProductDTO::getInstance()->GetProduct($_GET['id' . $index]);
+            $idAccount = $product->GetIdAccount();
+            if (!in_array($idAccount, $arrayShop)) {
+                array_push($arrayShop, $idAccount);
+            }
             $nameProduct = $product->GetNameProduct();
             $price = $product->GetPrice();
-            $count = $_POST['count' . $index];
+            $count = $_GET['count' . $index];
+            $color = $_GET['color' . $index];
             $total = $price * $count ;
             $totalAll += $total;
             $idProduct =$product->GetId();
@@ -31,7 +37,8 @@ if (isset($_POST['countProduct'])) {
                     <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
                     <p class="cart__product-name"><?php echo $nameProduct; ?></p>
                 </div>
-                <p class=" cart__price"><?php echo $price; ?> VNĐ</p>
+                <p class="order__type"><?php echo $color; ?></p>
+                <p class="cart__price"><?php echo $price; ?> VNĐ</p>
                 <p class="order-count"><?php echo $count; ?></p>
                 <p class="cart__money"><?php echo $total; ?> VNĐ</p>
             </div>

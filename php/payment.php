@@ -1,3 +1,19 @@
+<?php
+require_once('./Controller/Account.php');
+require_once('./Model/AccountDTO.php');
+error_reporting(E_ALL ^ E_NOTICE);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$idAccount = $_SESSION['idAccount'];
+if ($idAccount == null || $idAccount == -1)
+    header("Location:login.php");
+else {
+    $account = new Account();
+    $account = AccountDTO::getInstance()->GetAccount($idAccount);
+    $coin = $account->GetCoin();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +38,7 @@
         <?php
 
 
-        foreach ($_POST as $key => $value) {
+        foreach ($_GET as $key => $value) {
             echo "<tr>";
             echo "<td>";
             echo $key;
@@ -42,10 +58,11 @@
             <h1 class="block__title">XÁC NHẬN ĐẶT HÀNG</h1>
             <div class="cart__container">
                 <div class="cart__heading">
-                    <p class="cart__heading-name" style="width: 50%; text-align: center;">Sản Phẩm</p>
-                    <p class="cart__heading-name" style="width: 20%; text-align: center;">Đơn Giá</p>
+                <p class="cart__heading-name" style="width: 40%; text-align: center;">Sản Phẩm</p>
+                    <p class="cart__heading-name" style="width: 20%; text-align: center;">Phân loại</p>
+                    <p class="cart__heading-name" style="width: 15%; text-align: center;">Đơn Giá</p>
                     <p class="cart__heading-name" style="width: 10%; text-align: center;">Số Lượng</p>
-                    <p class="cart__heading-name" style="width: 20%; text-align: center;">Thành Tiền</p>
+                    <p class="cart__heading-name" style="width: 15%; text-align: center;">Thành Tiền</p>
                 </div>
                 <div class="cart__products">
                     <?php include("./View/productInPayMent.php") ?>
@@ -55,20 +72,20 @@
                         <tr>
                             <td>
                                 <div class="use-cent">
-                                    <input type="checkbox" name="" id="" style="width: 20px; height: 20px; cursor: pointer; transform: translateY(-2px);">
+                                    <input type="checkbox" name="" id="applyCoin" style="width: 20px; height: 20px; cursor: pointer; transform: translateY(-2px);">
                                     <p class="use-cent__text">Sử dụng Xu để giảm giá</p>
                                 </div>
                             </td>
                             <td>
-                                <input type="text" name="" id="" class="use-cent__input" placeholder="Nhập số Xu">
-                                <button class="use-cent__button">Áp dụng</button>
+                                <input type="number" name="" id="coin" class="use-cent__input" placeholder="Nhập số Xu" max="<?php echo $coin ?>" min="0" value="0">
+                                <button class="use-cent__button" id="btApply">Áp dụng</button>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
                                 <p style="font-size: 1.4rem; font-weight:500; color: var(--text-color); text-align: left; margin-left: 30px; opacity: 0.8; margin-top: 5px;">
-                                    Số dư Xu: 34.100
+                                    Số dư Xu:<span id="maxCoin"><?php echo $coin ?></span>
                                 </p>
                             </td>
                         </tr>
@@ -77,7 +94,7 @@
                                 <p class="order-total">Tổng tiền hàng:</p>
                             </td>
                             <td>
-                                <p class="order-total money-column"><?php echo $totalAll; ?> VNĐ</p>
+                                <p class="order-total money-column" id="total"><?php echo $totalAll; ?> VNĐ</p>
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +102,7 @@
                                 <p class="order-total">Giảm giá:</p>
                             </td>
                             <td>
-                                <p class="order-total money-column">5.500 VNĐ</p>
+                                <p class="order-total money-column" name="discount" id="discount">0 VNĐ</p>
                             </td>
                         </tr>
                         <tr>
@@ -93,33 +110,55 @@
                                 <p class="order-total">Thành tiền:</p>
                             </td>
                             <td>
-                                <p class="order-total money-column">2.444.500 VNĐ</p>
+                                <p class="order-total money-column" id="intoMoney"><?php echo $totalAll; ?> VNĐ</p>
                             </td>
                         </tr>
                     </table>
-
                 </div>
                 <div class="payment__info-container">
                     <h1 class="payment__title">ĐỊA CHỈ NHẬN HÀNG</h1>
-                    <form action="" class="payment__info-wrapper">
-                        <input class="payment__input-text" type="text" name="" id="" placeholder="Họ và tên" required>
-                        <input class="payment__input-text" type="text" name="" id="" placeholder="Số điện thoại" required>
-                        <select class="payment__select" id="city">
+                    <form action="./GetPaymentValue.php" method="POST" class="payment__info-wrapper">
+                        <?php
+                        $realCount = 0;
+                        for ($i = 0; $i < $_GET['countProduct']; $i++) {
+                            $id = $i + 1;
+                            if ($_GET['tick' . $id] == "on") {
+                                $realCount++;
+                            $idProduct = $_GET['id' . $id];
+                            $countProduct = $_GET['count' . $id];
+                            $color = $_GET['color' . $id];
+                        ?>
+                            <input type="hidden" name="id<?php echo $realCount; ?>" value="<?php echo$idProduct?>">
+                            <input type="hidden" name="count<?php echo $realCount; ?>" value="<?php echo$countProduct?>">
+                            <input type="hidden" name="color<?php echo $realCount; ?>" value="<?php echo$color?>">
+                        <?php
+                            }
+                        }
+                        ?>
+                         <input type="hidden" name="hiddenCountShop" id="hiddenCountShop" value="<?php echo count($arrayShop)?>">
+                         <input type="hidden" name="hiddenCountProduct" value="<?php echo $realCount?>">
+                        <input type="hidden" name="hiddenTotalPrice" id="hiddenTotalPrice" value="<?php echo $totalAll?>">
+                        <input type="hidden" name="hiddenDiscount" id="hiddenDiscount" value="0">
+                        <input class="payment__input-text" type="text" name="fullName" id="" placeholder="Họ và tên" required>
+                        <input class="payment__input-text" type="text" name="phoneNumber" id="" placeholder="Số điện thoại" required>
+                        <select class="payment__select" id="city" name="city" required>
                             <option>Chọn tỉnh / thành phố</option>
                         </select>
-                        <select class="payment__select" id="district">
+                        <select class="payment__select" id="district" name="district" required>
                             <option>Chọn quận / huyện</option>
                         </select>
-                        <select class="payment__select" id="ward">
+                        <select class="payment__select" id="ward" name="ward" required>
                             <option>Chọn phường / xã</option>
                         </select>
-                        <input class="payment__input-text" type="text" name="" id="" placeholder="Số nhà, tên đường" required>
+                        <input class="payment__input-text" type="text" name="street" id="" placeholder="Số nhà, tên đường" required>
                         <div class="payment__buttons-wrapper">
                             <input class="payment__button" type="submit" value="Xác nhận đặt hàng">
-                            <button type="button" class="payment__button" style="background-color: var(--red-color);">
-                                <i class="fa-solid fa-reply" style="margin-right: 3px;"></i>
-                                Quay lại Giỏ hàng
-                            </button>
+                            <a href="./cart.php">
+                                <button type="button" class="payment__button" style="background-color: var(--red-color);">
+                                    <i class="fa-solid fa-reply" style="margin-right: 3px;"></i>
+                                    Quay lại Giỏ hàng
+                                </button>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -131,7 +170,9 @@
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="../assets/js/Address.js"></script> </script>
+    <script src="../assets/js/Address.js"></script>
+    <script src="../assets/js/payment.js"></script>
+    </script>
 </body>
 
 </html>

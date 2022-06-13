@@ -48,6 +48,14 @@ function LoadTotal() {
     total.innerHTML = t+" VNĐ";
 }
 function CheckCountProduct(){
-    alert(countProduct.value);
+    for (let i = 0; i < countProduct.value; i++) {
+        const id = i + 1;
+        const product = document.querySelector("#product" + id);
+        const tick = product.querySelector("#tick");
+        if (tick.checked) 
+        {
+            return true;
+        }
+    }
     return false;
 }

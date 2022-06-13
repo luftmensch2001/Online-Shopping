@@ -4,7 +4,7 @@ require_once('./Model/ProductDTO.php');
 require_once('./Model/ImageProductDTO.php');
 require_once('./Controller/ImageProduct.php');
 
-$test = ProductDTO::getInstance()->GetListProduct(22);
+$test = ProductDTO::getInstance()->GetListProductBestSeller();
 $count = count($test);
 for ($i = 0; $i < $count; $i++) {
     $name = $test[$i]->GetNameProduct();
@@ -16,7 +16,7 @@ for ($i = 0; $i < $count; $i++) {
         $imageURL = $imageProduct->GetImageURL();
 ?>
 
-        <form class="product-card-item" method="post" action="./productDetail.php">
+        <form class="product-card-item" method="GET" action="./productDetail.php">
             <button class=product-card-button>
                 <img src="<?php echo $imageURL; ?>" alt="" class="product-card-image">
                 <input type="hidden" name="idProduct" value="<?php echo $id; ?>">

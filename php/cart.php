@@ -33,7 +33,7 @@ else {
 <body style="background-color: var(--background-gray-color)">
     <?php include("./View/Header.php"); ?>
     <div class="body">
-        <form method="post" action="payment.php">
+        <form method="GET" action="payment.php" onsubmit="return CheckCountProduct()">
             <?php include("./View/ProductAndCart.php"); ?>
             <div class="payment-bar grid">
                 <div style="display: flex; align-items: center;">
@@ -58,7 +58,7 @@ else {
         </form>
         <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-        <script src="../assets/js/productAndCart.js"></script>
+        <script src="../assets/js/productAndCart copy.js"></script>
 </body>
 
 </html>

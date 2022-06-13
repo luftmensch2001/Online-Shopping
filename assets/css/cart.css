@@ -59,6 +59,14 @@
     text-align: center;
 }
 
+.cart__type {
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 25px;
+    color: var(--text-color);
+}
+
 .cart__count {
     padding: 10px;
     width: 80px;

@@ -8,10 +8,28 @@ class Account {
         private $phoneNumber;
         private $imageUrl;
         private $sex;
+        private $coin;
+        private $lastIdAddress;
 
         public function __construct()
         {
             
+        }
+        function SetLastIdAddress($lastIdAddress){
+            $this->lastIdAddress = $lastIdAddress;
+            return $this;
+        }
+        function GetLastIdAddress(){
+            return $this->lastIdAddress;
+        }
+        function SetCoin($coin)
+        {
+            $this->coin = $coin;
+            return $this;
+        }
+        function GetCoin()
+        {
+            return $this->coin;
         }
         public function SetId($id) {
             $this->id = $id;

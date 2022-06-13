@@ -93,9 +93,8 @@ class ProductDTO
     }
     public function GetListProduct($idAccount)
     {
-        $query = "SELECT * FROM Product Where idaccount = '$idAccount'";
+        $query = "SELECT * FROM Product Where idAccount = '$idAccount'";
         $result = DataProvider::getInstance()->Execute($query);
-
         $row = mysqli_num_rows($result);
 
 
@@ -114,7 +113,7 @@ class ProductDTO
         }
         return $listProduct;
     }
-    public function GetListProductBestSeller($idAccount)
+    public function GetListProductBestSeller()
     {
         $query = "SELECT * FROM Product ORDER BY countSold DESC";
         $result = DataProvider::getInstance()->Execute($query);

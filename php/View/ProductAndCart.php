@@ -22,39 +22,42 @@ $countProduct = count($listProductInCart);
     <h1 class="block__title">GIỎ HÀNG</h1>
     <div class="cart__container">
         <div class="cart__heading">
-            <p class="cart__heading-name" style="width: 50%; text-align: center;">Sản Phẩm</p>
-            <p class="cart__heading-name" style="width: 20%; text-align: center;">Đơn Giá</p>
+            <p class="cart__heading-name" style="width: 40%; text-align: center;">Sản Phẩm</p>
+            <p class="cart__heading-name" style="width: 20%; text-align: center;">Phân loại</p>
+            <p class="cart__heading-name" style="width: 15%; text-align: center;">Đơn Giá</p>
             <p class="cart__heading-name" style="width: 10%; text-align: center;">Số Lượng</p>
-            <p class="cart__heading-name" style="width: 20%; text-align: center;">Thành Tiền</p>
+            <p class="cart__heading-name" style="width: 15%; text-align: center;">Thành Tiền</p>
         </div>
         <div class="cart__products">
-            <?php 
-                for ($i = 0; $i <$countProduct;$i++)
-                {
-                    $count = $listProductInCart[$i]->GetCount();
-                    $idProduct = $listProductInCart[$i]->GetIdProduct();
-                    $product = ProductDTO::getInstance()->GetProduct($idProduct);
-                    $nameProduct = $product->GetNameProduct();
-                    $price = $product->GetPrice();
-                    $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($idProduct);
-                    $imageURL = $imageProduct->GetImageURL();
+            <?php
+            for ($i = 0; $i < $countProduct; $i++) {
+                $count = $listProductInCart[$i]->GetCount();
+                $idProduct = $listProductInCart[$i]->GetIdProduct();
+                $product = ProductDTO::getInstance()->GetProduct($idProduct);
+                $nameProduct = $product->GetNameProduct();
+                $color = $listProductInCart[$i]->GetColor();
+                $price = $product->GetPrice();
+                $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($idProduct);
+                $imageURL = $imageProduct->GetImageURL();
             ?>
-            <input type="hidden" name="id<?php echo $i+1; ?>" value="<?php echo $idProduct; ?>">
-            <div class="cart__item" id="product<?php echo $i+1;?>">
-                <div class="cart__product">
-                    <input class="cart__product-check" type="checkbox" name="tick<?php echo $i+1; ?>" id="tick" >
-                    <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
-                    <p class="cart__product-name"><?php echo $nameProduct; ?></p>
+                <input type="hidden" name="id<?php echo $i + 1; ?>" value="<?php echo $idProduct; ?>">
+                <input type="hidden" name="color<?php echo $i + 1; ?>" value="<?php echo $color; ?>">
+                <div class="cart__item" id="product<?php echo $i + 1; ?>">
+                    <div class="cart__product">
+                        <input class="cart__product-check" type="checkbox" name="tick<?php echo $i + 1; ?>" id="tick">
+                        <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
+                        <p class="cart__product-name"><?php echo $nameProduct; ?></p>
+                    </div>
+                    <p class="cart__type" style="width: 20%;text-align:center; "><?php echo $color; ?></p>
+                    <p class=" cart__price" id="price"><?php echo $price; ?> VNĐ</p>
+                    <input type="number" class="cart__count" name="count<?php echo $i + 1; ?>" id="countProduct" value="<?php echo $count; ?>" min="1">
+                    <p class="cart__money" id="totalPriceProduct"><?php echo $price * $count; ?> VNĐ</p>
                 </div>
-                <p class=" cart__price" id="price"><?php echo $price; ?> VNĐ</p>
-                <input type="number" class="cart__count" name="count<?php echo $i+1; ?>" id="countProduct" value="<?php echo $count; ?>" min="1">
-                <p class="cart__money" id="totalPriceProduct"><?php echo $price*$count; ?> VNĐ</p>
-            </div>
-            <?php 
-                }
+            <?php
+            }
             ?>
-            </div>
-
         </div>
+
     </div>
+</div>
 </div>

@@ -4,10 +4,36 @@
     width: 10%
 }
 
+.order__type {
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 25px;
+    color: var(--text-color);
+    width: 20%
+}
+
 .order-total { 
     font-size: 2rem;
     font-weight: 500;
     text-align: right;
+    color: var(--red-color);
+}
+
+.order__price {
+    width: 15%;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--red-color);
+    text-align: center;
+}
+
+
+.order__money {
+    width: 15%;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: var(--red-color);
 }
 

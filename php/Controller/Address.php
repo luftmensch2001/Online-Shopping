@@ -1,7 +1,7 @@
 <?php
 
 class Address{
-    private $idAccount;
+    private $id;
     private $fullName;
     private $phoneNumber;
     private $level1;
@@ -9,6 +9,15 @@ class Address{
     private $level3;
     private $detail;
 
+    function SetId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+    function GetId()
+    {
+        return $this->id;
+    }
     function SetIdAccount($idAccount){
         $this->idAccount = $idAccount;
         return $this;
