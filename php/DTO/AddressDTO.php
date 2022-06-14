@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/Address.php');
+require_once('./DAO/Address.php');
 require_once('DataProvider.php');
 class AddressDTO
 {

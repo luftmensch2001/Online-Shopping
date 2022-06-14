@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/ProductInCart.php');
+require_once('./DAO/ProductInCart.php');
 require_once('DataProvider.php');
 class ProductInCartDTO
 {

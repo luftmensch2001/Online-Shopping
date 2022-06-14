@@ -1,18 +1,18 @@
 <?php
-require_once('./Controller/Account.php');
-require_once('./Model/AccountDTO.php');
-require_once('./Controller/Bill.php');
-require_once('./Model/BillDTO.php');
-require_once('./Controller/DetailBill.php');
-require_once('./Model/DetailBillDTO.php');
-require_once('./Controller/Address.php');
-require_once('./Model/AddressDTO.php');
-require_once('./Controller/ProductInBill.php');
-require_once('./Model/ProductInBillDTO.php');
-require_once('./Controller/ProductInCart.php');
-require_once('./Model/ProductInCartDTO.php');
-require_once('./Controller/Product.php');
-require_once('./Model/ProductDTO.php');
+require_once('./DAO/Account.php');
+require_once('./DTO/AccountDTO.php');
+require_once('./DAO/Bill.php');
+require_once('./DTO/BillDTO.php');
+require_once('./DAO/DetailBill.php');
+require_once('./DTO/DetailBillDTO.php');
+require_once('./DAO/Address.php');
+require_once('./DTO/AddressDTO.php');
+require_once('./DAO/ProductInBill.php');
+require_once('./DTO/ProductInBillDTO.php');
+require_once('./DAO/ProductInCart.php');
+require_once('./DTO/ProductInCartDTO.php');
+require_once('./DAO/Product.php');
+require_once('./DTO/ProductDTO.php');
 error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -27,6 +27,7 @@ else {
         $code = $bill->GetCode();
         $time = $bill->GetTime();
         $detailBill = DetailBillDTO::getInstance()->GetDetailBill($bill->GetIdDetailBill());
+        $idDetailBill = $detailBill->GetId();
         $idAddress = $detailBill->GetIdAddress();
         $address = AddressDTO::getInstance()->GetAddress($idAddress);
         $fullName = $address->GetFullName();
@@ -109,10 +110,11 @@ else {
                 </div>
 
                 <div class="order-detail__botright">
+                    <input type="hidden" name="idDetailBill" id="idDetailBill" value="<?php echo $idDetailBill?>">
                     <p class="order-detail__botright-money">Giảm giá: <?php echo $discount ?> VNĐ</p>
                     <p class="order-detail__botright-money">Tổng thanh toán: <?php echo $totalPrice - $discount ?> VNĐ</p>
-                    <p class="order-detail__botright-status">Tình trạng đơn hàng: Đang chờ xác nhận</p>
-                    <button class="order-detail__botright-button"><i class="fa-solid fa-xmark" style="margin-right: 5px;"></i>HUỶ ĐƠN HÀNG</button>
+                    <p class="order-detail__botright-status" id="state">Tình trạng đơn hàng: Đang chờ xác nhận</p>
+                    <button class="order-detail__botright-button" id="btCancel"><i class="fa-solid fa-xmark" style="margin-right: 5px;"></i>HUỶ ĐƠN HÀNG</button>
                 </div>
             </div>
         </div>
@@ -242,6 +244,7 @@ else {
             reviewModal.classList.remove('open-modal');
         }
     </script>
+    <script type="text/javascript" src="../assets/js/orderDetail.js"></script>/script>
 </body>
 
 </html>

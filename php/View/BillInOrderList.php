@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/ImageProduct.php');
-require_once('./Model/ImageProductDTO.php');
+require_once('./DAO/ImageProduct.php');
+require_once('./DTO/ImageProductDTO.php');
 
 $listBill = BillDTO::getInstance()->GetListBillByIdAccount($idAccount);
 

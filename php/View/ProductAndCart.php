@@ -1,12 +1,12 @@
 <?php
-require_once('./Controller/Product.php');
-require_once('./Model/ProductDTO.php');
-require_once('./Controller/Color.php');
-require_once('./Model/ColorDTO.php');
-require_once('./Model/ImageProductDTO.php');
-require_once('./Controller/ImageProduct.php');
-require_once('./Model/ProductInCartDTO.php');
-require_once('./Controller/ProductInCart.php');
+require_once('./DAO/Product.php');
+require_once('./DTO/ProductDTO.php');
+require_once('./DAO/Color.php');
+require_once('./DTO/ColorDTO.php');
+require_once('./DTO/ImageProductDTO.php');
+require_once('./DAO/ImageProduct.php');
+require_once('./DTO/ProductInCartDTO.php');
+require_once('./DAO/ProductInCart.php');
 
 $productInCart = new ProductInCart();
 

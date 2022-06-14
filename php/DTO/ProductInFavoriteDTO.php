@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/ProductInFavorite.php');
+require_once('./DAO/ProductInFavorite.php');
 require_once('DataProvider.php');
 class ProductInFavoriteDTO{
     public static $_instance = null;

@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/ImageProduct.php');
-require_once('./Model/ImageProductDTO.php');
+require_once('./DAO/ImageProduct.php');
+require_once('./DTO/ImageProductDTO.php');
 
 $listBill = BillDTO::getInstance()->GetListBillByIdAccountSeller($idAccount);
 
@@ -20,6 +20,7 @@ for ($i = 0; $i < count($listBill); $i++) {
 ?>
     <a href="./OrderDetail-seller.php?idBill=<?php echo $listBill[$i]->GetId(); ?>">
         <div class="order__item">
+            
             <div class="order__product-info" style="width: 30%">
                 <img src="<?php echo $imageURL ?>" alt="" class="order__product-img">
                 <p class="order__product-name"><?php echo $nameProduct ?></p>

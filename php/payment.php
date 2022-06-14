@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/Account.php');
-require_once('./Model/AccountDTO.php');
+require_once('./DAO/Account.php');
+require_once('./DTO/AccountDTO.php');
 error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -117,7 +117,7 @@ else {
                 </div>
                 <div class="payment__info-container">
                     <h1 class="payment__title">ĐỊA CHỈ NHẬN HÀNG</h1>
-                    <form action="./GetPaymentValue.php" method="POST" class="payment__info-wrapper">
+                    <form action="./Controller/GetPaymentValue.php" method="POST" class="payment__info-wrapper">
                         <?php
                         $realCount = 0;
                         for ($i = 0; $i < $_GET['countProduct']; $i++) {

@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/Account.php');
-require_once('./Model/AccountDTO.php');
+require_once('./DAO/Account.php');
+require_once('./DTO/AccountDTO.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -63,7 +63,8 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="register-container">
+    
+<div class="register-container">
         <img class="register-background" src="../assets/images/other/bg.jpg" alt="">
         <div class="register-card">
             <img class="register-logo" src="../assets/images/other/logo.png" alt="">

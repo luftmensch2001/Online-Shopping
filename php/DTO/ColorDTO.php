@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/Color.php');
+require_once('./DAO/Color.php');
 require_once('DataProvider.php');
 class ColorDTO
 {

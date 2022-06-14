@@ -1,8 +1,8 @@
 <?php
-require_once('./Controller/Product.php');
-require_once('./Model/ProductDTO.php');
-require_once('./Model/ImageProductDTO.php');
-require_once('./Controller/ImageProduct.php');
+require_once('./DAO/Product.php');
+require_once('./DTO/ProductDTO.php');
+require_once('./DTO/ImageProductDTO.php');
+require_once('./DAO/ImageProduct.php');
 
 $test = ProductDTO::getInstance()->GetListProductBestSeller();
 $count = count($test);

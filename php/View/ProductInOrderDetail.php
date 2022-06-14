@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/ImageProduct.php');
-require_once('./Model/ImageProductDTO.php');
+require_once('./DAO/ImageProduct.php');
+require_once('./DTO/ImageProductDTO.php');
 $listProductInBill = ProductInBillDTO::getInstance()->GetListProductInBill($bill->GetId());
 for ($i = 0; $i < count($listProductInBill); $i++) {
     $count = $listProductInBill[$i]->GetCount();

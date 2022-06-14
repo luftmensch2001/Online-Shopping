@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/DetailBill.php');
+require_once('./DAO/DetailBill.php');
 require_once('DataProvider.php');
 class DetailBillDTO
 {

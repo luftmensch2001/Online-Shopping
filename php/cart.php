@@ -1,6 +1,6 @@
 <?php
-require_once('./Controller/Account.php');
-require_once('./Model/AccountDTO.php');
+require_once('./DAO/Account.php');
+require_once('./DTO/AccountDTO.php');
 error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

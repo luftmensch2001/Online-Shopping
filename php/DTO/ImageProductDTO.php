@@ -1,5 +1,5 @@
 <?php
-require_once('./Controller/ImageProduct.php');
+require_once('./DAO/ImageProduct.php');
 require_once('DataProvider.php');
 class ImageProductDTO
 {
