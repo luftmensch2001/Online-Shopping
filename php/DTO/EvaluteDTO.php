@@ -28,36 +28,62 @@ class EvaluteDTO
             $evalute->SetId($row["id"])
                 ->SetIdAccount($row["idAccount"])
                 ->SetStar($row["star"])
+                ->SetComment($row["comment"])
                 ->SetIdProduct($row["idProduct"]);
             return $evalute;
         } else
             return null;
     }
+    function GetNewestEvalute()
+    {
+        $query = "SELECT * FROM Evalute order by id desc ";
+        $result = DataProvider::getInstance()->Execute($query);
+
+        $row = mysqli_num_rows($result);
+        if ($row > 0) {
+            $row = $result->fetch_assoc();
+            $evalute = new Evalute();
+            $evalute->SetId($row["id"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetStar($row["star"])
+                ->SetComment($row["comment"])
+                ->SetIdProduct($row["idProduct"]);
+            return $evalute;
+        } else
+            return null;
+    }
+    function GetListEvalute($idProduct)
+    {
+        $query = "SELECT * FROM Evalute Where idProduct = '$idProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        $listEvalute = array();
+        $row = mysqli_num_rows($result);
+        while ($row = $result->fetch_assoc())
+        {
+            $evalute = new Evalute();
+            $evalute->SetId($row["id"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetStar($row["star"])
+                ->SetComment($row["comment"])
+                ->SetTime($row["time"])
+                ->SetIdProduct($row["idProduct"]);
+            array_push($listEvalute,$evalute);
+        } 
+        return $listEvalute;
+    }
 
     function CreateEvalute($evalute)
     {
-        $id = $evalute->GetId();
         $idAccount = $evalute->GetIdAccount();
         $star = $evalute->GetStar();
         $idProduct = $evalute->GetIdProduct();
+        $comment = $evalute->GetComment();
+        $time = $evalute->GetTime();
 
-        $query = "Insert into Evalute (idAccount, star, idProduct) values('$idAccount','$star','$idProduct')";
-
-        $result = DataProvider::getInstance()->Execute($query);
-
-        return $result;
-    }
-    function UpdateEvalute($evalute)
-    {
-        $id = $evalute->GetId();
-        $idAccount = $evalute->GetIdAccount();
-        $star = $evalute->GetStar();
-        $idProduct = $evalute->GetIdProduct();
-
-        $query = "Update evalute Set idAccount='$idAccount',star = '$star',idProduct = '$idProduct' where id='$id'";
+        $query = "Insert into Evalute (idAccount, star, idProduct,comment,time) values('$idAccount','$star','$idProduct','$comment','$time')";
 
         $result = DataProvider::getInstance()->Execute($query);
-
+        echo "1<br>" . $query . "<br>1";
         return $result;
     }
 

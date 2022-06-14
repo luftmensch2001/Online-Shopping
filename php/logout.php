@@ -4,5 +4,5 @@
     }
     $_SESSION['idAccount'] = -1;
     unset($_SESSION['idAccount']);
-    header("Location:index.php");
+    header("Location:login.php");
 ?>

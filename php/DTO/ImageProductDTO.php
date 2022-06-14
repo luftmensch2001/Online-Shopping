@@ -103,4 +103,16 @@ class ImageProductDTO
         }
         return $imageProducts;
     }
+    function DeleteImageProductByIdProduct($idProduct)
+    {
+        $query = "Delete from ImageProduct where idProduct='$idProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
+    }
+    function SetNewIdProduct($oldIdProduct, $idProduct)
+    {
+        $query = "Update ImageProduct set idProduct='$idProduct' where idProduct='$oldIdProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
+    }
 }

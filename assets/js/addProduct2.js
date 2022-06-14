@@ -138,7 +138,7 @@ submitButton.onclick = function () {
 const cancelButton = document.querySelector('#cancelButton');
 
 cancelButton.addEventListener("click", () => {
-    alert("cal");
-    window.location = "./yourStore.php";
+    alert("cancel");
+    window.location = "../php/yourStore.php";
     document.querySelector('#typeButton').value = "cancel";
 })

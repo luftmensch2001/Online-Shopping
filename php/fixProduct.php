@@ -13,9 +13,23 @@ $idAccount = $_SESSION['idAccount'];
 if ($idAccount == null || $idAccount == -1) {
     header("Location:Login.php");
 } else {
+    if (isset($_GET['idProduct'])) {
+        $idProduct = $_GET['idProduct'];
+        $product = ProductDTO::getInstance()->GetProduct($idProduct);
+        $nameProduct = $product->GetNameProduct();
+        $type = $product->GetType();
+        $price = $product->GetPrice();
+        $decribe = $product->GetDecribe();
+    }
+
+
     //echo $idAccount;
     if (isset($_POST['nameProduct'])) {
+        //DeleteProduct
+
+
         //Add product 
+        
         $nameProduct = $_POST['nameProduct'];
         $price = $_POST['price'];
         $decribe = $_POST['decribe'];
@@ -60,7 +74,20 @@ if ($idAccount == null || $idAccount == -1) {
             ColorDTO::getInstance()->CreateColor($color);
         }
 
-        header("Location:yourStore.php");
+        $newIdProduct = $idProduct;
+        $idProduct = $_POST['idProduct'];
+        $changeImage = $_POST['changeImage'];
+        ProductDTO::getInstance()->DeleteProduct($idProduct);
+        if ($changeImage!="noChange")
+        {
+            ImageProductDTO::getInstance()->DeleteImageProductByIdProduct($idProduct);
+        }
+        else
+        {
+            ImageProductDTO::getInstance()->SetNewIdProduct($idProduct,$newIdProduct);
+        }
+        ColorDTO::getInstance()->DeleteColorByIdProduct($idProduct);
+        header("Location:productDetail-seller.php?idProduct=".$newIdProduct);
     }
 }
 ?>
@@ -87,6 +114,8 @@ if ($idAccount == null || $idAccount == -1) {
     <?php include("./View/Header.php"); ?>
     <div class="body">
         <form action="#" enctype="multipart/form-data" method="post" name="form" class="grid block" onsubmit=" return IsSubmit()">
+            <input type="hidden" name="idProduct" id="idProduct" value="<?php echo $idProduct; ?>">
+            <input type="hidden" name="changeImage" id="changeImage" value="noChange">
             <h1 class="block__title">THÊM SẢN PHẨM</h1>
             <div class="add__container">
                 <input id="nameProduct" type="text" name="nameProduct" class="add__input" placeholder="Tên sản phẩm" value="<?php echo $nameProduct; ?>">
@@ -109,15 +138,18 @@ if ($idAccount == null || $idAccount == -1) {
                     <option>Cho bé</option>
                     <option>Khác</option>
                 </select>
-                <input id="price" name="price" value="<?php echo $price; ?>" type="number"  class="add__input" placeholder="Giá" style="width: 40%; margin-left: auto; margin-right: 0">
+                <input id="price" name="price" value="<?php echo $price; ?>" type="number" class="add__input" placeholder="Giá" style="width: 40%; margin-left: auto; margin-right: 0">
                 <textarea id="decribe" class="add__textarea" name="decribe" id="" cols="30" rows="20" placeholder="Mô tả chi tiết sản phẩm"><?php echo $decribe; ?></textarea>
                 <!--<p class="add__label">Hình ảnh</p> -->
                 <p class="add__label">Hình ảnh</p>
                 <br>
                 <input name="userfile[]" type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" multiple></input>
-
+                <?php
+                $listImageProduct = ImageProductDTO::getInstance()->GetListImageProductByIdProduct($idProduct);
+                ?>
                 <div id="listImage" class="add__img-container">
-                    <input id="indexImage" type="hidden" name="indexImage" value="0">
+                    <input id="indexImage" type="hidden" name="indexImage" value="<?php echo count($listImageProduct);?>">
+                    <?php include("./View/ImageProductInFixProduct.php") ?>
                     <!-- <div class="add__img-item">
                         <img src="../assets/images/products/aokhoackakinam.jpg" id="testitem" alt="" class="add__img-image">
                         <button class="add__img-delete">
@@ -130,25 +162,22 @@ if ($idAccount == null || $idAccount == -1) {
                     <p class="add__label">Phân loại hàng</p>
                     <input id="addColorInput" type="text" class="add__input" placeholder="Nhập tên phân loại hàng" style="width: 300px; margin-left: 30px; margin-top: 6px;">
                     <input type="hidden" value="" id="typeButton" name="typeButton" value="???">
-
+                    <?php
+                    $listColor = ColorDTO::getInstance()->GetListColor($idProduct);
+                    ?>
                     <button id="addColorButton" class="add__button">+</button>
-                    <input id="indexColor" type="hidden" name="indexColor" value="0">
+                    <input id="indexColor" type="hidden" name="indexColor" value="<?php echo count($listColor); ?>">
                     <div id="listColor" class="add__type-container">
-                        <!-- <div class="add__type-item">
-                            <p class="add__type-name">Màu trắng</p>
-                            <button class="add__type-delete">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </div> -->
+                        <?php include("./View/ColorInFixProduct.php") ?>
                     </div>
                     <div class="add__buttons">
                         <button id="submitButton" class="add__submit-button"><i class="fa-solid fa-check" style="margin-right: 5px;"></i>Hoàn tất</button>
-                            <button id="cancelButton" class="add__submit-button" style="background-color: var(--red-color);">Huỷ</button>
+                        <button id="cancelButton" class="add__submit-button" style="background-color: var(--red-color);">Huỷ</button>
                     </div>
                 </div>
             </div>
         </form>
         <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-        <script src="../assets/js/addProduct2.js"></script>
+        <script src="../assets/js/fixProduct.js"></script>
 </body>

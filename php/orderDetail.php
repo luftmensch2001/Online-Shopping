@@ -58,6 +58,21 @@ else {
         }
 
         $fullAddress = $street . ", " . $ward . ", " . $district . ", " . $city;
+        
+        $state = $detailBill->getState();
+        if ($state !="Đã giao hàng")
+            $displayEvalute = "none";
+        else
+            $displayEvalute = "block";
+        if ($state != "Đang chờ xác nhận")
+            $displayCancelButton = "none";
+        else
+            $displayCancelButton = "block";
+
+        if ($state != "Đang giao hàng")
+            $displayGetItemButton = "none";
+        else
+            $displayGetItemButton = "block";
     }
 }
 ?>
@@ -113,8 +128,13 @@ else {
                     <input type="hidden" name="idDetailBill" id="idDetailBill" value="<?php echo $idDetailBill?>">
                     <p class="order-detail__botright-money">Giảm giá: <?php echo $discount ?> VNĐ</p>
                     <p class="order-detail__botright-money">Tổng thanh toán: <?php echo $totalPrice - $discount ?> VNĐ</p>
-                    <p class="order-detail__botright-status" id="state">Tình trạng đơn hàng: Đang chờ xác nhận</p>
-                    <button class="order-detail__botright-button" id="btCancel"><i class="fa-solid fa-xmark" style="margin-right: 5px;"></i>HUỶ ĐƠN HÀNG</button>
+                    <p class="order-detail__botright-status" id="state">Tình trạng đơn hàng: <?php echo $state ?></p>
+                    <button style="display:<?php echo $displayCancelButton ?>"class="order-detail__botright-button" id="btCancel"><i class="fa-solid fa-xmark" style="margin-right: 5px;"></i>HUỶ ĐƠN HÀNG</button>
+                    <button style="display:<?php echo $displayGetItemButton ?>"class="order-detail__botright-button" id="btGetItem"><i style="margin-right: 5px;"></i>Đã giao hàng</button>
+                    <input type="hidden" name="hiddenIdProduct" id="hiddenIdProduct" value = "0">
+                    <input type="hidden" name="hiddenIdProduct" id="hiddenIdBill" value = "0">
+                    <input type="hidden" name="countStar" id="countStar" value = "0">
+                    <input type="hidden" name="countStar" id="idAccount" value = "<?php echo $idAccount?>">
                 </div>
             </div>
         </div>
@@ -125,15 +145,15 @@ else {
             <div class="container">
                 <div class="feedback">
                     <div class="rating">
-                        <input type="radio" name="rating" id="rating-5">
+                        <input type="radio" name="rating" id="rating-5" onclick="SetStar(5)">
                         <label for="rating-5"></label>
-                        <input type="radio" name="rating" id="rating-4">
+                        <input type="radio" name="rating" id="rating-4" onclick="SetStar(4)">
                         <label for="rating-4"></label>
-                        <input type="radio" name="rating" id="rating-3">
+                        <input type="radio" name="rating" id="rating-3"onclick="SetStar(3)">
                         <label for="rating-3"></label>
-                        <input type="radio" name="rating" id="rating-2">
+                        <input type="radio" name="rating" id="rating-2" onclick="SetStar(2)">
                         <label for="rating-2"></label>
-                        <input type="radio" name="rating" id="rating-1">
+                        <input type="radio" name="rating" id="rating-1"onclick="SetStar(1)">
                         <label for="rating-1"></label>
                         <div class="emoji-wrapper">
                             <div class="emoji">
@@ -225,9 +245,9 @@ else {
                     </div>
                 </div>
             </div>
-            <textarea class="review__content" name="" id="" cols="50" rows="6" placeholder="Trải nghiệm của bạn về sản phẩm"></textarea>
+            <textarea class="review__content" name="" id="comment" cols="50" rows="6" placeholder="Trải nghiệm của bạn về sản phẩm"></textarea>
             <div class="review__button-container">
-                <button class="review__button"><i class="fa-solid fa-paper-plane" style="margin-right: 5px;"></i>Gửi</button>
+                <button class="review__button" id="btSend"><i class="fa-solid fa-paper-plane" style="margin-right: 5px;" ></i>Gửi</button>
                 <button class="review__button" style="background-color: var(--red-color);" onclick="hideReviewModal()">Huỷ</button>
             </div>
         </div>
@@ -235,16 +255,20 @@ else {
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script>
         const reviewModal = document.querySelector(".review-modal");
+        const hiddenIdProduct = document.querySelector("#hiddenIdProduct");
+        const hiddenIdBill = document.querySelector("#hiddenIdBill");
 
-        function showReviewModal() {
+        function showReviewModal(idProduct,idBill) {
             reviewModal.classList.add('open-modal');
+            hiddenIdProduct.value = idProduct;
+            hiddenIdBill.value = idBill;
         }
 
         function hideReviewModal() {
             reviewModal.classList.remove('open-modal');
         }
     </script>
-    <script type="text/javascript" src="../assets/js/orderDetail.js"></script>/script>
+    <script type="text/javascript" src="../assets/js/orderDetail.js"></script>
 </body>
 
 </html>

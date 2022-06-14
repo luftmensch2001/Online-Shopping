@@ -27,6 +27,7 @@ else {
         $code = $bill->GetCode();
         $time = $bill->GetTime();
         $detailBill = DetailBillDTO::getInstance()->GetDetailBill($bill->GetIdDetailBill());
+        $idDetailBill = $detailBill->GetId();
         $idAddress = $detailBill->GetIdAddress();
         $address = AddressDTO::getInstance()->GetAddress($idAddress);
         $fullName = $address->GetFullName();
@@ -57,6 +58,15 @@ else {
         }
 
         $fullAddress = $street . ", " . $ward . ", " . $district . ", " . $city;
+
+        $state = $detailBill->getState();
+        if ($state != "Đang chờ xác nhận") {
+            $displayConfirmButton = "none";
+            $displayCancelButton = "none";
+        } else {
+            $displayConfirmButton = "block";
+            $displayCancelButton = "block";
+        }
     }
 }
 ?>
@@ -107,14 +117,14 @@ else {
                     <p class="order-detail__botleft-text"><span style="font-weight: 500;">Số điện thoại: </span><?php echo $phoneNumber ?></p>
                     <p class="order-detail__botleft-text"><span style="font-weight: 500;">Địa chỉ: </span> <?php echo $fullAddress ?></p>
                 </div>
-
+                <input type="hidden" name="idDetailBill" id="idDetailBill" value="<?php echo $idDetailBill?>">
                 <div class="order-detail__botright">
                     <p class="order-detail__botright-money">Giảm giá: <?php echo $discount ?> VNĐ</p>
                     <p class="order-detail__botright-money">Tổng thanh toán: <?php echo $totalPrice - $discount ?> VNĐ</p>
-                    <p class="order-detail__botright-status">Tình trạng đơn hàng: Đang chờ xác nhận</p>
+                    <p class="order-detail__botright-status" id="state">Tình trạng đơn hàng: <?php echo $state ?></p>
                     <div class="order-detail__comfirm-buttons">
-                        <button class="order-detail__botright-button-comfirm">Xác Nhận Đơn Hàng</button>
-                        <button class="order-detail__botright-button">Từ Chối Đơn Hàng</button>
+                        <button class="order-detail__botright-button-comfirm" id="btConfirm" style="display:<?php echo $displayConfirmButton?>">Xác Nhận Đơn Hàng</button>
+                        <button class="order-detail__botright-button" id="btCancel" style="display:<?php echo $displayCancelButton?>">Từ Chối Đơn Hàng</button>
                     </div>
                 </div>
             </div>
@@ -122,6 +132,7 @@ else {
     </div>
     <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script type="text/javascript" src="../assets/js/orderDetail-seller.js"></script>
 </body>
 
 </html>

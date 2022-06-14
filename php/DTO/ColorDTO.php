@@ -72,4 +72,10 @@ class ColorDTO
 
         return $result;
     }
+    function DeleteColorByIdProduct($idProduct)
+    {
+        $query = "Delete from Color where idProduct='$idProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
+    }
 }

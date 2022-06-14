@@ -46,12 +46,15 @@ const listImage = document.querySelector('#listImage');
 const indexImage = document.querySelector('#indexImage')
 
 const image_input = document.querySelector("#image-input");
+const changeImage = document.querySelector("#changeImage");
 image_input.addEventListener("change", function () {
     console.log(listImage);
+    changeImage.value = "change";
     for (i = 1; i <= indexImage.value; i++) {
         let str = "#image" + i;
         console.log(str);
         const child = listImage.querySelector(str);
+        listImage.appendChild(child);
         listImage.removeChild(child);
     }
 
@@ -93,6 +96,20 @@ image_input.addEventListener("change", function () {
 
     }
 });
+function Delete()
+{
+    for (i=1;i<=indexColor.value;i++)
+    {
+        const div = document.querySelector("#color"+i);
+        const btDelete = div.querySelector("#btDelete");
+        btDelete.addEventListener("click", ()=>{
+            listColor.appendChild(div);
+            listColor.removeChild(div);
+            indexColor.value--;
+        })
+    }
+}
+Delete();
 
 function IsSubmit() {
     const typeButton = document.querySelector('#typeButton').value;
@@ -138,7 +155,5 @@ submitButton.onclick = function () {
 const cancelButton = document.querySelector('#cancelButton');
 
 cancelButton.addEventListener("click", () => {
-    alert("cal");
-    window.location = "./yourStore.php";
     document.querySelector('#typeButton').value = "cancel";
 })

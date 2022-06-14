@@ -1,27 +1,62 @@
 <?php
-require_once('./DAO/Product.php');
-require_once('./DTO/ProductDTO.php');
-require_once('./DTO/ImageProductDTO.php');
-require_once('./DAO/ImageProduct.php');
-
-$test = ProductDTO::getInstance()->GetListProduct($idAccount);
-$count = count($test);
-for ($i = 0; $i < $count; $i++) {
-    $name = $test[$i]->GetNameProduct();
-    $price = $test[$i]->GetPrice();
-    $countSold = $test[$i]->GetCountSold();
-    $id = $test[$i]->GetId();
-        $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($id);
-    if($imageProduct!=null)
+$listProduct = ProductDTO::getInstance()->GetListProductBy($idAccount,$type);
+if ($minPrice!="")
+{
+    $newArray = array();
+    foreach($listProduct as $product)
     {
+        if ($product->GetPrice() >=(int) $minPrice && $product->GetPrice() <= (int)$maxPrice)
+            array_push($newArray,$product);
+    }
+    $listProduct = $newArray;
+}
+if ($minCountSold!="")
+{
+    $newArray = array();
+    foreach($listProduct as $product)
+    {
+        if ($product->GetCount() >= (int)$minCountSold);
+            array_push($newArray,$product);
+    }
+    $listProduct = $newArray;
+}
+if ($minCountStar!="")
+{
+    $newArray = array();
+    foreach($listProduct as $product)
+    {
+        if ($product->GetStar()>= (int)$minCountStar)
+            array_push($newArray,$product);
+    }
+    $listProduct = $newArray;
+}
+
+
+if ($_GET['page-number'])
+    $pageNumber = $_GET['page-number'] - 1;
+else
+    $pageNumber = 0;
+
+$startNumber = ($pageNumber * 9);
+$lastNumber = min($startNumber + 9, count($listProduct));
+
+$count = count($listProduct);
+$count = min($count, 9);
+for ($i = $startNumber; $i < $lastNumber; $i++) {
+    $name = $listProduct[$i]->GetNameProduct();
+    $price = $listProduct[$i]->GetPrice();
+    $countSold = $listProduct[$i]->GetCountSold();
+    $id = $listProduct[$i]->GetId();
+    $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($id);
+    if ($imageProduct != null) {
         $imageURL = $imageProduct->GetImageURL();
 ?>
-         <form class="product-card-item-3" method="post" action="./productDetail.php">
+        <form class="product-card-item-3" method="Get" action="./productDetail-Seller.php">
             <button class=product-card-button>
                 <img src="<?php echo $imageURL; ?>" alt="" class="product-card-image">
                 <input type="hidden" name="idProduct" value="<?php echo $id; ?>">
                 <p class="product-card-name"><?php echo $name; ?> </p>
-                <p class="product-card-price"><?php echo $price; ?></p> <br>
+                <p class="product-card-price"><?php echo number_format($price); ?> VNĐ</p> <br>
                 <p class="product-card-sold">Đã bán được <?php echo $countSold; ?> sản phẩm</p>
             </button>
         </form>

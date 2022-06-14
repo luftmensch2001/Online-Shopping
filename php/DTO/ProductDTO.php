@@ -109,7 +109,43 @@ class ProductDTO
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
-            array_push($listProduct,$product);
+            array_push($listProduct, $product);
+        }
+        return $listProduct;
+    }
+    public function GetListProductBy($idAccount,$type)
+    {
+        switch ($type) {
+            case "sortNew":
+                $query = "SELECT * FROM Product Where idAccount = '$idAccount' order by id desc";
+                break;
+            case "sortBestSeller":
+                $query = "SELECT * FROM Product Where idAccount = '$idAccount' order by countSold desc";
+                break;
+            case "sortMinToMax":
+                $query = "SELECT * FROM Product Where idAccount = '$idAccount' order by price";
+                break;
+            case "sortMaxToMin":
+                $query = "SELECT * FROM Product Where idAccount = '$idAccount' order by price desc";
+                break;
+        }
+        echo "<br>" . $query . "<br>";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+
+
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct, $product);
         }
         return $listProduct;
     }
@@ -132,7 +168,7 @@ class ProductDTO
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
-            array_push($listProduct,$product);
+            array_push($listProduct, $product);
         }
         return $listProduct;
     }
@@ -155,8 +191,14 @@ class ProductDTO
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
-            array_push($listProduct,$product);
+            array_push($listProduct, $product);
         }
         return $listProduct;
+    }
+    function DeleteProduct($idProduct)
+    {
+        $query = "Delete from Product where id='$idProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
     }
 }

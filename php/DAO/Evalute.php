@@ -5,12 +5,14 @@ class Evalute{
     private $idAccount;
     private $star;
     private $idProduct;
+    private $comment;
+    private $time;
 
     function SetId( $id ){
         $this->id = $id;
         return $this;
     }
-    function GetId( $id ){
+    function GetId(){
         return $this->id;
     }
 
@@ -18,7 +20,7 @@ class Evalute{
         $this->idAccount = $idAccount;
         return $this;
     }
-    function GetIdAccount( $idAccount ){
+    function GetIdAccount(){
         return $this->idAccount;
     }
 
@@ -26,7 +28,7 @@ class Evalute{
         $this->star = $star;
         return $this;
     }
-    function GetStar( $star ){
+    function GetStar(){
         return $this->star;
     }
 
@@ -36,5 +38,19 @@ class Evalute{
     }
     function GetIdProduct(){
         return $this->idProduct;
+    }
+    function SetComment( $comment ){
+        $this->comment = $comment;
+        return $this;
+    }
+    function GetComment(){
+        return $this->comment;
+    }
+    function SetTime($time){
+        $this->time = $time;
+        return $this;
+    }
+    function GetTime(){
+        return $this->time;
     }
 }

@@ -7,6 +7,10 @@ require_once('./DTO/ImageProductDTO.php');
 require_once('./DAO/ImageProduct.php');
 require_once('./DTO/ProductInCartDTO.php');
 require_once('./DAO/ProductInCart.php');
+require_once('./DTO/EvaluteDTO.php');
+require_once('./DAO/Evalute.php');
+require_once('./DTO/AccountDTO.php');
+require_once('./DAO/Account.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,6 +19,7 @@ if (!isset($_GET['idProduct'])) {
     header("Location:index.php");
 } else {
     $id = $_GET['idProduct'];
+    $idProduct = $_GET['idProduct'];
     $product = ProductDTO::getInstance()->GetProduct($id);
     $nameProduct = $product->GetNameProduct();
     $price = $product->GetPrice();
@@ -123,7 +128,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <VNĐ class="product-detail__price"><?php echo $price; ?> VNĐ</p>
+                                        <p class="product-detail__price"><?php echo number_format($price); ?> VNĐ</p>
                                     </td>
                                 </tr>
                                 <tr style="height: 40px;">
@@ -193,106 +198,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                         <img src="../assets/images/stars/5.png" alt="" style="height: 30px; transform: translateY(9px);">
                     </h1>
                     <div class="review__container">
-                        <div class="review__item">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <p class="review__username">Nguyễn Thị Long</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 5px;">
-                                        <img src="../assets/images/stars/5.png" alt="" style="height: 25px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="review__content">
-                                            Sản phẩm rất đẹp, giống như hình. Giao hàng nhanh chóng
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="review__item">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <p class="review__username">Nguyễn Thị Long</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 5px;">
-                                        <img src="../assets/images/stars/4.png" alt="" style="height: 25px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="review__content">
-                                            Chất vải hơi thô, lên dáng vẫn chuẩn, giao hàng nhanh
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="review__item">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <p class="review__username">Nguyễn Thị Long</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 5px;">
-                                        <img src="../assets/images/stars/4.png" alt="" style="height: 25px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="review__content">
-                                            Sản phẩm rất đẹp, giống như hình. Giao hàng nhanh chóng. Sản phẩm rất đẹp, giống như hình. Giao hàng nhanh chóng
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="review__item">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <p class="review__username">Nguyễn Thị Long</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 5px;">
-                                        <img src="../assets/images/stars/5.png" alt="" style="height: 25px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="review__content">
-                                            Sản phẩm rất đẹp, giống như hình. Giao hàng nhanh chóng
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                        <?php include("./View/EvaluteInProductDetail.php")?>
                         <div class="paging-wrapper">
                             <div class="paging paging-review">
                                 <button class="paging__trans">Trang đầu</button>
