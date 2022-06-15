@@ -13,28 +13,25 @@ const hiddenCountShop = document.querySelector('#hiddenCountShop');
 btApply.addEventListener('click', () => {
     if (coin.value > parseInt(maxCoin.innerHTML)) {
         coin.style.border = '1px solid red';
-    } else
-    {
+    } else {
         if (applyCoin.checked) {
             if (coin.value > 0) {
-                
-                total.innerHTML = total.innerHTML.substring(0,total.innerHTML.length-4);
-                discount.innerHTML = coin.value*hiddenCountShop.value;
-                let tmpMoney = parseInt(total.innerHTML)-coin.value*hiddenCountShop.value;
-                if (tmpMoney<0)
-                {
+
+                total.innerHTML = total.innerHTML.substring(0, total.innerHTML.length - 4);
+                discount.innerHTML = coin.value * hiddenCountShop.value;
+                let tmpMoney = parseInt(total.innerHTML) - coin.value * hiddenCountShop.value;
+                if (tmpMoney < 0) {
                     coin.value = parseInt(total.innerHTML);
                     discount.innerHTML = tmpMoney;
                     tmpMoney = 0;
                 }
                 intoMoney.innerHTML = tmpMoney;
 
-                intoMoney.innerHTML+= " VNĐ";
+                intoMoney.innerHTML += " VNĐ";
                 total.innerHTML += "VNĐ";
                 discount.innerHTML += " VNĐ";
             }
-        } else
-        {
+        } else {
             discount.innerHTML = "0 VNĐ";
             intoMoney.innerHTML = total.innerHTML;
         }
@@ -42,3 +39,11 @@ btApply.addEventListener('click', () => {
         hiddenDiscount.value = discount.innerHTML;
     }
 })
+
+const hiddenCity = document.querySelector('#hiddenCity');
+const hiddenDistrict = document.querySelector('#hiddenDistrict');
+const hiddenWard = document.querySelector('#hiddenWard');
+
+alert(hiddenCity.value);
+alert(hiddenDistrict.value);
+alert(hiddenWard.value);

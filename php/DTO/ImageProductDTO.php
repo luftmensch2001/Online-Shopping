@@ -73,7 +73,6 @@ class ImageProductDTO
         $query = "INSERT INTO ImageProduct (idProduct, imageURL)
         values('$idProduct', '$imageURL')";
         $result = DataProvider::getInstance()->Execute($query);
-
         return $result;
     }
     function UpdateImageProduct($imageProduct)
@@ -112,6 +111,7 @@ class ImageProductDTO
     function SetNewIdProduct($oldIdProduct, $idProduct)
     {
         $query = "Update ImageProduct set idProduct='$idProduct' where idProduct='$oldIdProduct'";
+        echo "<br>" . $query . "<br>";
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
     }

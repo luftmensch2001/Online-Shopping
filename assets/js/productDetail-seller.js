@@ -40,10 +40,20 @@ function FixProduct(){
     }
 }
 function DeleteProduct(){
-    if (parseInt(countSold.innerHTML)>0)
-        alert('Không thể xóa sản phẩm đã bán')
-    else
-    {
-        window.location = "deleteProduct.php?idProduct="+id;
-    }
+    alert("test");
+    return false;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                result = this.responseText;
+                if (result=="true") {
+                    alert('Không thể xóa sản phẩm đã bán');
+                } else
+                {
+                   // window.location = "deleteProduct.php?idProduct="+id;
+                }
+            }
+        };
+        xmlhttp.open("GET", "confirmOrder.php?idProduct=" + id, true);
+        xmlhttp.send();
 }

@@ -68,14 +68,14 @@ class ProductDTO
         $type = $product->GetType();
 
         $query = "Update Product Set 
-        'nameProduct' = '$nameProduct',
-        'idAccount' = '$idAccount',
-        'price' = '$price',
-        'countSold' = '$countSold',
-        'countAvailable' = '$countAvailable',
-        'decribe' = '$decribe',
-        'type' = '$type'
-        Where 'id' = '$id'";
+        nameProduct = '$nameProduct',
+        idAccount = '$idAccount',
+        price = '$price',
+        countSold = '$countSold',
+        countAvailable = '$countAvailable',
+        decribe = '$decribe',
+        type = '$type'
+        Where id = '$id'";
 
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
@@ -113,7 +113,7 @@ class ProductDTO
         }
         return $listProduct;
     }
-    public function GetListProductBy($idAccount,$type)
+    public function GetListProductBy($idAccount, $type)
     {
         switch ($type) {
             case "sortNew":
@@ -129,11 +129,66 @@ class ProductDTO
                 $query = "SELECT * FROM Product Where idAccount = '$idAccount' order by price desc";
                 break;
         }
-        echo "<br>" . $query . "<br>";
         $result = DataProvider::getInstance()->Execute($query);
         $row = mysqli_num_rows($result);
 
 
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct, $product);
+        }
+        return $listProduct;
+    }
+    public function GetListProductByTypeSort($type)
+    {
+        switch ($type) {
+            case "sortNew":
+                $query = "SELECT * FROM Product  order by id desc";
+                break;
+            case "sortBestSeller":
+                $query = "SELECT * FROM Product  order by countSold desc";
+                break;
+            case "sortMinToMax":
+                $query = "SELECT * FROM Product  order by price";
+                break;
+            case "sortMaxToMin":
+                $query = "SELECT * FROM Product  order by price desc";
+                break;
+        }
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+
+
+        $listProduct = array();
+        while ($row = $result->fetch_assoc()) {
+            $product = new Product();
+            $product->SetId($row["id"])
+                ->SetNameProduct($row["nameProduct"])
+                ->SetIdAccount($row["idAccount"])
+                ->SetPrice($row["price"])
+                ->SetCountSold($row["countSold"])
+                ->SetCountAvailable($row["countAvailable"])
+                ->SetDecribe($row["decribe"])
+                ->SetType($row["type"]);
+            array_push($listProduct, $product);
+        }
+        return $listProduct;
+    }
+
+    public function GetListProductByTypeProduct($type)
+    {
+        $query = "SELECT * FROM Product where type='$type' order by countSold desc";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
         $listProduct = array();
         while ($row = $result->fetch_assoc()) {
             $product = new Product();
@@ -198,6 +253,12 @@ class ProductDTO
     function DeleteProduct($idProduct)
     {
         $query = "Delete from Product where id='$idProduct'";
+        $result = DataProvider::getInstance()->Execute($query);
+        return $result;
+    }
+    function SetNewIdProduct($oldIdProduct, $idProduct)
+    {
+        $query = "Update Product set id='$idProduct' where id='$oldIdProduct'";
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
     }

@@ -132,7 +132,7 @@ else {
     </div>
     <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-    <script type="text/javascript" src="../assets/js/orderDetail-seller.js"></script>
+    <script type="text/javascript" src="../assets/js/orderDetail-seller2.js"></script>
 </body>
 
 </html>

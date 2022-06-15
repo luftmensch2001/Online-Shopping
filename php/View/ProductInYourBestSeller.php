@@ -6,7 +6,7 @@ require_once('./DAO/ImageProduct.php');
 
 $test = ProductDTO::getInstance()->GetListProductBestSeller();
 $count = count($test);
-for ($i = 0; $i < $count; $i++) {
+for ($i = 0; $i < min($count,12); $i++) {
     $name = $test[$i]->GetNameProduct();
     $price = $test[$i]->GetPrice();
     $countSold = $test[$i]->GetCountSold();
@@ -21,7 +21,7 @@ for ($i = 0; $i < $count; $i++) {
                 <img src="<?php echo $imageURL; ?>" alt="" class="product-card-image">
                 <input type="hidden" name="idProduct" value="<?php echo $id; ?>">
                 <p class="product-card-name"><?php echo $name; ?> </p>
-                <p class="product-card-price"><?php echo $price; ?></p> <br>
+                <p class="product-card-price"><?php echo number_format($price); ?> VNĐ</p> <br>
                 <p class="product-card-sold">Đã bán được <?php echo $countSold; ?> sản phẩm</p>
             </button>
         </form>

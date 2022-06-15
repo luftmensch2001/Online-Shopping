@@ -2,8 +2,8 @@
 
 
 $listEvalute = EvaluteDTO::getInstance()->GetListEvalute($idProduct);
-$count = count($listEvalute);
-for ($i = 0; $i < $count; $i++) {
+$countEvalute = count($listEvalute);
+for ($i = 0; $i < min($countEvalute,5); $i++) {
     $account = AccountDTO::getInstance()->GetAccount($listEvalute[$i]->GetIdAccount());
     $fullName = $account->GetFullName();
     $comment = $listEvalute[$i]->GetComment();

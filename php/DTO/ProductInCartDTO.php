@@ -20,7 +20,8 @@ class ProductInCartDTO
     {
         $idProduct = $productInCart->GetIdProduct();
         $idAccount = $productInCart->GetIdAccount();
-        $query = "SELECT * FROM productInCart where idProduct='$idProduct' and idAccount='$idAccount'";
+        $color = $productInCart->GetColor();
+        $query = "SELECT * FROM productInCart where idProduct='$idProduct' and idAccount='$idAccount' and color='$color'";
         $result = DataProvider::getInstance()->Execute($query);
 
         $row = mysqli_num_rows($result);
@@ -63,7 +64,6 @@ class ProductInCartDTO
 
         $query = "INSERT INTO ProductInCart (idProduct, count,color,idAccount)
         values('$idProduct', '$count','$color','$idAccount')";
-        echo $query;
         $result = DataProvider::getInstance()->Execute($query);
         
         return $result;
@@ -75,10 +75,9 @@ class ProductInCartDTO
         $color = $productInCart->GetColor();
         $idAccount = $productInCart->GetIdAccount();
 
-        $query = "Update ProductInCart set count='$count' ,color='$color'  where idAccount='$idAccount' and idProduct='$idProduct'";
-
+        $query = "Update ProductInCart set count='$count'  where color='$color' and idAccount='$idAccount' and idProduct='$idProduct'";
+        //echo "<br>" . $query . "<br>";
         $result = DataProvider::getInstance()->Execute($query);
-        echo $query;
         return $result;
     }
     function isExistProductInCart($productInCart)
@@ -87,6 +86,7 @@ class ProductInCartDTO
         $idAccount = $productInCart->GetIdAccount();
         $color = $productInCart->GetColor();
         $query = "SELECT * FROM productInCart where idProduct='$idProduct' and idAccount='$idAccount' and color='$color'";
+       // echo "<br>" . $query . "<br>";
         $result = DataProvider::getInstance()->Execute($query);
         $row = mysqli_num_rows($result);
         if ($row > 0)
@@ -97,8 +97,16 @@ class ProductInCartDTO
     function DeleteProductInCart($idAccount, $idProduct,$color)
     {
         $query = "DELETE FROM `productincart` WHERE idAccount='$idAccount' and idProduct='$idProduct' and color='$color'";
-        echo "<br>".$query."<br>";
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
+    }
+    function CheckExistProduct($idProduct)
+    {
+        $query = "select * from ProductInCart where idProduct='$idProduct' limit 1";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+        if ($row > 0)
+            return true;
+        else return false;
     }
 }

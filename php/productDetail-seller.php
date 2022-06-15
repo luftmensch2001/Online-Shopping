@@ -39,7 +39,8 @@ for ($i = 1; $i <= $countImage; $i++) {
 <?php
 }
 $index = 1;
-$firstImage = $listImageProduct[0]->GetImageURL();
+if (count($listImageProduct) > 0)
+    $firstImage = $listImageProduct[0]->GetImageURL();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,7 +207,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
     </div>
     <?php include("./View/Header.php"); ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-    <script src="../assets/js/productDetail-seller.js"></script>
+    <script src="../assets/js/productDetail-seller2.js"></script>
 </body>
 
 </html>

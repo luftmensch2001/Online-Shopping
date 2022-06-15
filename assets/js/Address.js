@@ -16,6 +16,7 @@ promise.then(function (result) {
 function renderCity(data) {
   for (const x of data) {
     citis.options[citis.options.length] = new Option(x.Name, x.Id);
+    alert(x.Name);
   }
 
   // xứ lý khi thay đổi tỉnh thành thì sẽ hiển thị ra quận huyện thuộc tỉnh thành đó
@@ -43,4 +44,5 @@ function renderCity(data) {
       }
     }
   };
+  SetData();
 }

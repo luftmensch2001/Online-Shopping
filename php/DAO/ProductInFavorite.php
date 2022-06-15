@@ -1,25 +1,35 @@
 <?php
 
-class ProductInFavorite{
-    private $id;
+class ProductInFavorite
+{
+    private $idAccount;
     private $idProduct;
-    private $count;
-    function SetId( $id ){
-        $this->id = $id;
+    private $color;
+    function SetIdAccount($idAccount)
+    {
+        $this->idAccount = $idAccount;
         return $this;
     }
-    function SetIdProduct( $idProduct ){
+    function SetIdProduct($idProduct)
+    {
         $this->idProduct = $idProduct;
         return $this;
     }
-    function GetId(){
-        return $this->id;
+    function GetIdAccount()
+    {
+        return $this->idAccount;
     }
     function GetIdProduct()
     {
         return $this->idProduct;
     }
-    function GetCount(){
-        return $this->count;
+    function SetColor( $color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+    function GetColor()
+    {
+        return $this->color;
     }
 }

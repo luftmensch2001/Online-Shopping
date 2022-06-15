@@ -55,3 +55,7 @@ function CheckButton() {
             return false;
     }
 }
+function SearchType(type) 
+{
+    window.location = "../php/catalog.php?searchValue="+type;
+}

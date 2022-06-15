@@ -268,7 +268,7 @@ else {
             reviewModal.classList.remove('open-modal');
         }
     </script>
-    <script type="text/javascript" src="../assets/js/orderDetail.js"></script>
+    <script type="text/javascript" src="../assets/js/orderDetail2.js"></script>
 </body>
 
 </html>

@@ -54,7 +54,6 @@ function CheckStar() {
 CheckStar();
 function ChangePrice() {
     var value = document.querySelector('input[name="price-base"]:checked').value;
-    alert(value);
     switch (value) {
         case "0":
             hiddenMinPrice.value = 0;
@@ -134,7 +133,7 @@ function CheckPrice(){
 CheckPrice();
 
 function Search(numberPage) {
-    alert("test");
+  //  alert("test");
     var typeSort = "typeSort=" + hiddenTypeSort.value;
     var minPrice = "minPrice=" + hiddenMinPrice.value;
     var maxPrice = "maxPrice=" + hiddenMaxPrice.value;
@@ -143,6 +142,6 @@ function Search(numberPage) {
     var numberPage = "page-number=" + numberPage;
 
     var get = "?" + typeSort + "&" + minPrice + "&" + maxPrice + "&" + minCountSold + "&" + minCountStar + "&" + numberPage;
-    alert(get);
+    //alert(get);
     window.location = get;
 }

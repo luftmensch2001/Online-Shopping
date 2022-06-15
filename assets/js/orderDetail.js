@@ -43,7 +43,6 @@ function GetItem() {
 btGetItem.addEventListener("click", GetItem);
 
 function GetItem() {
-
     var str = document.getElementById("idDetailBill").value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {

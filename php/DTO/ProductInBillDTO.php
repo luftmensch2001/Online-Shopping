@@ -77,4 +77,13 @@ class ProductInBillDTO
 
         return $result;
     }
+    function CheckExistProduct($idProduct)
+    {
+        $query = "select * from ProductInBill where idProduct='$idProduct' limit 1";
+        $result = DataProvider::getInstance()->Execute($query);
+        $row = mysqli_num_rows($result);
+        if ($row > 0)
+            return true;
+        else return false;
+    }
 }

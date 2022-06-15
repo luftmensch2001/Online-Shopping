@@ -25,22 +25,23 @@ if (isset($_GET['countProduct'])) {
             $price = $product->GetPrice();
             $count = $_GET['count' . $index];
             $color = $_GET['color' . $index];
-            $total = $price * $count ;
+            $total = $price * $count;
             $totalAll += $total;
-            $idProduct =$product->GetId();
+            $idProduct = $product->GetId();
             $imageProduct = ImageProductDTO::getInstance()->GetFirstImageProduct($idProduct);
             $imageURL = $imageProduct->GetImageURL();
-
 ?>
-            <div class="cart__item">
-                <div class="cart__product">
-                    <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
-                    <p class="cart__product-name"><?php echo $nameProduct; ?></p>
+            <div class="cart__products">
+                <div class="cart__item">
+                    <div class="cart__product">
+                        <img src="<?php echo $imageURL; ?>" alt="" class="cart__product-img">
+                        <p class="cart__product-name"><?php echo $nameProduct; ?></p>
+                    </div>
+                    <p class="order__type"><?php echo $color; ?></p>
+                    <p class="cart__price"><?php echo $price; ?> VNĐ</p>
+                    <p class="order-count"><?php echo $count; ?></p>
+                    <p class="cart__money"><?php echo $total; ?> VNĐ</p>
                 </div>
-                <p class="order__type"><?php echo $color; ?></p>
-                <p class="cart__price"><?php echo $price; ?> VNĐ</p>
-                <p class="order-count"><?php echo $count; ?></p>
-                <p class="cart__money"><?php echo $total; ?> VNĐ</p>
             </div>
 <?php
         }

@@ -31,6 +31,7 @@ else {
 </head>
 
 <body style="background-color: var(--background-gray-color)">
+    <input type="hidden" name="idAccount" id="idAccount" value="<?php echo $idAccount ?>">
     <?php include("./View/Header.php"); ?>
     <div class="body">
         <form method="GET" action="payment.php" onsubmit="return CheckCountProduct()">
@@ -43,12 +44,12 @@ else {
                 <p class="payment-bar__text-total">Tổng thanh toán:</p>
                 <p id="total" style="color:red" class="payment-bar__text-total">0 VNĐ</p>
                 <div style="display: flex; align-items: center;">
-                    <button class="payment-bar__button">
+                    <button class="payment-bar__button" id="btPay">
                         <lord-icon src="https://cdn.lordicon.com/hjeefwhm.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                         </lord-icon>
                         Thanh Toán
                     </button>
-                    <button class="payment-bar__button payment-bar__button-2" style="background-color: var(--red-color);">
+                    <button id="btDeleteAll" class="payment-bar__button payment-bar__button-2" style="background-color: var(--red-color);">
                         <lord-icon src="https://cdn.lordicon.com/dovoajyj.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                         </lord-icon>
                         Xoá
@@ -58,7 +59,7 @@ else {
         </form>
         <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-        <script src="../assets/js/productAndCart copy.js"></script>
+        <script src="../assets/js/productAndCart2.js"></script>
 </body>
 
 </html>

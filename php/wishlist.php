@@ -1,3 +1,16 @@
+<?php
+require_once('./DAO/Account.php');
+require_once('./DTO/AccountDTO.php');
+error_reporting(E_ALL ^ E_NOTICE);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$idAccount = $_SESSION['idAccount'];
+if ($idAccount == null || $idAccount == -1)
+    header("Location:login.php");
+else {
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,53 +30,35 @@
 </head>
 
 <body style="background-color: var(--background-gray-color)">
-    <?php include("./View/Header.php"); ?>
+    <?php include("./View/Header.php") ?>
     <div class="body">
-        <div class="grid block">
-            <h1 class="block__title">SẢN PHẨM YÊU THÍCH</h1>
-            <div class="cart__container">
-                <div class="cart__heading">
-                    <p class="cart__heading-name" style="width: 50%; text-align: center;">Sản Phẩm</p>
-                    <p class="cart__heading-name" style="width: 25%; text-align: center;">Đơn Giá</p>
-                    <p class="cart__heading-name" style="width: 25%; text-align: center;"></p>
-                </div>
-                <div class="cart__products">
-                    <div class="cart__item">
-                        <div class="cart__product">
-                            <input class="cart__product-check" type="checkbox" name="" id="">
-                            <img src="../assets/images/products/noicom.jpg" alt="" class="cart__product-img">
-                            <p class="cart__product-name">GIÀY SNEAKER THỂ THAO CHẠY BỘ CAO CẤP PHIÊN BẢN GIỚI HẠN MÙA HÈ</p>
-                        </div>
-                        <p class=" wishlist__price">350.000 VNĐ</p>
-                        <div class="wishlist__advanced">
-                            <button class="wishlist__button">Thêm vào Giỏ hàng</button>
-                            <button class="wishlist__button-2">Xoá</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <input type="hidden" name="idAccount" id="idAccount" value="<?php echo $idAccount ?>">
+        <?php include("./View/ProductInWishList.php") ?>
+    </div>
     </div>
     <div class="payment-bar grid">
         <div style="display: flex; align-items: center;">
-            <input class="payment-bar__checkbox" type="checkbox" name="" id="">
+            <input class="payment-bar__checkbox" type="checkbox" name="" id="tickAll">
             <p class="payment-bar__text">Chọn tất cả</p>
         </div>
         <div style="display: flex; align-items: center;">
-            <button class="payment-bar__button">
+            <button class="payment-bar__button" id="btAddAllToCart">
                 <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                 </lord-icon>
                 Thêm vào Giỏ hàng
             </button>
-            <button class="payment-bar__button payment-bar__button-2" style="background-color: var(--red-color);">
+            <button id="btDeleteAll" class="payment-bar__button payment-bar__button-2" style="background-color: var(--red-color);">
                 <lord-icon src="https://cdn.lordicon.com/dovoajyj.json" trigger="loop" colors="primary:#ffffff" delay="2000" style="width:25px;height:25px; margin-right: 2px;">
                 </lord-icon>
                 Xoá
             </button>
         </div>
     </div>
+    </div>
+    </div>
     <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="../assets/js/productInWishList.js"></script>
 </body>
 
 </html>

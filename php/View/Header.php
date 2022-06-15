@@ -6,11 +6,17 @@
 
     <!-- Search -->
     <div class="search-bar">
-        <input class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
+        <input id="inputSearch" class="search-bar__text" type="text" placeholder="Tìm kiếm sản phẩm">
         <!-- <img class="search-bar__icon" src="../assets/icons/search.png"> -->
-        <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" class="search-bar__icon">
+        <lord-icon src="https://cdn.lordicon.com/pvbutfdk.json" trigger="loop-on-hover" onclick="SearchWithValue()" class="search-bar__icon">
         </lord-icon>
     </div>
+    <script type="text/javascript">
+        function SearchWithValue() {
+            const input = document.getElementById('inputSearch');
+            window.location = "../php/catalog.php?searchValue=" + input.value;
+        }
+    </script>
 
     <!-- Advanced -->
     <div class="header__advanced">
@@ -18,8 +24,10 @@
             <lord-icon src="https://cdn.lordicon.com/aoggitwj.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
         </a>
-        <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
-        </lord-icon>
+        <a href="./wishlist.php">
+            <lord-icon src="https://cdn.lordicon.com/kkcllwsu.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
+            </lord-icon>
+        </a>
         <div class="header__user">
             <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>

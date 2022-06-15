@@ -25,11 +25,6 @@ if ($idAccount == null || $idAccount == -1) {
 
     //echo $idAccount;
     if (isset($_POST['nameProduct'])) {
-        //DeleteProduct
-
-
-        //Add product 
-        
         $nameProduct = $_POST['nameProduct'];
         $price = $_POST['price'];
         $decribe = $_POST['decribe'];
@@ -42,8 +37,15 @@ if ($idAccount == null || $idAccount == -1) {
             ->SetIdAccount($idAccount);
 
         ProductDTO::getInstance()->CreateProduct($product);
+        ProductDTO::getInstance()->DeleteProduct($idProduct);
         $idProduct = ProductDTO::getInstance()->GetMaxId();
-
+        $oldIdProduct = $idProduct;
+        $idProduct = $_POST['idProduct'];
+        $changeImage = $_POST['changeImage'];
+        if ($changeImage != "noChange") {
+            ImageProductDTO::getInstance()->DeleteImageProductByIdProduct($idProduct);
+        }
+        ProductDTO::getInstance()->SetNewIdProduct($oldIdProduct,$idProduct);
         //Add ImageProduct
         $imageProduct = new ImageProduct();
         $imageProduct->SetIdProduct($idProduct);
@@ -65,7 +67,7 @@ if ($idAccount == null || $idAccount == -1) {
                 // echo "Upload failed";
             }
         }
-
+        ColorDTO::getInstance()->DeleteColorByIdProduct($idProduct);
         // Add color information
         for ($i = 1; $i <= $_POST['indexColor']; $i++) {
             $color = new Color();
@@ -73,21 +75,7 @@ if ($idAccount == null || $idAccount == -1) {
             $color->SetIdProduct($idProduct);
             ColorDTO::getInstance()->CreateColor($color);
         }
-
-        $newIdProduct = $idProduct;
-        $idProduct = $_POST['idProduct'];
-        $changeImage = $_POST['changeImage'];
-        ProductDTO::getInstance()->DeleteProduct($idProduct);
-        if ($changeImage!="noChange")
-        {
-            ImageProductDTO::getInstance()->DeleteImageProductByIdProduct($idProduct);
-        }
-        else
-        {
-            ImageProductDTO::getInstance()->SetNewIdProduct($idProduct,$newIdProduct);
-        }
-        ColorDTO::getInstance()->DeleteColorByIdProduct($idProduct);
-        header("Location:productDetail-seller.php?idProduct=".$newIdProduct);
+        header("Location:productDetail-seller.php?idProduct=" . $idProduct);
     }
 }
 ?>
@@ -115,28 +103,29 @@ if ($idAccount == null || $idAccount == -1) {
     <div class="body">
         <form action="#" enctype="multipart/form-data" method="post" name="form" class="grid block" onsubmit=" return IsSubmit()">
             <input type="hidden" name="idProduct" id="idProduct" value="<?php echo $idProduct; ?>">
+            <input type="hidden" name="idType" id="hiddenType" value="<?php echo $type; ?>">
             <input type="hidden" name="changeImage" id="changeImage" value="noChange">
-            <h1 class="block__title">THÊM SẢN PHẨM</h1>
+            <h1 class="block__title">SỬA SẢN PHẨM</h1>
             <div class="add__container">
                 <input id="nameProduct" type="text" name="nameProduct" class="add__input" placeholder="Tên sản phẩm" value="<?php echo $nameProduct; ?>">
-                <select name="type" id="" class="add__select">
+                <select name="type" id="type" class="add__select" value="<?php echo $type; ?>">
                     <option disabled selected>Chọn danh mục sản phẩm</option>
-                    <option selected>Thời trang nam</option>
-                    <option>Thời trang nữ</option>
-                    <option>Điện thoại</option>
-                    <option>Laptop</option>
-                    <option>Thiết bị điện tử</option>
-                    <option>Giày nam</option>
-                    <option>Giày nữ</option>
-                    <option>Sách</option>
-                    <option>Đồng hồ</option>
-                    <option>Dụng cụ gia đình</option>
-                    <option>Trang sức</option>
-                    <option>Làm đẹp</option>
-                    <option>Nhà bếp</option>
-                    <option>Sức khoẻ</option>
-                    <option>Cho bé</option>
-                    <option>Khác</option>
+                    <option selected value="">Thời trang nam</option>
+                    <option value="Thời trang nữ">Thời trang nữ</option>
+                    <option value="Điện thoại">Điện thoại</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Thiết bị điện tử">Thiết bị điện tử</option>
+                    <option value="Giày nam">Giày nam</option>
+                    <option value="Giày nữ">Giày nữ</option>
+                    <option value="Sách">Sách</option>
+                    <option value="Đồng hồ">Đồng hồ</option>
+                    <option value="Dụng cụ gia đình">Dụng cụ gia đình</option>
+                    <option value="Trang sức">Trang sức</option>
+                    <option value="Làm đẹp">Làm đẹp</option>
+                    <option value="Nhà bếp">Nhà bếp</option>
+                    <option value="Sức khoẻ">Sức khoẻ</option>
+                    <option value="Cho bé">Cho bé</option>
+                    <option value="Khác">Khác</option>
                 </select>
                 <input id="price" name="price" value="<?php echo $price; ?>" type="number" class="add__input" placeholder="Giá" style="width: 40%; margin-left: auto; margin-right: 0">
                 <textarea id="decribe" class="add__textarea" name="decribe" id="" cols="30" rows="20" placeholder="Mô tả chi tiết sản phẩm"><?php echo $decribe; ?></textarea>
@@ -148,7 +137,7 @@ if ($idAccount == null || $idAccount == -1) {
                 $listImageProduct = ImageProductDTO::getInstance()->GetListImageProductByIdProduct($idProduct);
                 ?>
                 <div id="listImage" class="add__img-container">
-                    <input id="indexImage" type="hidden" name="indexImage" value="<?php echo count($listImageProduct);?>">
+                    <input id="indexImage" type="hidden" name="indexImage" value="<?php echo count($listImageProduct); ?>">
                     <?php include("./View/ImageProductInFixProduct.php") ?>
                     <!-- <div class="add__img-item">
                         <img src="../assets/images/products/aokhoackakinam.jpg" id="testitem" alt="" class="add__img-image">
@@ -179,5 +168,16 @@ if ($idAccount == null || $idAccount == -1) {
         </form>
         <?php include("./View/Footer.php") ?>
         <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-        <script src="../assets/js/fixProduct.js"></script>
+        <script src="../assets/js/fixProduct2.js"></script>
+        <script>
+            var temp = document.getElementById('hiddenType').value;
+            var mySelect = document.getElementById('type');
+
+            for (var i, j = 0; i = mySelect.options[j]; j++) {
+                if (i.value == temp) {
+                    mySelect.selectedIndex = j;
+                    break;
+                }
+            }
+        </script>
 </body>
