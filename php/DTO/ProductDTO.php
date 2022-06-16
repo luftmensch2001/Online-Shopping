@@ -31,6 +31,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -66,17 +67,19 @@ class ProductDTO
         $countAvailable = $product->GetCountAvailable();
         $decribe = $product->GetDecribe();
         $type = $product->GetType();
+        $countStar = $product->GetCountStar();
 
         $query = "Update Product Set 
         nameProduct = '$nameProduct',
         idAccount = '$idAccount',
         price = '$price',
         countSold = '$countSold',
+        countStar = '$countStar',
         countAvailable = '$countAvailable',
         decribe = '$decribe',
         type = '$type'
         Where id = '$id'";
-
+        echo "<br>" . $query . "<br>";
         $result = DataProvider::getInstance()->Execute($query);
         return $result;
     }

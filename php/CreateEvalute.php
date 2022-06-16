@@ -3,6 +3,8 @@
     require_once('./DAO/Evalute.php');
     require_once('./DTO/ProductInBillDTO.php');
     require_once('./DAO/ProductInBill.php');
+    require_once('./DTO/ProductDTO.php');
+    require_once('./DAO/Product.php');
 
     $time = date("y-m-d");
 
@@ -22,4 +24,15 @@
     $productInBill = ProductInBillDTO::getInstance()->GetProductInBill($idBill,$idProduct);
     $productInBill->SetIdEvalute($idEvalute);
     ProductInBillDTO::getInstance()->UpdateProductInBill($productInBill);
-?>
+
+    $idProduct = $productInBill->GetIdProduct();
+    $product = ProductDTO::getInstance()->GetProduct($idProduct);
+    $listEvalute = EvaluteDTO::getInstance()->GetListEvalute($idProduct);
+    $countStar = $product->GetCountStar();
+    if ($countStar ==0)
+        $countStar = $star;
+    else
+        $countStar = ($countStar*(count($listEvalute)-1)+$star)/count($listEvalute);
+    $product->SetCountStar($countStar);
+    ProductDTO::getInstance()->UpdateProduct($product);
+

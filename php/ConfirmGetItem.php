@@ -30,5 +30,5 @@ for ($i = 0; $i < count($listProductInBill); $i++)
     $product = ProductDTO::GetProduct($listProductInBill[$i]->GetIdProduct());
     $product->SetCountSold($product->GetCountSold()+$listProductInBill[$i]->GetCount());
     ProductDTO::getInstance()->UpdateProduct($product);
-    echo $product->GetCountSold();
+    //$product->GetCountSold();
 }

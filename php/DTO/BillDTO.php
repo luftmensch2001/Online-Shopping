@@ -87,7 +87,7 @@ class BillDTO
     }
     function GetListBillByIdAccount($idAccount)
     {
-        $query = "SELECT * FROM Bill Where idAccount = '$idAccount'";
+        $query = "SELECT * FROM Bill Where idAccount = '$idAccount' order by time desc";
         $result = DataProvider::getInstance()->Execute($query);
 
         $listBill = array();
@@ -108,7 +108,7 @@ class BillDTO
     }
     function GetListBillByIdAccountSeller($idAccountSeller)
     {
-        $query = "SELECT * FROM Bill Where idAccountSeller = '$idAccountSeller'";
+        $query = "SELECT * FROM Bill Where idAccountSeller = '$idAccountSeller' order by time desc";
         $result = DataProvider::getInstance()->Execute($query);
 
         $listBill = array();

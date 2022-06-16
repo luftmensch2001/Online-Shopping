@@ -25,6 +25,7 @@ else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,47 +41,76 @@ else {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Danh sách Đơn mua</title>
 </head>
+
 <body style="background-color: var(--background-gray-color)">
-    <?php include("./View/Header.php")?>
+    <?php include("./View/Header.php") ?>
     <div class="body">
-          <div class="grid block" style="padding-bottom: 10px; margin-bottom: 40px">
-              <h1 class="block__title">DANH SÁCH ĐƠN MUA</h1>
-              <div class="order-list-container">
-                  <div class="order-list__filter">
-                      <p class="order-list__label">Bộ lọc:</p>
-                      <select class="order-list__select">
-                        <option disabled selected>Thời gian</option>
-                        <option>Tất cả</option>
-                        <option>Hôm nay</option>
-                        <option>Tuần này</option>
-                        <option>Tháng này</option>
-                        <option>Năm này</option>
-                      </select>
-                      <select class="order-list__select">
-                        <option disabled selected>Tình trạng đơn hàng</option>
-                        <option>Tất cả</option>
-                        <option>Đang chờ xác nhận</option>
-                        <option>Đang giao hàng</option>
-                        <option>Đã giao hàng</option>
-                        <option>Đã huỷ</option>
-                      </select>
-                      <button class="order-list__filter-button"><i class="fa-solid fa-filter" style="margin-right: 5px;"></i>Lọc</button>
-                  </div>
-                  <div class="order-list">
-                      <div class="order-list__heading">
-                          <p style="width: 30%; text-align: center;">Sản phẩm</p>
-                          <p style="width: 15%; text-align: center;">Phân loại</p>
-                          <p style="width: 10%; text-align: center;">Số lượng</p>
-                          <p style="width: 15%; text-align: center;">Ngày đặt hàng</p>
-                          <p style="width: 15%; text-align: center;">Tổng thanh toán</p>
-                          <p style="width: 15%; text-align: center;">Tình trạng đơn hàng</p>
-                      </div>
-                      <?php include("./View/BillInOrderList.php") ?>
-                  </div>
-              </div>
-          </div>
+        <div class="grid block" style="padding-bottom: 10px; margin-bottom: 40px">
+            <h1 class="block__title">DANH SÁCH ĐƠN MUA</h1>
+            <div class="order-list-container">
+                <div class="order-list__filter">
+                    <p class="order-list__label">Bộ lọc:</p>
+                    <select class="order-list__select" id="slTime">
+                        <option value="Thời gian" disabled selected>Thời gian</option>
+                        <option value="Tất cả">Tất cả</option>
+                        <option value="Hôm nay">Hôm nay</option>
+                        <option value="Tuần này">Tuần này</option>
+                        <option value="Tháng này">Tháng này</option>
+                        <option value="Năm này">Năm này</option>
+                    </select>
+                    <select class="order-list__select" id="slState">
+                        <option value="Tình trạng đơn hàng" disabled selected>Tình trạng đơn hàng</option>
+                        <option value="Tất cả">Tất cả</option>
+                        <option value="Đang chờ xác nhận">Đang chờ xác nhận</option>
+                        <option value="Đang giao hàng">Đang giao hàng</option>
+                        <option value="Đã giao hàng">Đã giao hàng</option>
+                        <option value="Đã hủy">Đã huỷ</option>
+                    </select>
+                    <?php
+                    if (isset($_GET['time']))
+                        $hiddenTime = $_GET['time'];
+                    if (isset($_GET['state']))
+                        $hiddenState = $_GET['state']; ?>
+                    <input type="hidden" name="hiddenTime" id="hiddenTime" value="<?php echo $hiddenTime ?>"></input>
+
+                    <input type="hidden" name="hiddenState" id="hiddenState" value="<?php echo $hiddenState ?>"></input>
+                    <button class="order-list__filter-button" id="btFill"><i class="fa-solid fa-filter" style="margin-right: 5px;"></i>Lọc</button>
+                </div>
+                <div class="order-list">
+                    <div class="order-list__heading">
+                        <p style="width: 30%; text-align: center;">Sản phẩm</p>
+                        <p style="width: 15%; text-align: center;">Phân loại</p>
+                        <p style="width: 10%; text-align: center;">Số lượng</p>
+                        <p style="width: 15%; text-align: center;">Ngày đặt hàng</p>
+                        <p style="width: 15%; text-align: center;">Tổng thanh toán</p>
+                        <p style="width: 15%; text-align: center;">Tình trạng đơn hàng</p>
+                    </div>
+                    <?php include("./View/BillInOrderList.php") ?>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include("./View/Footer.php") ?>
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="../assets/js/orderList.js"></script>
+    <script>
+        var time = document.getElementById('hiddenTime').value;
+
+        for (var i, j = 0; i = slTime.options[j]; j++) {
+            if (i.value == time) {
+                slTime.selectedIndex = j;
+                break;
+            }
+        }
+        var state = document.getElementById('hiddenState').value;
+
+        for (var i, j = 0; i = slState.options[j]; j++) {
+            if (i.value == state) {
+                slState.selectedIndex = j;
+                break;
+            }
+        }
+    </script>
 </body>
+
 </html>

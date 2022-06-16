@@ -86,14 +86,18 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                                     <h1 class="product__detail-name"><?php echo $nameProduct; ?></h1>
                                 </td>
                             </tr>
+                            <?php
+                            $listEvalute = EvaluteDTO::getInstance()->GetListEvalute($idProduct);
+                            $countEvalute = count($listEvalute);
+                            ?>
                             <tr style="height: 30px;">
                                 <td colspan="2">
                                     <p class="product-detail__general-info" style="padding-left: 30px;">
                                         <?php echo $countStar ?>
-                                        <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
+                                        <img src="../assets/images/stars/<?php echo intval($countStar) ?>.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
                                     </p>
                                     <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
-                                        168 lượt đánh giá
+                                        <?php echo $countEvalute ?> lượt đánh giá
                                     </p>
                                     <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
                                         <?php echo $countSold ?> lượt mua
@@ -117,7 +121,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                                 <td>
                                     <select id="color" name="color" class="product-detail__select-box">
                                         <?php
-                                        $listColor = ColorDTO::getInstance()->GetListColor($id);
+                                        $listColor = ColorDTO::getInstance()->GetListColor($idProduct);
                                         $countColor = count($listColor);
                                         for ($i = 0; $i < $countColor; $i++) {
                                             $value = $listColor[$i]->GetNameColor();
@@ -166,7 +170,7 @@ $firstImage = $listImageProduct[0]->GetImageURL();
                     <h1 class="product-detail__title">
                         ĐÁNH GIÁ
                         <span class="star-count"><?php echo $countStar; ?> / 5</span>
-                        <img src="../assets/images/stars/5.png" alt="" style="height: 30px; transform: translateY(9px);">
+                        <img src="../assets/images/stars/<?php echo intval($countStar) ?>.png" alt="" style="height: 30px; transform: translateY(9px);">
                     </h1>
                     <div class="review__container">
                         <?php include("./View/EvaluteInProductDetail.php");

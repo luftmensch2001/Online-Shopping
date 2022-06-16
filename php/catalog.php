@@ -169,7 +169,7 @@ if ($idAccount == null || $idAccount == -1) {
                     ?>
 
                     <div class="paging" name="pageBar" id="pageBar" style="display:<?php echo $displayPageBar ?>">
-                        <button class="paging__trans">Trang đầu</button>
+                        <button class="paging__trans" onclick="Search(1)">>Trang đầu</button>
                         <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
                         <?php
                         if ($pageNumber == 0) {
@@ -192,7 +192,7 @@ if ($idAccount == null || $idAccount == -1) {
                         }
                         ?>
                         <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="paging__trans">Trang cuối</button> <br>
+                        <button class="paging__trans" onclick="Search(<?php echo $lastNumberPage; ?>)">>Trang cuối</button> <br>
                         <p>Đang ở trang <?php echo $pageNumber + 1 ?> trong tổng số <?php echo $count + 1 ?> trang</p>
                         <input type="hidden" name="hiddenSearchValue" id="hiddenSearchValue" value="<?php echo $searchValue ?>">
                         <input type="hidden" name="hiddenTypeSort" id="hiddenTypeSort" value="<?php echo $typeSort ?>">

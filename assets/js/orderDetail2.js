@@ -47,13 +47,10 @@ function GetItem() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             result = this.responseText;
-            alert(result);
-            if (result == "true") {
                 const state = document.querySelector("#state");
                 state.innerHTML = "Tình trạng đơn hàng: Đã giao hàng";
                 btGetItem.style.display = "none";
                 location.reload();
-            }
         }
     };
     xmlhttp.open("GET", "ConfirmGetItem.php?idDetailBill=" + str, true);
