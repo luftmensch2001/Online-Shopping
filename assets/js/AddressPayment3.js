@@ -68,7 +68,7 @@ function renderCity(data) {
       const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
 
       for (const w of dataWards) {
-        ward.options[wards.options.length] = new Option(w.Name, w.Id);
+        ward.options[ward.options.length] = new Option(w.Name, w.Id);
       }
     }
   };

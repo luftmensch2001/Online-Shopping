@@ -4,7 +4,9 @@
     require_once('./DTO/ProductInBillDTO.php');
     require_once('./DAO/ProductInBill.php');
     require_once('./DTO/ProductDTO.php');
-    require_once('./DAO/Product.php');
+    require_once('./DAO/Product.php');    
+    require_once('./DTO/AccountDTO.php');
+    require_once('./DAO/Account.php');
 
     $time = date("y-m-d");
 
@@ -33,6 +35,11 @@
         $countStar = $star;
     else
         $countStar = ($countStar*(count($listEvalute)-1)+$star)/count($listEvalute);
+    $countStar = (intval($countStar*10))/10;
     $product->SetCountStar($countStar);
     ProductDTO::getInstance()->UpdateProduct($product);
+
+    $account = AccountDTO::getInstance()->GetAccount($idAccount);
+    $account->SetCoin($account->GetCoin()+200*$star);
+    AccountDTO::getInstance()->UpdateAccount($account);
 

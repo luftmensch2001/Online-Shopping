@@ -67,7 +67,7 @@ const btSend = document.querySelector("#btSend");
 const comment = document.querySelector("#comment");
 const hiddenIdAccount = document.querySelector("#idAccount");
 function SendEvalute( ) {
-    alert("   sending");
+   // alert("   sending");
     var sComment = comment.value;
     var sCountStar = countStar.value;
     var idProduct = hiddenIdProduct.value;
@@ -84,12 +84,12 @@ function SendEvalute( ) {
     str += "&comment="+sComment;
     str += "&idBill="+idBill;
 
-    alert(str);
+    //alert(str);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             result = this.responseText;
-            alert(result);
+            //alert(result);
             location.reload();
         }
     };

@@ -6,7 +6,7 @@ require_once('./DAO/ImageProduct.php');
 
 $test = ProductDTO::getInstance()->GetListProductTopStar(22);
 $count = count($test);
-for ($i = 0; $i < $count; $i++) {
+for ($i = 0; $i < min($count,12); $i++) {
     $name = $test[$i]->GetNameProduct();
     $price = $test[$i]->GetPrice();
     $countSold = $test[$i]->GetCountSold();

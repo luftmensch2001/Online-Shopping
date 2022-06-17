@@ -7,13 +7,13 @@ error_reporting(E_ALL ^ E_NOTICE);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$idAccount = $_SESSION['idAccount'];
-if ($idAccount == null || $idAccount == -1) {
-    header("Location:Login.php");
-} else {
-    $listProduct = ProductDTO::getInstance()->GetListProduct($idAccount);
-}
-
+// $idAccount = $_SESSION['idAccount'];
+// if ($idAccount == null || $idAccount == -1) {
+//     header("Location:Login.php");
+// } else {
+//     $listProduct = ProductDTO::getInstance()->GetListProduct($idAccount);
+// }
+$listProduct = ProductDTO::getInstance()->GetListProduct($idAccount);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,9 +168,11 @@ if ($idAccount == null || $idAccount == -1) {
                     $count = (int)$count;
                     ?>
 
-                    <div class="paging" name="pageBar" id="pageBar" style="display:<?php echo $displayPageBar ?>">
-                        <button class="paging__trans" onclick="Search(1)">>Trang đầu</button>
-                        <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="paging" name="pageBar" id="pageBar" style="text-align: center;display:<?php echo $displayPageBar ?>">
+                        <button class="paging__trans" onclick="Search(1)">Trang đầu</button>
+                        <?php if ($pageNumber > 0) { ?>
+                            <button class="paging__trans" onclick="Search(<?php echo $pageNumber - 1 ?>)"><i class="fa-solid fa-arrow-left"></i></button>
+                        <?php } ?>
                         <?php
                         if ($pageNumber == 0) {
                             $startNumberPage = 1;
@@ -191,8 +193,10 @@ if ($idAccount == null || $idAccount == -1) {
                             }
                         }
                         ?>
-                        <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="paging__trans" onclick="Search(<?php echo $lastNumberPage; ?>)">>Trang cuối</button> <br>
+                        <?php if ($pageNumber + 1 < $lastNumberPage) { ?>
+                            <button class="paging__trans" onclick="Search(<?php echo $pageNumber + 2 ?>)"><i class="fa-solid fa-arrow-right"></i></button>
+                        <?php } ?>
+                        <button class="paging__trans" onclick="Search(<?php echo $lastNumberPage; ?>)">Trang cuối</button> <br>
                         <p>Đang ở trang <?php echo $pageNumber + 1 ?> trong tổng số <?php echo $count + 1 ?> trang</p>
                         <input type="hidden" name="hiddenSearchValue" id="hiddenSearchValue" value="<?php echo $searchValue ?>">
                         <input type="hidden" name="hiddenTypeSort" id="hiddenTypeSort" value="<?php echo $typeSort ?>">

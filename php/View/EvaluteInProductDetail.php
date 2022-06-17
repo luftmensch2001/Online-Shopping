@@ -2,11 +2,21 @@
 
 
 $listEvalute = EvaluteDTO::getInstance()->GetListEvalute($idProduct);
-$countEvalute = count($listEvalute);
-for ($i = 0; $i < min($countEvalute,5); $i++) {
+if ($_GET['page-number'])
+    $pageNumber = $_GET['page-number'] - 1;
+else
+    $pageNumber = 0;
+
+$startNumber = ($pageNumber * 5);
+$lastNumber = min($startNumber + 5, count($listEvalute));
+
+$count = count($listEvalute);
+$count = min($count, 5);
+for ($i = $startNumber; $i < $lastNumber; $i++) {
     $account = AccountDTO::getInstance()->GetAccount($listEvalute[$i]->GetIdAccount());
     $fullName = $account->GetFullName();
     $comment = $listEvalute[$i]->GetComment();
+    $time = $listEvalute[$i]->GetTime();
     $star = $listEvalute[$i]->GetStar();
 ?>
 
@@ -17,7 +27,7 @@ for ($i = 0; $i < min($countEvalute,5); $i++) {
                     <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
                 </td>
                 <td>
-                    <p class="review__username"><?php echo $fullName ?></p>
+                    <p class="review__username"><?php echo $fullName." ( " .$time." ) " ?></p>
                 </td>
             </tr>
             <tr>

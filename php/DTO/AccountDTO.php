@@ -43,7 +43,7 @@ class AccountDTO
         ->SetFullName($row["fullName"])
         ->SetPhoneNumber($row["phoneNumber"])
         ->SetUsername($row["userName"])
-        ->SetImageUrl($row["imageUrl"])
+        ->SetImageUrl($row["imageURL"])
         ->SetSex($row["sex"])
         ->SetLastIdAddress($row["lastIdAddress"])
         ->SetCoin($row["coin"]);

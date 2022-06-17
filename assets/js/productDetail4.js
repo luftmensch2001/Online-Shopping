@@ -3,10 +3,12 @@ const buttonPreImage = document.querySelector("#buttonPreImage");
 const buttonNextImage = document.querySelector("#buttonNextImage");
 const countImage = document.querySelector("#countImage");
 const imageProduct = document.querySelector("#imageProduct");
-const hiddenURL = document.querySelector("#hiddenURL");
-const typeButton = document.querySelector("#typeButton");
 const btAddToCart = document.querySelector("#btAddToCart");
 const btAddToWish = document.querySelector("#btAddToWish");
+const count = document.querySelector("#count");
+const color = document.querySelector("#color");
+const idProduct = document.querySelector("#idProduct");
+const idAccount = document.querySelector("#idAccount");
 
 buttonPreImage.addEventListener("click", () => {
     let index = document.querySelector("#indexImage");
@@ -28,41 +30,47 @@ buttonNextImage.addEventListener("click", () => {
         imageProduct.setAttribute('src', indexImage.value);
     }
 })
-const countSold = document.querySelector("#countSold");
-const idProduct = document.querySelector("#idProduct");
-var id = idProduct.value;
-function FixProduct() {
+btAddToCart.addEventListener("click", () => {
+    var str = "";
+    str += "?idProduct=" + idProduct.value + "&" + "idAccount=" + idAccount.value + "&" + "count=" + count.value + "&" + "color=" + color.value;
+    //alert(str);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             result = this.responseText;
+            //alert(result);
             if (result == "false") {
-                alert('Không thể sửa sản phẩm đã bán');
+                alert('Không thể thêm sản phẩm vào giỏ hàng');
             } else {
-                //alert("Được xóa");
-                 window.location = "fixProduct.php?idProduct="+id;
+                alert('Đã thêm sản phẩm vào giỏ hàng');
             }
         }
     };
-    xmlhttp.open("GET", "CheckFixDeleteProduct.php?idProduct=" + id, true);
+    xmlhttp.open("GET", "AddToCart.php" + str, true);
     xmlhttp.send();
-}
-function DeleteProduct() {
+})
+btAddToWish.addEventListener("click", () => {
+    var str = "";
+    str += "?idProduct=" + idProduct.value + "&" + "idAccount=" + idAccount.value + "&" + "color=" + color.value;
+    //alert(str);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             result = this.responseText;
-            if (result == "false") {
-                alert('Không thể sửa sản phẩm đã bán');
-            } else {
-                alert("Xóa thành công");
-                 window.location = "deleteProduct.php?idProduct="+id;
-            }
+            if (result != "true")
+                alert("Không thể thêm sản phẩm vào mục yêu thích");
+            else
+                alert("Đã thêm sản phẩm vào mục yêu thích");
         }
     };
-    xmlhttp.open("GET", "CheckFixDeleteProduct.php?idProduct=" + id, true);
+    xmlhttp.open("GET", "AddToWishList.php" + str, true);
     xmlhttp.send();
+})
+
+function SearchType(type) {
+    window.location = "../php/catalog.php?searchValue=" + type;
 }
+
 function LoadComment(pn) {
     var str = "";
     str += "?idProduct=" + idProduct.value + "&" + "page-number=" + pn;

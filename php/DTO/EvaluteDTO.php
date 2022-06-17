@@ -54,7 +54,7 @@ class EvaluteDTO
     }
     function GetListEvalute($idProduct)
     {
-        $query = "SELECT * FROM Evalute Where idProduct = '$idProduct'";
+        $query = "SELECT * FROM Evalute Where idProduct = '$idProduct' order by id desc" ;
         $result = DataProvider::getInstance()->Execute($query);
         $listEvalute = array();
         $row = mysqli_num_rows($result);

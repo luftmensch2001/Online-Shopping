@@ -121,7 +121,9 @@ if ($idAccount != null && $idAccount != -1) {
             <div class="product-card-list">
                 <?php include("./View/ProductTopStar.php");
                 if ($count > 12) { ?>
-                    <button class="see-more-button">Xem thêm</button>
+                    <a href="./catalog.php">
+                        <button class="see-more-button">Xem thêm</button>
+                    </a>
                 <?php
                 }
                 ?>

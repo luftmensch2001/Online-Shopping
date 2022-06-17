@@ -103,7 +103,7 @@
     color: var(--text-color);
 }
 
-.header__user-dropdown-item:hover {
+.header__user-dropdown-item :hover {
     cursor: pointer;
     background-color: var(--blue-color);
     color: #FFF;

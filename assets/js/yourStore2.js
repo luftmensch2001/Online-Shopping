@@ -49,7 +49,7 @@ function ChangeMinCountStar(minCountStart) {
     Search(1);
 }
 function CheckStar() {
-    document.querySelector("#star" + hiddenMinCountStar.value).style = "background-color:var(--background-color-gray)";
+    document.querySelector("#star" + hiddenMinCountStar.value).style = "background-color:var(--background-gray-color)";
 }
 CheckStar();
 function ChangePrice() {

@@ -70,3 +70,8 @@ btAddToWish.addEventListener("click", () => {
 function SearchType(type) {
     window.location = "../php/catalog.php?searchValue=" + type;
 }
+
+function LoadComment(pn){
+    const pageNumber = document.querySelector('#pageNumber');
+    pageNumber.value= pn;
+}

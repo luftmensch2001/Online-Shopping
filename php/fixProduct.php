@@ -45,7 +45,7 @@ if ($idAccount == null || $idAccount == -1) {
         if ($changeImage != "noChange") {
             ImageProductDTO::getInstance()->DeleteImageProductByIdProduct($idProduct);
         }
-        ProductDTO::getInstance()->SetNewIdProduct($oldIdProduct,$idProduct);
+        ProductDTO::getInstance()->SetNewIdProduct($oldIdProduct, $idProduct);
         //Add ImageProduct
         $imageProduct = new ImageProduct();
         $imageProduct->SetIdProduct($idProduct);
@@ -131,8 +131,10 @@ if ($idAccount == null || $idAccount == -1) {
                 <textarea id="decribe" class="add__textarea" name="decribe" id="" cols="30" rows="20" placeholder="Mô tả chi tiết sản phẩm"><?php echo $decribe; ?></textarea>
                 <!--<p class="add__label">Hình ảnh</p> -->
                 <p class="add__label">Hình ảnh</p>
-                <br>
-                <input name="userfile[]" type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" multiple></input>
+                <label style="display:flex" >
+                    <input name="userfile[]" type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" multiple style="display:none;"> </input>
+                    <span class="add__button" style="padding: 5px 10px;margin-top:10px">+</span>
+                </label>
                 <?php
                 $listImageProduct = ImageProductDTO::getInstance()->GetListImageProductByIdProduct($idProduct);
                 ?>
@@ -149,7 +151,7 @@ if ($idAccount == null || $idAccount == -1) {
                 <div>
                     </img>
                     <p class="add__label">Phân loại hàng</p>
-                    <input id="addColorInput" type="text" class="add__input" placeholder="Nhập tên phân loại hàng" style="width: 300px; margin-left: 30px; margin-top: 6px;">
+                    <input id="addColorInput" type="text" class="add__input" placeholder="Nhập tên phân loại hàng" style="width: 300px; margin-top: 6px;">
                     <input type="hidden" value="" id="typeButton" name="typeButton" value="???">
                     <?php
                     $listColor = ColorDTO::getInstance()->GetListColor($idProduct);

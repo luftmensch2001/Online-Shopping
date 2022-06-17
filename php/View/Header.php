@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="../assets/css/global2.css">
+<link rel="stylesheet" href="../assets/css/main1.css">
+<style>
+    .header__user-dropdown-item:hover a{
+        cursor: pointer;
+        background-color: var(--blue-color);
+        color: #FFF !important;
+    }
+</style>
 <div id="header">
     <!-- Logo -->
     <a href="./index.php" class="header__logo-link">
@@ -32,15 +41,11 @@
             <lord-icon src="https://cdn.lordicon.com/dklbhvrt.json" trigger="loop-on-hover" colors="primary:#ffffff" class="header__advanced-icon">
             </lord-icon>
             <ul class="header__user-dropdown">
-                <a href="./profile.php" class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;">Tài Khoản</a>
-                <br>
-                <a href="./yourStore.php" class="header__user-dropdown-item">Cửa Hàng Của Bạn</a>
-                <br>
-                <a href="./orderList.php" class="header__user-dropdown-item">Đơn Mua</a>
-                <br>
-                <a href="./orderList-seller.php" class="header__user-dropdown-item">Đơn Bán</a>
-                <br>
-                <a href="./logout.php" class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;">Đăng xuất</a>
+                <li class="header__user-dropdown-item" style="border-radius: 12px 12px 0px 0px;"><a href="./profile.php"> Tài Khoản</a></li>
+                <li class="header__user-dropdown-item"><a href="./yourStore.php"> Cửa hàng của bạn</a></li>
+                <li class="header__user-dropdown-item"><a href="./orderList.php"> Đơn mua</a></li>
+                <li class="header__user-dropdown-item"><a href="./orderList-seller.php"> Đơn bán</a></li>
+                <li class="header__user-dropdown-item" style="border-radius: 0px 0px 12px 12px;"><a href="./logout.php"> Đăng xuất</a></li>
             </ul>
         </div>
     </div>

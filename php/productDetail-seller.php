@@ -52,7 +52,7 @@ if (count($listImageProduct) > 0)
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/catalog.css">
-    <link rel="stylesheet" href="../assets/css/productDetail.css">
+    <link rel="stylesheet" href="../assets/css/productDetail2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -87,14 +87,16 @@ if (count($listImageProduct) > 0)
                             <tr style="height: 30px;">
                                 <td colspan="2">
                                     <p class="product-detail__general-info" style="padding-left: 30px;">
-                                        <?php echo $countStar ?> <img src="../assets/images/stars/5.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
+                                        <?php echo $countStar ?> <img src="../assets/images/stars/<?php if (intval($countStar) == 0)
+                                                                                                        $countStar = 5;
+                                                                                                    echo intval($countStar) ?>.png" alt="" style="height:30px; vertical-align: middle; transform: translateY(-2px);">
                                     </p>
                                     <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
                                         <?php echo $countEvalute ?> lượt đánh giá
                                     </p>
                                     <p class="product-detail__general-info" style="border-left: 1px solid rgba(0, 0, 0, 0.5); margin-left: 10px; padding: 0 10px;">
-                                       <span id="countSold"> <?php echo $countSold ?></span> lượt mua
-                                    </span>
+                                        <span id="countSold"> <?php echo $countSold ?></span> lượt mua
+                                        </span>
                                 </td>
                             </tr>
                             <tr>
@@ -144,7 +146,6 @@ if (count($listImageProduct) > 0)
                                 </td>
                             </tr>
                         </tbody>
-
                     </table>
                 </div>
                 <div class="product-detail__desciption">
@@ -158,56 +159,60 @@ if (count($listImageProduct) > 0)
                     <h1 class="product-detail__title">
                         ĐÁNH GIÁ
                         <span class="star-count"><?php echo $countStar ?></span>
-                        <img src="../assets/images/stars/5.png" alt="" style="height: 30px; transform: translateY(9px);">
+                        <img src="../assets/images/stars/<?php if (intval($countStar) == 0)
+                                                                $countStar = 5;
+                                                            echo intval($countStar) ?>.png" alt="" style="height: 30px; transform: translateY(9px);">
                     </h1>
-                    <div class="review__container">
-                        <div class="review__item">
-                            <table>
-                                <tr>
-                                    <td rowspan="2">
-                                        <img src="../assets/images/other/avatar.png" alt="" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <p class="review__username">Nguyễn Thị Long</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 5px;">
-                                        <img src="../assets/images/stars/5.png" alt="" style="height: 25px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="review__content">
-                                            Sản phẩm rất đẹp, giống như hình. Giao hàng nhanh chóng
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="paging-wrapper">
+                    <div class="review__container" id="review__container">
+                        <?php include("./View/EvaluteInProductDetail.php");
+
+                        $count = count($listEvalute) / 5;
+                        $count = (int)$count;
+
+                        if ($count >= 1) {
+                            $displayPageBar = "block";
+                        } else
+                            $displayPageBar = "none"; ?>
+                        <div class="paging-wrapper" style="text-align: center;display:<?php echo $displayPageBar ?>">
                             <div class="paging paging-review">
-                                <button class="paging__trans">Trang đầu</button>
-                                <button class="paging__trans"><i class="fa-solid fa-arrow-left"></i></button>
-                                <button class="paging__page-number">1</button>
-                                <button class="paging__page-number paging__current">2</button>
-                                <button class="paging__page-number">3</button>
-                                <button class="paging__page-number">4</button>
-                                <button class="paging__trans"><i class="fa-solid fa-arrow-right"></i></button>
-                                <button class="paging__trans">Trang cuối</button> <br>
-                                <p>Đang ở trang 2 trong tổng số 7 trang</p>
+                                <button class="paging__trans" onclick="LoadComment(1)">Trang đầu</button>
+                                <?php if ($pageNumber > 0) { ?>
+                                    <button class="paging__trans" onclick="LoadComment(<?php echo $pageNumber - 1 ?>)"><i class="fa-solid fa-arrow-left"></i></button>
+                                <?php } ?>
+                                <?php
+                                if ($pageNumber == 0) {
+                                    $startNumberPage = 1;
+                                    $lastNumberPage = min($count + 1, $startNumberPage + 2);
+                                }
+                                if ($pageNumber == $count) {
+                                    $startNumberPage = max(1, $pageNumber - 2);
+                                    $lastNumberPage = $pageNumber + 1;
+                                }
+                                for ($i = $startNumberPage; $i <= $lastNumberPage; $i++) {
+                                    if ($pageNumber + 1 == $i) { ?>
+                                        <button class="paging__page-number paging__current" onclick="LoadComment(<?php echo $i ?>)"><?php echo $i; ?></button>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <button class="paging__page-number" onclick="LoadComment(<?php echo $i ?>)"><?php echo $i; ?></button>
+                                <?php }
+                                } ?>
+                                <?php if ($pageNumber + 1 < $lastNumberPage) { ?>
+                                    <button class="paging__trans" onclick="LoadComment(<?php echo $pageNumber + 2 ?>)"><i class="fa-solid fa-arrow-right"></i></button>
+                                <?php } ?>
+                                <button class="paging__trans" onclick="LoadComment(<?php echo $lastNumberPage ?>)">Trang cuối</button> <br>
+                                <p>Đang ở trang <?php echo $pageNumber + 1 ?> trong tổng số <?php echo $count + 1 ?> trang</p>
                             </div>
                         </div>
+                        <?php ?>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-    <?php include("./View/Header.php"); ?>
-    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
-    <script src="../assets/js/productDetail-seller2.js"></script>
+        </div>
+        <?php include("./View/Footer.php"); ?>
+        <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+        <script src="../assets/js/productDetail-seller3.js"></script>
 </body>
 
 </html>

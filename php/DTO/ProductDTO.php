@@ -109,6 +109,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -144,6 +145,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -179,6 +181,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -200,6 +203,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -223,6 +227,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);
@@ -246,6 +251,7 @@ class ProductDTO
                 ->SetIdAccount($row["idAccount"])
                 ->SetPrice($row["price"])
                 ->SetCountSold($row["countSold"])
+                ->SetCountStar($row["countStar"])
                 ->SetCountAvailable($row["countAvailable"])
                 ->SetDecribe($row["decribe"])
                 ->SetType($row["type"]);

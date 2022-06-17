@@ -19,7 +19,6 @@ else {
     $sex = $account->GetSex();
     if (isset($_POST['infoType'])) {
         $type = $_POST['infoType'];
-        echo "<h1?>$type</h1><br>";
         $id = $account->GetId();
         switch ($type) {
             case 'fullName':

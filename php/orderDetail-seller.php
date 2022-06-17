@@ -77,7 +77,7 @@ else {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/global2.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/cart.css">
     <link rel="stylesheet" href="../assets/css/orderList.css">
@@ -119,8 +119,8 @@ else {
                 </div>
                 <input type="hidden" name="idDetailBill" id="idDetailBill" value="<?php echo $idDetailBill?>">
                 <div class="order-detail__botright">
-                    <p class="order-detail__botright-money">Giảm giá: <?php echo $discount ?> VNĐ</p>
-                    <p class="order-detail__botright-money">Tổng thanh toán: <?php echo $totalPrice - $discount ?> VNĐ</p>
+                    <p class="order-detail__botright-money">Giảm giá: <?php echo number_format($discount) ?> VNĐ</p>
+                    <p class="order-detail__botright-money">Tổng thanh toán: <?php echo number_format($totalPrice - $discount) ?> VNĐ</p>
                     <p class="order-detail__botright-status" id="state">Tình trạng đơn hàng: <?php echo $state ?></p>
                     <div class="order-detail__comfirm-buttons">
                         <button class="order-detail__botright-button-comfirm" id="btConfirm" style="display:<?php echo $displayConfirmButton?>">Xác Nhận Đơn Hàng</button>
