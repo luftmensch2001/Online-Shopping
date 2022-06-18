@@ -50,12 +50,11 @@ function ChangeMinCountStar(minCountStart) {
 }
 function CheckStar() {
     if (document.querySelector("#star" + hiddenMinCountStar.value) != null)
-        document.querySelector("#star" + hiddenMinCountStar.value).style = "background-color:blue";
+        document.querySelector("#star" + hiddenMinCountStar.value).style = "background-color:var(--background-gray-color)";
 }
 CheckStar();
 function ChangePrice() {
     var value = document.querySelector('input[name="price-base"]:checked').value;
-    //alert(value);
     switch (value) {
         case "0":
             hiddenMinPrice.value = 0;
@@ -122,14 +121,12 @@ function CheckPrice() {
                             document.querySelector("#min").value = min;
                             document.querySelector("#max").value = max;
                         }
-
     document.querySelector("#price" + index).checked = true;
 }
 CheckPrice();
 
 function Search(numberPage) {
-    //alert("test");
-    var searchValue = "searchValue=" + hiddenSearchValue.value;
+    //  alert("test");
     var typeSort = "typeSort=" + hiddenTypeSort.value;
     var minPrice = "minPrice=" + hiddenMinPrice.value;
     var maxPrice = "maxPrice=" + hiddenMaxPrice.value;
@@ -137,10 +134,7 @@ function Search(numberPage) {
     var minCountStar = "minCountStar=" + hiddenMinCountStar.value;
     var numberPage = "page-number=" + numberPage;
 
-    var get = "?" + searchValue + "&" + typeSort + "&" + minPrice + "&" + maxPrice + "&" + minCountSold + "&" + minCountStar + "&" + numberPage;
+    var get = "?" + typeSort + "&" + minPrice + "&" + maxPrice + "&" + minCountSold + "&" + minCountStar + "&" + numberPage;
     //alert(get);
     window.location = get;
-}
-function SearchType(type) {
-    window.location = "../php/catalog.php?searchValue=" + type;
 }

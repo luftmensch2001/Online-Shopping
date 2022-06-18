@@ -43,7 +43,7 @@ $countProduct = count($listProductInFavorite);
                         <p class="cart__product-name"><?php echo $nameProduct; ?></p>
                     </div>
                     <p class=" cart__type" style="width: 20%" id="color"><?php echo $color; ?> </p>
-                    <p class="wishlist__price" style="width: 20%"><?php echo $price ?> VNĐ</p>
+                    <p class="wishlist__price" style="width: 20%"><?php echo number_format($price) ?> VNĐ</p>
                     <div class="wishlist__advanced" style="width: 20%">
                         <button class="wishlist__button" onclick="AddToCart(<?php echo $i + 1; ?>)">Thêm vào Giỏ hàng</button>
                         <button class="wishlist__button-2" onclick="DeleteProductInWishList(<?php echo $i + 1; ?>)">Xoá</button>

@@ -102,7 +102,7 @@ function CheckPrice(){
     {
         index = 0;
     } else
-    if (min=="0" &&max=="200000")
+    if (min=="0" && max=="200000")
     {
         index=1;
     } else

@@ -10,14 +10,14 @@ const intoMoney = document.querySelector('#intoMoney');
 const hiddenTotalPrice = document.querySelector('#hiddenTotalPrice');
 const hiddenDiscount = document.querySelector('#hiddenDiscount');
 const hiddenCountShop = document.querySelector('#hiddenCountShop');
+const hiddenDefaultPrice = document.querySelector('#hiddenDefaultPrice');
 btApply.addEventListener('click', () => {
     if (coin.value > parseInt(maxCoin.innerHTML)) {
         coin.style.border = '1px solid red';
     } else {
         if (applyCoin.checked) {
             if (coin.value > 0) {
-
-                total.innerHTML = total.innerHTML.substring(0, total.innerHTML.length - 4);
+                total.innerHTML = hiddenDefaultPrice.innerHTML;
                 discount.innerHTML = coin.value * hiddenCountShop.value;
                 let tmpMoney = parseInt(total.innerHTML) - coin.value * hiddenCountShop.value;
                 if (tmpMoney < 0) {
@@ -26,6 +26,7 @@ btApply.addEventListener('click', () => {
                     tmpMoney = 0;
                 }
                 intoMoney.innerHTML = tmpMoney;
+                intoMoney.innerHTML.toLocaleString('vi-VN');
 
                 intoMoney.innerHTML += " VNĐ";
                 total.innerHTML += "VNĐ";

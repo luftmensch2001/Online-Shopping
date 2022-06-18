@@ -233,7 +233,7 @@ if ($idAccount == null || $idAccount == -1) {
             }
         }
     </script>
-    <script src="../assets/js/yourStore2.js"></script>
+    <script src="../assets/js/yourStore3.js"></script>
 </body>
 
 </html>

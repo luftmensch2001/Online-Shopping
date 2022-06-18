@@ -25,8 +25,8 @@ if ($minCountStar!="")
     $newArray = array();
     foreach($listProduct as $product)
     {
-        if ($product->GetStar()>= (int)$minCountStar)
-            array_push($newArray,$product);
+        if ($product->GetCountStar()>= intval($minCountStar)||$product->GetCountStar()==0)
+        array_push($newArray,$product);
     }
     $listProduct = $newArray;
 }

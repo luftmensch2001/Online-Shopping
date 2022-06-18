@@ -84,7 +84,8 @@ else {
                             <p class="order-total">Tổng tiền hàng:</p>
                         </td>
                         <td>
-                            <p class="order-total money-column" id="total"><?php echo $totalAll; ?> VNĐ</p>
+                            <p class="order-total money-column" id="total"><?php echo number_format($totalAll); ?> VNĐ</p>
+                            <p class="order-total money-column" style="display:none" id="hiddenDefaultPrice"><?php echo $totalAll; ?>
                         </td>
                     </tr>
                     <tr>
@@ -100,7 +101,7 @@ else {
                             <p class="order-total">Thành tiền:</p>
                         </td>
                         <td>
-                            <p class="order-total money-column" id="intoMoney"><?php echo $totalAll; ?> VNĐ</p>
+                            <p class="order-total money-column" id="intoMoney"><?php echo number_format($totalAll); ?> VNĐ</p>
                         </td>
                     </tr>
                 </table>
@@ -167,7 +168,7 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="../assets/js/AddressPayment3.js"></script>
-    <script src="../assets/js/payment2.js"></script>
+    <script src="../assets/js/payment3.js"></script>
     </script>
 </body>
 

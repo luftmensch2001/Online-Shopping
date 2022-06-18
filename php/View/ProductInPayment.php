@@ -38,9 +38,9 @@ if (isset($_GET['countProduct'])) {
                         <p class="cart__product-name"><?php echo $nameProduct; ?></p>
                     </div>
                     <p class="order__type"><?php echo $color; ?></p>
-                    <p class="cart__price"><?php echo $price; ?> VNĐ</p>
+                    <p class="cart__price"><?php echo number_format($price); ?> VNĐ</p>
                     <p class="order-count"><?php echo $count; ?></p>
-                    <p class="cart__money"><?php echo $total; ?> VNĐ</p>
+                    <p class="cart__money"><?php echo number_format($total); ?> VNĐ</p>
                 </div>
             </div>
 <?php

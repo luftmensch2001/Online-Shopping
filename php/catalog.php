@@ -302,7 +302,7 @@ $listProduct = ProductDTO::getInstance()->GetListProduct($idAccount);
             }
         }
     </script>
-    <script src="../assets/js/catalog2.js"></script>
+    <script src="../assets/js/catalog3.js"></script>
 </body>
 
 </html>
