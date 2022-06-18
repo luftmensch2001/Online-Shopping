@@ -46,6 +46,3 @@ var hiddenDistrict = document.querySelector('#hiddenDistrict');
 var hiddenWard = document.querySelector('#hiddenWard');
 
 
-citis.addEventListener('change', () => {
-    alert('change');
-})

@@ -1,17 +1,4 @@
-<table>
-    <?php
-    foreach ($_POST as $key => $value) {
-        echo "<tr>";
-        echo "<td>";
-        echo $key;
-        echo "</td>";
-        echo "<td>";
-        echo $value;
-        echo "</td>";
-        echo "</tr>";
-    }
-    ?>
-</table>
+
 <?php
 require_once('./DAO/Account.php');
 require_once('./DTO/AccountDTO.php');
@@ -69,6 +56,12 @@ else {
         $detailBill = new DetailBill();
         $totalPrice = $_POST['hiddenTotalPrice'];
         $discount = $_POST['hiddenDiscount'] / count($arrayShop);
+        $account = AccountDTO::getInstance()->GetAccount($idAccount);
+        if ($account!=null)
+        {
+            $account->SetCoin($account->GetCoin() - $_POST['hiddenDiscount']);
+            AccountDTO::getInstance()->UpdateAccount($account);
+        }
         $state = "Đang chờ xác nhận";
         $detailBill->SetIdBill($idBill)->SetDiscount($discount)->SetTotalPrice($totalPrice)->SetState($state);
         if (DetailBillDTO::getInstance()->CreateDetailBill($detailBill))
